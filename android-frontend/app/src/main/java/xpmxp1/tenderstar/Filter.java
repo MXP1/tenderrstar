@@ -2,6 +2,8 @@ package xpmxp1.tenderstar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.Store;
@@ -38,7 +40,6 @@ public class Filter {
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
-
             boolean matches = true;
 
             // Filter category
@@ -46,17 +47,17 @@ public class Filter {
                 matches = false;
             }
 
-
+            // Filter tags
             if (tags != null && !tags.isEmpty()) {
                 if (product.tags != null && !product.tags.containsAll(tags)) {
                     matches = false;
                 }
-
                 else if (product.tags == null) {
                     matches = false;
                 }
             }
 
+            // Filter stores
             if (stores != null && !stores.isEmpty()) {
                 if (product.stores != null && !product.stores.containsAll(stores)) {
                     matches = false;
@@ -66,6 +67,18 @@ public class Filter {
                 }
             }
 
+            // Filter searchString
+            if (matches && searchString != "") {
+                // create regex
+                String searchPattern = createSearchRegex(searchString);
+                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
+                Matcher matcher = pattern.matcher(product.name.toLowerCase());
+
+                // find matches
+                matches = matcher.matches();
+            }
+
+            // add product if filter matches
             if (matches) {
                 results.add(product);
             }
@@ -77,8 +90,22 @@ public class Filter {
     public void addTag(Tag tag) {
         this.tags.add(tag);
     }
-
     public void addStore(Store store) {
         this.stores.add(store);
+    }
+    public void setSearchString(String searchString) { this.searchString = searchString; }
+
+    private String createSearchRegex(String searchString) {
+
+        String[] stringList = searchString.split("\\s");
+        String regex = "";
+
+        for (int i = 0; i < stringList.length; i++) {
+            regex += stringList[i].toLowerCase();
+            if (i < stringList.length - 1)
+                regex += "|";
+        }
+
+        return regex;
     }
 }

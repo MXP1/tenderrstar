@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar.app_objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,8 @@ public class Product {
     public Product(String name, Category category) {
         this.name = name;
         this.category = category;
+        this.tags = new ArrayList<>();
+        this.stores = new ArrayList<>();
     }
     public Product(String name, Category category, List<Tag> tags, List<Store> stores) {
         this.name = name;
