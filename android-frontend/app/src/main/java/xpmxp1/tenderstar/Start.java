@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,14 +17,16 @@ public class Start extends AppCompatActivity {
         final Button signUp = findViewById(R.id.bSignUp);
         signUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+                Intent intent = new Intent(Start.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
         final Button login = findViewById(R.id.bLogin);
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
+                Intent intent = new Intent(Start.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }

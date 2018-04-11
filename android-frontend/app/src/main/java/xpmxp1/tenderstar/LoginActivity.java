@@ -28,12 +28,19 @@ public class LoginActivity extends AppCompatActivity {
         Login = (Button)findViewById(R.id.btnLogin);
         Back = (Button)findViewById(R.id.btnBack);
 
-        Attempts.setText("Attempts remaining: 5");
+        Attempts.setText("Attempts remaining: 4");
 
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                     validate(Email.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, Start.class);
+                startActivity(intent);
             }
         });
     }
@@ -45,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             counter --;
             Attempts.setText("Wrong Combination! Attempts remaining: " + String.valueOf(counter));
             if(counter == 0){
+                Attempts.setText("Too many invalid login attempts!");
                 Login.setEnabled(false);
             }
         }
