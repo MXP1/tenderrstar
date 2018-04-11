@@ -112,6 +112,8 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_products:
+                Intent in = new Intent(getActivity(), StoreDetailsActivity.class);
+                startActivity(in);
                 break;
             case R.id.nav_stores:
                 break;
@@ -122,4 +124,6 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         }
         return false;
     }
+
+    abstract AppCompatActivity getActivity();
 }

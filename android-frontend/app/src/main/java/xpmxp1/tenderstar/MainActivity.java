@@ -10,4 +10,10 @@ public class MainActivity extends AppBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    @Override
+    AppCompatActivity getActivity() {
+        return MainActivity.this;
+    }
+
 }
