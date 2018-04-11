@@ -3,10 +3,21 @@ package xpmxp1.tenderstar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import xpmxp1.tenderstar.app_objects.Product;
+import xpmxp1.tenderstar.app_objects.ProductAdapter;
 
 
 /**
@@ -28,6 +39,13 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ListView listView;
+    private ProductAdapter productAdapter;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,7 +85,46 @@ public class HomeFragment extends Fragment {
             mListener.onFragmentInteraction(Uri.parse("Home"));
         }
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        // Create List view
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+//        view.setContentView(R.layout.activity_main);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this.getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+
+        ArrayList<Product> productsList = new ArrayList<>();
+        productsList.add(new Product("Milk", Product.Category.FOOD));
+        productsList.add(new Product("Water", Product.Category.FOOD));
+        productsList.add(new Product("Rice", Product.Category.FOOD));
+        productsList.add(new Product("Bread", Product.Category.FOOD));
+        productsList.add(new Product("Milk", Product.Category.FOOD));
+        productsList.add(new Product("Water", Product.Category.FOOD));
+        productsList.add(new Product("Rice", Product.Category.FOOD));
+        productsList.add(new Product("Bread", Product.Category.FOOD));
+        productsList.add(new Product("Milk", Product.Category.FOOD));
+        productsList.add(new Product("Water", Product.Category.FOOD));
+        productsList.add(new Product("Rice", Product.Category.FOOD));
+        productsList.add(new Product("Bread", Product.Category.FOOD));
+
+        mAdapter = new ProductAdapter(productsList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        // return the View
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

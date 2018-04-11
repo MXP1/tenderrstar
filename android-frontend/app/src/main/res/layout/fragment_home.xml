@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="xpmxp1.tenderstar.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/products_list"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
