@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -50,6 +51,12 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         for(int i = 0; i < drawerMenu.size(); i++) {
             drawerMenu.getItem(i).setOnMenuItemClickListener(this);
         }
+
+        // load the home screen
+        navigation_view.setCheckedItem(R.id.nav_home);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new HomeFragment());
+        ft.commit();
     }
 
     @Override
@@ -110,16 +117,28 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        FragmentTransaction ft;
         switch (item.getItemId()) {
+            case R.id.nav_home:
+                navigation_view.setCheckedItem(R.id.nav_home);
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.mainFrame, new HomeFragment());
+                ft.commit();
+                break;
             case R.id.nav_products:
                 break;
             case R.id.nav_stores:
+                navigation_view.setCheckedItem(R.id.nav_stores);
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.mainFrame, new StoreFragment());
+                ft.commit();
                 break;
             case R.id.nav_favorites:
                 break;
             case R.id.nav_shopping_cart:
                 break;
         }
+        mDrawerLayout.closeDrawers();
         return false;
     }
 }
