@@ -1,18 +1,27 @@
 package xpmxp1.tenderstar.app_objects;
 
-/**
- * Created by Rene Hasenburger on 11.04.2018.
- */
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity
 public class User {
 
+    @ColumnInfo(name = "UserID")
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "Benutzername")
     private String benutzername;
+    @ColumnInfo(name = "Passwort")
     private String passwort;
 
     public User(String benutzername, String passwort) {
         this.benutzername = benutzername;
         this.passwort = passwort;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
