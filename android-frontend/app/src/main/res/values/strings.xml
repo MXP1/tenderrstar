@@ -2,4 +2,9 @@
     <string name="app_name">TenderStar</string>
     <string name="sign_up">Sign up</string>
     <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_main">Login</string>
+    <string name="incorrect_login_attempts">Incorrect login attempts</string>
+    <string name="back">Back</string>
 </resources>
