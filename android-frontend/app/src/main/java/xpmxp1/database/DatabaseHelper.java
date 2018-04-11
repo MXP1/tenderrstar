@@ -1,4 +1,4 @@
-package xpmxp1.database_helper;
+package xpmxp1.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
