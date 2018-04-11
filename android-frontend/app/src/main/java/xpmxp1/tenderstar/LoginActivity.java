@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                    validate(Email.getText().toString(), Password.getText().toString());
+                    validateLogin(Email.getText().toString(), Password.getText().toString());
             }
         });
 
@@ -44,12 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void validate(String userEmail, String userPassword){
+    private void validateLogin(String userEmail, String userPassword){
         if((userEmail.equals("Admin")) && (userPassword.equals("Admin"))){
             Intent intent = new Intent(LoginActivity.this, LoginSecondActivity.class);
             startActivity(intent);
         }else{
             counter --;
+            Attempts.setVisibility(View.VISIBLE);
             Attempts.setText("Wrong Combination! Attempts remaining: " + String.valueOf(counter));
             if(counter == 0){
                 Attempts.setText("Too many invalid login attempts!");

@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.TextView;
+
+import static java.lang.Object.*;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -15,6 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText PasswordRepeat;
     private Button Register;
     private Button Back;
+    private TextView PasswordError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +30,12 @@ public class RegisterActivity extends AppCompatActivity {
         PasswordRepeat = (EditText)findViewById(R.id.txtPasswordRepeat);
         Register = (Button)findViewById(R.id.btnRegister);
         Back = (Button)findViewById(R.id.btnBack);
+        PasswordError = (TextView) findViewById(R.id.viewPasswordError);
 
         Register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
+                validateRegPassword(Password.getText().toString(), PasswordRepeat.getText().toString());
             }
         });
 
@@ -41,4 +46,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void validateRegPassword(String passwordOne, String passwordTwo){
+        if(passwordOne.equals(passwordTwo) ){
+            PasswordError.setVisibility(View.INVISIBLE);
+            // Register Continuation
+
+        }else{
+            PasswordError.setVisibility(View.VISIBLE);
+            PasswordError.setText("Passwords do not match");
+        }
+    }
+
 }
