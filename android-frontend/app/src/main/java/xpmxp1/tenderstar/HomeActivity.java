@@ -3,13 +3,14 @@ package xpmxp1.tenderstar;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,30 +18,40 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import xpmxp1.tenderstar.app_objects.Product;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ListView listView;
+    private ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer,  R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        listView = (ListView) findViewById(R.id.products_list);
+        ArrayList<Product> productsList = new ArrayList<>();
 
-ListView listView = (ListView) findViewById(R.id.listView);
-List<String> list = new ArrayList<String>();
-listView.setAdapter(new AdapterHome(this, list));
+        productsList.add(new Product("Milk", Product.Category.FOOD));
+
+        productAdapter = new ProductAdapter(this, productsList);
+        listView.setAdapter(productAdapter);
+
+//ListView listView = (ListView) findViewById(R.id.listView);
+//List<String> list = new ArrayList<String>();
+//listView.setAdapter(new AdapterHome(this, list));
 
 
     }
@@ -101,4 +112,7 @@ listView.setAdapter(new AdapterHome(this, list));
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    //public createProductCards(List<Product> productList) {
+    //}
 }

@@ -43,7 +43,7 @@ public class Filter {
             boolean matches = true;
 
             // Filter category
-            if (category != null && product.category != category) {
+            if (category != null && product.getCategory() != category) {
                 matches = false;
             }
 
