@@ -52,6 +52,9 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
             drawerMenu.getItem(i).setOnMenuItemClickListener(this);
         }
 
+        Navigation.getInstance().setActivity(this);
+        Navigation.getInstance().setView(navigation_view);
+
         // load the home screen
         navigation_view.setCheckedItem(R.id.nav_home);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -120,20 +123,16 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         FragmentTransaction ft;
         switch (item.getItemId()) {
             case R.id.nav_home:
-                navigation_view.setCheckedItem(R.id.nav_home);
-                ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new HomeFragment());
-                ft.commit();
+                Navigation.getInstance().navigateToHome();
                 break;
             case R.id.nav_products:
+                Navigation.getInstance().navigateToHome();
                 break;
             case R.id.nav_stores:
-                navigation_view.setCheckedItem(R.id.nav_stores);
-                ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new StoreFragment());
-                ft.commit();
+                Navigation.getInstance().navigateToStores();
                 break;
             case R.id.nav_favorites:
+                Navigation.getInstance().PrintTestMessage();
                 break;
             case R.id.nav_shopping_cart:
                 break;
