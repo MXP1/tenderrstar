@@ -27,7 +27,7 @@ public class Store {
     @ColumnInfo(name = "OpenHours")
     private String openHours;
 
-    public Store(String username, String password, int storeTypeID, int locationID, String street, String openHours) {
+    public Store(String username, String password, int storeTypeID, int locationID, String openHours) {
         this.username = username;
         this.password = password;
         this.storeTypeID = storeTypeID;

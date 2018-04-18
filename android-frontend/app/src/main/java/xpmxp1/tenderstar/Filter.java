@@ -72,7 +72,7 @@ public class Filter {
                 // create regex
                 String searchPattern = createSearchRegex(searchString);
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
-                Matcher matcher = pattern.matcher(product.name.toLowerCase());
+                Matcher matcher = pattern.matcher(product.getName().toLowerCase());
 
                 // find matches
                 matches = matcher.matches();

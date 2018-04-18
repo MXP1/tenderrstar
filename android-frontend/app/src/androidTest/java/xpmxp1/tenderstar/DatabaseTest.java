@@ -12,18 +12,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import xpmxp1.database.DAO.CustomerDAO;
+import xpmxp1.database.DAO.ProductDAO;
 import xpmxp1.database.DAO.StoreDAO;
 import xpmxp1.database.TenderstarDB;
 import xpmxp1.tenderstar.app_objects.Customer;
+import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.Store;
 
 @RunWith(JUnit4.class)
 public class DatabaseTest {
     private CustomerDAO customerDAO;
     private StoreDAO storeDAO;
+    private ProductDAO productDAO;
     private TenderstarDB db;
 
     @Before
@@ -32,6 +36,7 @@ public class DatabaseTest {
         db = Room.inMemoryDatabaseBuilder(context, TenderstarDB.class).build();
         customerDAO = db.customerDAO();
         storeDAO = db.storeDAO();
+        productDAO = db.productDAO();
     }
 
     @After
@@ -63,8 +68,8 @@ public class DatabaseTest {
 
     @Test
     public void insertStoreTest() throws Exception {
-        Store store1 = new Store("ASDF-Store", "asdf", 1, 1, "asdf-Street", "00:00-24:00");
-        Store store2 = new Store("LOREM-IPSUM-Store", "asdf", 1, 1, "lorem-Street", "00:00-24:00");
+        Store store1 = new Store("ASDF-Store", "asdf", 1, 1, "00:00-24:00");
+        Store store2 = new Store("LOREM-IPSUM-Store", "asdf", 1, 1, "00:00-24:00");
 
         long i = storeDAO.insertStore(store1);
         assertNotEquals(i, -1);
@@ -79,10 +84,27 @@ public class DatabaseTest {
             Log.d("DatabaseTest", "ID: " + s.getId());
             Log.d("DatabaseTest", "Username: " + s.getUsername());
             Log.d("DatabaseTest", "Password: " + s.getPassword());
-            Log.d("DatabaseTest", "Street: " + s.getStreet());
             Log.d("DatabaseTest", "Open Hours:: " + s.getOpenHours());
         }
     }
+
+    @Test
+    public void typeConversionTest()  throws  Exception {
+        Product product = new Product("asdf", 5.0, 2.0, new Date(System.currentTimeMillis()/1000), new Date(System.currentTimeMillis()/1000 + 12345) , 5);
+
+        long i = productDAO.insertProduct(product);
+        assertNotEquals(i, -1);
+
+        List<Product> products = productDAO.getAllProducts();
+
+        for(Product p : products) {
+            Log.d("DatabaseTest", "ID: " + p.getId());
+            Log.d("DatabaseTest", "FromDate: " + p.getFromDate());
+            Log.d("DatabaseTest", "ToDate: " + p.getToDate());
+        }
+
+    }
+
 
 
 

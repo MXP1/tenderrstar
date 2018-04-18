@@ -25,4 +25,22 @@ public class Favorit {
     private int customerId;
     @ColumnInfo(name = "StoreID")
     private int storeId;
+
+    public Favorit() {}
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
 }
