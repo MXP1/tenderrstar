@@ -102,18 +102,18 @@ public class HomeFragment extends Fragment {
         // specify an adapter (see also next example)
 
         ArrayList<Product> productsList = new ArrayList<>();
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
+        productsList.add(new Product("Milk", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Water", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Rice", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Bread", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Milk", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Water", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Rice", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Bread", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Milk", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Water", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Rice", Product.Category.FOOD, "description", "10 €"));
+        productsList.add(new Product("Bread", Product.Category.FOOD, "description", "10 €"));
 
         mAdapter = new ProductAdapter(productsList);
         mRecyclerView.setAdapter(mAdapter);

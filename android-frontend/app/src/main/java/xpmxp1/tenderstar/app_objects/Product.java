@@ -14,19 +14,25 @@ public class Product {
 
     public String name;
     public Category category;
+    public String description;
+    public String price;
     public List<Tag> tags;
     public List<Store> stores;
 
     public Product() {};
-    public Product(String name, Category category) {
+    public Product(String name, Category category, String description, String price) {
         this.name = name;
         this.category = category;
+        this.description = description;
+        this.price = price;
         this.tags = new ArrayList<>();
         this.stores = new ArrayList<>();
     }
-    public Product(String name, Category category, List<Tag> tags, List<Store> stores) {
+    public Product(String name, Category category, String description, String price, List<Tag> tags, List<Store> stores) {
         this.name = name;
         this.category = category;
+        this.description = description;
+        this.price = price;
         this.tags = tags;
         this.stores = stores;
     }
