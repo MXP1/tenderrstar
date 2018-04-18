@@ -15,12 +15,15 @@ import java.io.IOException;
 import java.util.List;
 
 import xpmxp1.database.DAO.CustomerDAO;
+import xpmxp1.database.DAO.StoreDAO;
 import xpmxp1.database.TenderstarDB;
 import xpmxp1.tenderstar.app_objects.Customer;
+import xpmxp1.tenderstar.app_objects.Store;
 
 @RunWith(JUnit4.class)
 public class DatabaseTest {
     private CustomerDAO customerDAO;
+    private StoreDAO storeDAO;
     private TenderstarDB db;
 
     @Before
@@ -28,6 +31,7 @@ public class DatabaseTest {
         Context context = InstrumentationRegistry.getTargetContext();
         db = Room.inMemoryDatabaseBuilder(context, TenderstarDB.class).build();
         customerDAO = db.customerDAO();
+        storeDAO = db.storeDAO();
     }
 
     @After
@@ -56,6 +60,31 @@ public class DatabaseTest {
             Log.d("DatabaseTest", "E-Mail: " + c.getEmail());
         }
     }
+
+    @Test
+    public void insertStoreTest() throws Exception {
+        Store store1 = new Store("ASDF-Store", "asdf", 1, 1, "asdf-Street", "00:00-24:00");
+        Store store2 = new Store("LOREM-IPSUM-Store", "asdf", 1, 1, "lorem-Street", "00:00-24:00");
+
+        long i = storeDAO.insertStore(store1);
+        assertNotEquals(i, -1);
+
+        i = storeDAO.insertStore(store2);
+        assertNotEquals(i, -1);
+
+
+        List<Store> stores = storeDAO.getAllStores();
+
+        for(Store s : stores) {
+            Log.d("DatabaseTest", "ID: " + s.getId());
+            Log.d("DatabaseTest", "Username: " + s.getUsername());
+            Log.d("DatabaseTest", "Password: " + s.getPassword());
+            Log.d("DatabaseTest", "Street: " + s.getStreet());
+            Log.d("DatabaseTest", "Open Hours:: " + s.getOpenHours());
+        }
+    }
+
+
 
 }
 
