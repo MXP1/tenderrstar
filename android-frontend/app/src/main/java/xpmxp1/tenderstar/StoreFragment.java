@@ -93,14 +93,7 @@ public class StoreFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-
-        ArrayList<Store> storeList = new ArrayList<>();
-        storeList.add(new Store("Billa", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 1", "8010"));
-        storeList.add(new Store("Spar", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 2", "8010"));
-        storeList.add(new Store("Penny", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 3", "8010"));
-        storeList.add(new Store("Lidl", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
-
-        mAdapter = new StoreAdapter(storeList);
+        mAdapter = new StoreAdapter(Database.getInstance().getStores());
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View

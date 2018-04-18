@@ -54,5 +54,11 @@ public class Database {
         products.add(new Product("Wine", Product.Category.ALCOHOL));
         products.add(new Product("Whiskas", Product.Category.CATFOOD));
 
+        // create stores
+        stores = new ArrayList<>();
+        stores.add(new Store("Billa", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 1", "8010"));
+        stores.add(new Store("Spar", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 2", "8010"));
+        stores.add(new Store("Penny", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 3", "8010"));
+        stores.add(new Store("Lidl", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
     }
 }
