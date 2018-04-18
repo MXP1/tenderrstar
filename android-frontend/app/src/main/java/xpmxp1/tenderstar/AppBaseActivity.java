@@ -132,11 +132,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
                 Navigation.getInstance().navigateToStores();
                 break;
             case R.id.nav_favorites:
-                navigation_view.setCheckedItem(R.id.nav_favorites);
-                ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.mainFrame, new FavoritesFragment());
-                ft.commit();
-                break;
+                Navigation.getInstance().navigateToFavorites();
             case R.id.nav_shopping_cart:
                 break;
         }
