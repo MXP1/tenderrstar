@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">TenderStar</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="email_login">Email</string>
+    <string name="password_login">Password</string>
+    <string name="login_main">Login</string>
+    <string name="incorrect_login_attempts">Incorrect login attempts</string>
+    <string name="back_login">Back</string>
+    <string name="email_register">Email</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="password_register">Password</string>
+    <string name="register">Register</string>
+    <string name="button">Button</string>
+    <string name="back_register">Back</string>
+    <string name="textview">TextView</string>
 </resources>
