@@ -24,8 +24,6 @@ public class Store {
     private int storeTypeID;
     @ColumnInfo(name = "LocationID")
     private int locationID;
-    @ColumnInfo(name = "Street")
-    private String street;
     @ColumnInfo(name = "OpenHours")
     private String openHours;
 
@@ -34,7 +32,6 @@ public class Store {
         this.password = password;
         this.storeTypeID = storeTypeID;
         this.locationID = locationID;
-        this.street = street;
         this.openHours = openHours;
     }
 
@@ -79,13 +76,6 @@ public class Store {
         this.locationID = locationID;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
 
     public String getOpenHours() {
         return openHours;

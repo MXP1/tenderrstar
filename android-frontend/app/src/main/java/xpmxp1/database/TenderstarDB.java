@@ -3,6 +3,7 @@ package xpmxp1.database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
+import xpmxp1.database.DAO.AddressDAO;
 import xpmxp1.database.DAO.CustomerDAO;
 import xpmxp1.database.DAO.StoreDAO;
 import xpmxp1.tenderstar.app_objects.Customer;
@@ -12,4 +13,5 @@ import xpmxp1.tenderstar.app_objects.Store;
 public abstract class TenderstarDB extends RoomDatabase {
     public abstract CustomerDAO customerDAO();
     public abstract StoreDAO storeDAO();
+    public abstract AddressDAO addressDAO();
 }
