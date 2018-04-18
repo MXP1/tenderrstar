@@ -28,7 +28,14 @@ public class Store {
         }
 
         public String toString() {
-            return String.format(hour.toString(), "%02d") + ":" + String.format(minute.toString(), "%02d");
+            String h = "", m = "";
+            if (hour < 10)
+                h += "0";
+            if (minute < 10)
+                m += "0";
+            h += hour.toString();
+            m += minute.toString();
+            return h + ":" + m;
         }
     }
 
@@ -51,6 +58,8 @@ public class Store {
         // Members
         private TimeSlot[] timeSlots = new TimeSlot[7];
 
+        private String[] daysWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+
         // Constructor
         OpeningHours() { }
 
@@ -58,6 +67,15 @@ public class Store {
             for (int i = 0; i < (weekend ? 7 : 5); i++) {
                 timeSlots[i] = new TimeSlot(open, close);
             }
+        }
+
+        public String toString() {
+            String out = "";
+            for (TimeSlot ts: timeSlots ) {
+                if (ts != null)
+                    out += ts.begin.toString() + " - " + ts.end.toString() + "\n";
+            }
+            return out;
         }
     }
 

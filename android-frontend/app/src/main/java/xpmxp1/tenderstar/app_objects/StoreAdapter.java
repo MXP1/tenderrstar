@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import xpmxp1.tenderstar.Navigation;
 import xpmxp1.tenderstar.R;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
@@ -24,18 +25,20 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public CardView mCardView;
         public TextView name;
         public TextView address;
+        public Store store;
 
         public ViewHolder(CardView c) {
             super(c);
 
+            mCardView = c;
+
             c.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("TEST", "TEST");
+                    Navigation.getInstance().navigateToStoreDetail(store);
                 }
             });
 
-            mCardView = c;
             name = (TextView) c.findViewById(R.id.textView_name);
             address = (TextView) c.findViewById(R.id.textView_address);
         }
@@ -66,6 +69,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         // - replace the contents of the view with that element
         holder.name.setText(mDataset.get(position).name);
         holder.address.setText(mDataset.get(position).address);
+        holder.store = mDataset.get(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

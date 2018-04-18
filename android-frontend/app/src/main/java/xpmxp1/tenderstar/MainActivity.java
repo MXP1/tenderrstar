@@ -13,6 +13,7 @@ public class MainActivity
     implements
         HomeFragment.OnFragmentInteractionListener,
         StoreFragment.OnFragmentInteractionListener,
+        StoreDetailsFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     @Override
