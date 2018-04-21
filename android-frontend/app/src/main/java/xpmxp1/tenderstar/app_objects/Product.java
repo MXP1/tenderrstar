@@ -9,35 +9,34 @@ import java.util.*;
 import java.util.Date;
 
 
-@Entity
+@Entity(tableName = "Product")
 public class Product {
 
     public enum Category {
         FOOD, ALCOHOL, CATFOOD
     }
 
-
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "ProductId")
+    @ColumnInfo(name = "ProductID")
     private int id;
     @ColumnInfo(name = "Name")
     private String name;
-    @ColumnInfo(name = "StdPrice")
-    private double stdPrice;
-    @ColumnInfo(name = "Percent")
-    private double percent;
+    @ColumnInfo(name = "StandardPrice")
+    private double standardPrice;
+    @ColumnInfo(name = "Discount")
+    private double discount;
     @ColumnInfo(name = "FromDate")
     private Date fromDate;
     @ColumnInfo(name = "ToDate")
     private Date toDate;
-    @ColumnInfo(name = "StoreId")
+    @ColumnInfo(name = "StoreID")
     private int storeId;
 
 
-    public Product(String name, double stdPrice, double percent, Date fromDate, Date toDate, int storeId) {
+    public Product(String name, double standardPrice, double discount, Date fromDate, Date toDate, int storeId) {
         this.name = name;
-        this.stdPrice = stdPrice;
-        this.percent = percent;
+        this.standardPrice = standardPrice;
+        this.discount = discount;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.storeId = storeId;
@@ -59,20 +58,20 @@ public class Product {
         this.name = name;
     }
 
-    public double getStdPrice() {
-        return stdPrice;
+    public double getStandardPrice() {
+        return standardPrice;
     }
 
-    public void setStdPrice(double stdPrice) {
-        this.stdPrice = stdPrice;
+    public void setStandardPrice(double standardPrice) {
+        this.standardPrice = standardPrice;
     }
 
-    public double getPercent() {
-        return percent;
+    public double getDiscount() {
+        return discount;
     }
 
-    public void setPercent(double percent) {
-        this.percent = percent;
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public Date getFromDate() {
