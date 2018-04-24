@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity(tableName = "Store")
 public class Store {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "StoreID")
     private int id;
     @ColumnInfo(name = "Username")
@@ -29,7 +29,15 @@ public class Store {
     @ColumnInfo(name = "OpenHours")
     private String openHours;
 
+    @Ignore
+    private static int nextId = 0;
+    @Ignore
+    private static int getNextId() {
+        return ++nextId;
+    }
+
     public Store(String username, String password, String storeName, int storeTypeID, int locationID, String openHours) {
+        this.id = getNextId();
         this.username = username;
         this.password = password;
         this.storeName = storeName;
@@ -44,7 +52,7 @@ public class Store {
 
     //DO NOT USE THIS SETTER!!!
     public void setId(int id) {
-        this.id = id;
+        //this.id = id;
     }
 
     public String getUsername() {

@@ -2,6 +2,7 @@ package xpmxp1.tenderstar.app_objects;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
@@ -11,13 +12,21 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "StoreType")
 public class StoreType
 {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "StoreTypeID")
     private int id;
     @ColumnInfo(name = "Type")
     private String type;
 
+    @Ignore
+    private static int nextId = 0;
+    @Ignore
+    private static int getNextId() {
+        return ++nextId;
+    }
+
     public StoreType(String type) {
+        this.id = getNextId();
         this.type = type;
     }
 
@@ -27,7 +36,7 @@ public class StoreType
 
     //DO NOT USE THIS SETTER!!!
     public void setId(int id) {
-        this.id = id;
+        //this.id = id;
     }
 
     public String getType() {

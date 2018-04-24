@@ -12,13 +12,21 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "Tag")
 public class Tag {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "TagID")
     private int id;
     @ColumnInfo(name = "Name")
     public String name;
 
+    @Ignore
+    private static int nextId = 0;
+    @Ignore
+    private static int getNextId() {
+        return ++nextId;
+    }
+
     public Tag(String name) {
+        this.id = getNextId();
         this.name = name;
     }
 
@@ -28,7 +36,7 @@ public class Tag {
 
     // DO NOT USE THIS SETTER!!!
     public void setId(int id) {
-        this.id = id;
+        //this.id = id;
     }
 
     public String getName() {

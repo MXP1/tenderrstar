@@ -16,7 +16,7 @@ public class Product {
         FOOD, ALCOHOL, CATFOOD
     }
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "ProductID")
     private int id;
     @ColumnInfo(name = "Name")
@@ -33,7 +33,15 @@ public class Product {
     private int storeId;
 
 
+    @Ignore
+    private static int nextId = 0;
+    @Ignore
+    private static int getNextId() {
+        return ++nextId;
+    }
+
     public Product(String name, double standardPrice, double discount, Date fromDate, Date toDate, int storeId) {
+        this.id = getNextId();
         this.name = name;
         this.standardPrice = standardPrice;
         this.discount = discount;
@@ -47,7 +55,7 @@ public class Product {
     }
 
     public void setId(int id) {
-        this.id = id;
+        //this.id = id;
     }
 
     public String getName() {

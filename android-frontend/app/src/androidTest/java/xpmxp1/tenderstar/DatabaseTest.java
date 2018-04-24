@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import xpmxp1.tenderstar.app_objects.SavedOffer;
 import xpmxp1.tenderstar.database.DAO.CustomerDAO;
 import xpmxp1.tenderstar.database.DAO.ProductDAO;
+import xpmxp1.tenderstar.database.DAO.SavedOfferDAO;
 import xpmxp1.tenderstar.database.DAO.StoreDAO;
 import xpmxp1.tenderstar.database.TenderstarDB;
 import xpmxp1.tenderstar.app_objects.Customer;
@@ -29,6 +31,7 @@ public class DatabaseTest {
     private CustomerDAO customerDAO;
     private StoreDAO storeDAO;
     private ProductDAO productDAO;
+    private SavedOfferDAO savedOfferDAO;
     private TenderstarDB db;
 
     @Before
@@ -38,11 +41,50 @@ public class DatabaseTest {
         customerDAO = db.customerDAO();
         storeDAO = db.storeDAO();
         productDAO = db.productDAO();
+        savedOfferDAO = db.savedOfferDAO();
     }
 
     @After
     public void closeDb() throws IOException {
         db.close();
+    }
+
+    @Test
+    public void productAutoIncrementTest() throws Exception {
+        Product product1 = new Product("AAAA", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 0);
+        Product product2 = new Product("BBBB", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 1);
+        Product product3 = new Product("CCCC", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 2);
+
+        assertNotEquals(0, product1.getId());
+        assertNotEquals(0, product2.getId());
+        assertNotEquals(0, product3.getId());
+
+        long i = productDAO.insertProduct(product1);
+        assertNotEquals(i, -1);
+
+        i = productDAO.insertProduct(product2);
+        assertNotEquals(i, -1);
+
+        i = productDAO.insertProduct(product3);
+        assertNotEquals(i, -1);
+
+        assertNotEquals(0, product1.getId());
+        assertNotEquals(0, product2.getId());
+        assertNotEquals(0, product3.getId());
+
+        Log.d("DatabaseTest", "P1 Id = " + product1.getId());
+        Log.d("DatabaseTest", "P2 Id = " + product2.getId());
+        Log.d("DatabaseTest", "P3 Id = " + product3.getId());
+
+        List<Product> products = productDAO.getAllProducts();
+
+        for(Product p : products) {
+            Log.d("DatabaseTest", "ID: " + p.getId());
+            Log.d("DatabaseTest", "Name: " + p.getName());
+            Log.d("DatabaseTest", "FromDate: " + p.getFromDate());
+            Log.d("DatabaseTest", "ToDate: " + p.getToDate());
+        }
+
     }
 
     @Test
@@ -108,13 +150,13 @@ public class DatabaseTest {
 
     @Test
     public void getAllProductsForStoreTest() throws Exception {
-        Product product1 = new Product("AAAA", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 1);
-        Product product2 = new Product("BBBB", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 1);
-        Product product3 = new Product("CCCC", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 2);
         Store store = new Store("a", "a", "Store A", 1,1, "00:00-24:00");
-
         long i = storeDAO.insertStore(store);
         assertNotEquals(i, -1);
+
+        Product product1 = new Product("AAAA", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , store.getId());
+        Product product2 = new Product("BBBB", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , store.getId());
+        Product product3 = new Product("CCCC", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 2);
 
         i = productDAO.insertProduct(product1);
         assertNotEquals(i, -1);
@@ -125,6 +167,8 @@ public class DatabaseTest {
         i = productDAO.insertProduct(product3);
         assertNotEquals(i, -1);
 
+        Log.d("DatabasesTest", "store id = " + store.getId());
+
         List<Product> products = productDAO.getAllProductsForStore(store.getId());
 
         for(Product p : products) {
@@ -133,6 +177,47 @@ public class DatabaseTest {
             Log.d("DatabaseTest", "FromDate: " + p.getFromDate());
             Log.d("DatabaseTest", "ToDate: " + p.getToDate());
         }
+    }
+
+    @Test
+    public void savedOfferForCustomerTest() throws Exception {
+        Store store = new Store("a", "a", "Store A", 1,1, "00:00-24:00");
+        long i = storeDAO.insertStore(store);
+        assertNotEquals(i, -1);
+
+        Product product1 = new Product("AAAA", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , store.getId());
+        Product product2 = new Product("BBBB", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , store.getId());
+        Customer kunde1 = new Customer("Rene", "abcd", "asdf@asdf.at");
+
+        i = productDAO.insertProduct(product1);
+        assertNotEquals(i, -1);
+
+        i = productDAO.insertProduct(product2);
+        assertNotEquals(i, -1);
+
+        i = customerDAO.insertCustomer(kunde1);
+        assertNotEquals(i, -1);
+
+        Log.d("DatabaseTest", "P1_ID = " + product1.getId());
+        Log.d("DatabaseTest", "P2_ID = " + product2.getId());
+        Log.d("DatabaseTest", "C_ID = " + kunde1.getId());
+
+
+        SavedOffer savedOffer = new SavedOffer(kunde1.getId(), product1.getId());
+
+        i = savedOfferDAO.insertSavedOffer(savedOffer);
+        assertNotEquals(i, -1);
+
+        List<Product> products = savedOfferDAO.getSavedOffersForCustomer(kunde1.getId());
+
+        for(Product p : products) {
+            Log.d("DatabaseTest", "ID: " + p.getId());
+            Log.d("DatabaseTest", "Name: " + p.getName());
+            Log.d("DatabaseTest", "FromDate: " + p.getFromDate());
+            Log.d("DatabaseTest", "ToDate: " + p.getToDate());
+        }
+
+
     }
 
 }

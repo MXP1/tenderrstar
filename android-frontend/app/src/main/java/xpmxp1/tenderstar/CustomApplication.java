@@ -29,7 +29,7 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").build();
-        fillDbWithTestData();
+        //fillDbWithTestData();
     }
 
     public static synchronized TenderstarDB getDb() {
