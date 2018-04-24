@@ -7,6 +7,7 @@ import android.util.Log;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +16,10 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import xpmxp1.database.DAO.CustomerDAO;
-import xpmxp1.database.DAO.ProductDAO;
-import xpmxp1.database.DAO.StoreDAO;
-import xpmxp1.database.TenderstarDB;
+import xpmxp1.tenderstar.database.DAO.CustomerDAO;
+import xpmxp1.tenderstar.database.DAO.ProductDAO;
+import xpmxp1.tenderstar.database.DAO.StoreDAO;
+import xpmxp1.tenderstar.database.TenderstarDB;
 import xpmxp1.tenderstar.app_objects.Customer;
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.Store;
@@ -68,8 +69,8 @@ public class DatabaseTest {
 
     @Test
     public void insertStoreTest() throws Exception {
-        Store store1 = new Store("ASDF-Store", "asdf", 1, 1, "00:00-24:00");
-        Store store2 = new Store("LOREM-IPSUM-Store", "asdf", 1, 1, "00:00-24:00");
+        Store store1 = new Store("ASDF-Store", "asdf", "ASDF", 1, 1, "00:00-24:00");
+        Store store2 = new Store("LOREM-IPSUM-Store", "asdf", "LOREM-IPSUM", 1, 1, "00:00-24:00");
 
         long i = storeDAO.insertStore(store1);
         assertNotEquals(i, -1);
@@ -105,8 +106,34 @@ public class DatabaseTest {
 
     }
 
+    @Test
+    public void getAllProductsForStoreTest() throws Exception {
+        Product product1 = new Product("AAAA", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 1);
+        Product product2 = new Product("BBBB", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 1);
+        Product product3 = new Product("CCCC", 5.0, 2.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 12345) , 2);
+        Store store = new Store("a", "a", "Store A", 1,1, "00:00-24:00");
 
+        long i = storeDAO.insertStore(store);
+        assertNotEquals(i, -1);
 
+        i = productDAO.insertProduct(product1);
+        assertNotEquals(i, -1);
+
+        i = productDAO.insertProduct(product2);
+        assertNotEquals(i, -1);
+
+        i = productDAO.insertProduct(product3);
+        assertNotEquals(i, -1);
+
+        List<Product> products = productDAO.getAllProductsForStore(store.getId());
+
+        for(Product p : products) {
+            Log.d("DatabaseTest", "ID: " + p.getId());
+            Log.d("DatabaseTest", "Name: " + p.getName());
+            Log.d("DatabaseTest", "FromDate: " + p.getFromDate());
+            Log.d("DatabaseTest", "ToDate: " + p.getToDate());
+        }
+    }
 
 }
 

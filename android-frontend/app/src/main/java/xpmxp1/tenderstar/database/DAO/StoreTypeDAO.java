@@ -1,27 +1,26 @@
-package xpmxp1.database.DAO;
+package xpmxp1.tenderstar.database.DAO;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Update;
 
-import xpmxp1.tenderstar.app_objects.Tag;
-
+import xpmxp1.tenderstar.app_objects.StoreType;
 
 /**
  * Created by sebastian on 4/21/18.
  */
 
 @Dao
-public interface TagDAO {
+public interface StoreTypeDAO {
     @Insert
-    public long insertTag(Tag tag);
+    public long insertStoreType(StoreType storeType);
 
     @Update
-    public void updateTag(Tag tag);
+    public void updateStoreType(StoreType storeType);
 
     @Delete
-    public void deleteTag(Tag tag);
+    public void deleteStoreType(StoreType storeType);
 
     //@Query("SELECT * FROM StoreType")
     //public List<StoreType> getAllAddresses();

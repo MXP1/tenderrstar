@@ -1,4 +1,4 @@
-package xpmxp1.database.DAO;
+package xpmxp1.tenderstar.database.DAO;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -27,6 +27,9 @@ public interface CustomerDAO {
 
     @Query("SELECT * FROM Customer")
     public List<Customer> getAllCustomers();
+
+    @Query("SELECT * FROM Customer WHERE CustomerID = :customerId")
+    public Customer getCustomer(int customerId);
 
     //Query with Parameters
     //@Query("SELECT * FROM user WHERE age > :minAge")

@@ -3,6 +3,7 @@ package xpmxp1.tenderstar.app_objects;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -20,7 +21,8 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @ForeignKey(entity = Product.class,
         parentColumns = "ProductID",
         childColumns = "ProductID",
-        onDelete = CASCADE)})
+        onDelete = CASCADE)},
+        indices = {@Index("CustomerID"), @Index("ProductID")})
 public class ProductRating {
     @ColumnInfo(name = "ProductID")
     private int productId;
@@ -31,7 +33,9 @@ public class ProductRating {
     @ColumnInfo(name = "Comment")
     private String comment;
 
-    public ProductRating(int rating, String comment) {
+    public ProductRating(int productId, int customerId, int rating, String comment) {
+        this.productId = productId;
+        this.customerId = customerId;
         this.rating = rating;
         this.comment = comment;
     }
@@ -40,16 +44,8 @@ public class ProductRating {
         return productId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
     public int getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public int getRating() {

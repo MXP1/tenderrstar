@@ -1,18 +1,18 @@
-package xpmxp1.database;
+package xpmxp1.tenderstar.database;
 
 import android.arch.persistence.room.*;
 import android.arch.persistence.room.TypeConverters;
 
-import xpmxp1.database.DAO.AddressDAO;
-import xpmxp1.database.DAO.CustomerDAO;
-import xpmxp1.database.DAO.FavoritDAO;
-import xpmxp1.database.DAO.ProductDAO;
-import xpmxp1.database.DAO.ProductRatingDAO;
-import xpmxp1.database.DAO.SavedOfferDAO;
-import xpmxp1.database.DAO.StoreDAO;
-import xpmxp1.database.DAO.StoreRatingDAO;
-import xpmxp1.database.DAO.StoreTypeDAO;
-import xpmxp1.database.DAO.TagDAO;
+import xpmxp1.tenderstar.database.DAO.AddressDAO;
+import xpmxp1.tenderstar.database.DAO.CustomerDAO;
+import xpmxp1.tenderstar.database.DAO.FavoritDAO;
+import xpmxp1.tenderstar.database.DAO.ProductDAO;
+import xpmxp1.tenderstar.database.DAO.ProductRatingDAO;
+import xpmxp1.tenderstar.database.DAO.SavedOfferDAO;
+import xpmxp1.tenderstar.database.DAO.StoreDAO;
+import xpmxp1.tenderstar.database.DAO.StoreRatingDAO;
+import xpmxp1.tenderstar.database.DAO.StoreTypeDAO;
+import xpmxp1.tenderstar.database.DAO.TagDAO;
 import xpmxp1.tenderstar.app_objects.Address;
 import xpmxp1.tenderstar.app_objects.Customer;
 import xpmxp1.tenderstar.app_objects.Favorit;

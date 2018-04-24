@@ -1,4 +1,4 @@
-package xpmxp1.database.DAO;
+package xpmxp1.tenderstar.database.DAO;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

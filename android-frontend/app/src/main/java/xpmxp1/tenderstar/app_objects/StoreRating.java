@@ -3,6 +3,7 @@ package xpmxp1.tenderstar.app_objects;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -11,7 +12,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
  */
 
 @Entity(tableName = "StoreRating",
-        primaryKeys = {"ProductID", "CustomerID"},
+        primaryKeys = {"StoreID", "CustomerID"},
         foreignKeys = {@ForeignKey(entity = Customer.class,
             parentColumns = "CustomerID",
             childColumns = "CustomerID",
@@ -19,7 +20,8 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         @ForeignKey(entity = Store.class,
             parentColumns = "StoreID",
             childColumns = "StoreID",
-            onDelete = CASCADE)})
+            onDelete = CASCADE)},
+            indices = {@Index("StoreID"), @Index("CustomerID")})
 public class StoreRating {
     @ColumnInfo(name = "StoreID")
     private int storeId;
@@ -30,7 +32,9 @@ public class StoreRating {
     @ColumnInfo(name = "Comment")
     private String comment;
 
-    public StoreRating(int rating, String comment) {
+    public StoreRating(int storeId, int customerId, int rating, String comment) {
+        this.storeId = storeId;
+        this.customerId = customerId;
         this.rating = rating;
         this.comment = comment;
     }
@@ -39,16 +43,8 @@ public class StoreRating {
         return storeId;
     }
 
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
-    }
-
     public int getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public int getRating() {

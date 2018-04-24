@@ -1,4 +1,4 @@
-package xpmxp1.database;
+package xpmxp1.tenderstar.database;
 
 import android.arch.persistence.room.TypeConverter;
 
