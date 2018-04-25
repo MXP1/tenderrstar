@@ -4,9 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import xpmxp1.tenderstar.app_objects.Store;
+import xpmxp1.tenderstar.app_objects.StoreAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,10 @@ public class FavoritesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,8 +77,32 @@ public class FavoritesFragment extends Fragment {
             mListener.onFragmentInteraction(Uri.parse("Favorites"));
         }
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+
+        // Create List view
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+//        view.setContentView(R.layout.activity_main);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this.getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+
+        ArrayList<Store> favoritesList = new ArrayList<>();
+        favoritesList.add(new Store("SPAR"));
+        favoritesList.add(new Store("Lidl"));
+
+
+        mAdapter = new StoreAdapter(favoritesList);
+        mRecyclerView.setAdapter(mAdapter);
+        // return the View
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
