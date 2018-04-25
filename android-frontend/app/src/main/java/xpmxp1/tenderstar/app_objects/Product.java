@@ -36,4 +36,8 @@ public class Product {
         this.tags = tags;
         this.stores = stores;
     }
+
+    public String getPriceAsString() {
+        return String.format("%.2f", price) + "€";
+    }
 }
