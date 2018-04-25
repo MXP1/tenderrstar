@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -25,12 +26,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public TextView name;
         public TextView address;
         public Store store;
+        public Button favoriteBtn;
 
         public ViewHolder(CardView c) {
+
             super(c);
 
             mCardView = c;
-
             c.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -40,6 +42,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
             name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
+            favoriteBtn = (Button) c.findViewById(R.id.favoriteBtn);
+
+            favoriteBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    favoriteBtn.setBackgroundColor(6);
+                }
+            });
         }
     }
 
