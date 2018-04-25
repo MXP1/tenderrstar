@@ -44,15 +44,15 @@ public class Database {
     private void createDummies() {
         // create products
         products = new ArrayList<>();
-        products.add(new Product("Milk", Product.Category.FOOD));
-        products.add(new Product("Water", Product.Category.FOOD));
-        products.add(new Product("Cereal", Product.Category.FOOD));
-        products.add(new Product("Sausage", Product.Category.FOOD));
-        products.add(new Product("Pizza", Product.Category.FOOD));
-        products.add(new Product("Rice", Product.Category.FOOD));
-        products.add(new Product("Beer", Product.Category.ALCOHOL));
-        products.add(new Product("Wine", Product.Category.ALCOHOL));
-        products.add(new Product("Whiskas", Product.Category.CATFOOD));
+        products.add(new Product("Milk", Product.Category.FOOD, "descr", 2.0f));
+        products.add(new Product("Water", Product.Category.FOOD,"descr", 2.0f));
+        products.add(new Product("Cereal", Product.Category.FOOD, "descr", 2.0f));
+        products.add(new Product("Sausage", Product.Category.FOOD, "descr", 2.0f));
+        products.add(new Product("Pizza", Product.Category.FOOD, "descr", 2.0f));
+        products.add(new Product("Rice", Product.Category.FOOD, "descr", 2.0f));
+        products.add(new Product("Beer", Product.Category.ALCOHOL, "descr", 2.0f));
+        products.add(new Product("Wine", Product.Category.ALCOHOL, "descr", 2.0f));
+        products.add(new Product("Whiskas", Product.Category.CATFOOD, "descr", 2.0f));
 
         // create stores
         stores = new ArrayList<>();
