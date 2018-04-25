@@ -3,6 +3,7 @@ package xpmxp1.tenderstar;
 import java.util.ArrayList;
 import java.util.List;
 
+import xpmxp1.tenderstar.app_objects.OpeningHours;
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.Tag;
@@ -43,6 +44,7 @@ public class Database {
 
     private void createDummies() {
         // create products
+        /*
         products = new ArrayList<>();
         products.add(new Product("Milk", Product.Category.FOOD, "descr", 2.0f));
         products.add(new Product("Water", Product.Category.FOOD,"descr", 2.0f));
@@ -54,11 +56,13 @@ public class Database {
         products.add(new Product("Wine", Product.Category.ALCOHOL, "descr", 2.0f));
         products.add(new Product("Whiskas", Product.Category.CATFOOD, "descr", 2.0f));
 
+        //String username, String password, String storeName, String link, int storeTypeID, int locationID, OpeningHours openingHours, String address, String postalCode
         // create stores
         stores = new ArrayList<>();
-        stores.add(new Store("Billa", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 1", "8010"));
-        stores.add(new Store("Spar", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 2", "8010"));
-        stores.add(new Store("Penny", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 3", "8010"));
-        stores.add(new Store("Lidl", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
+        stores.add(new Store("Billa", new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Straße 1", "8010"));
+        stores.add(new Store("Spar", new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Straße 2", "8010"));
+        stores.add(new Store("Penny", new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Straße 3", "8010"));
+        stores.add(new Store("Lidl", new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Straße 4", "8010"));
+        */
     }
 }

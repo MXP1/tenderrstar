@@ -1,39 +1,120 @@
 package xpmxp1.tenderstar.app_objects;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by dominik on 21.03.18.
- */
+import java.util.*;
+import java.util.Date;
 
+
+@Entity(tableName = "Product")
 public class Product {
+
     public enum Category {
         FOOD, ALCOHOL, CATFOOD
     }
 
-    public String name;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ProductID")
+    private long id;
+    @ColumnInfo(name = "Name")
+    private String name;
+    @ColumnInfo(name = "Description")
+    private String description;
+    @ColumnInfo(name = "Price")
+    private double price;
+    @ColumnInfo(name = "Discount")
+    private double discount;
+    @ColumnInfo(name = "FromDate")
+    private Date fromDate;
+    @ColumnInfo(name = "ToDate")
+    private Date toDate;
+    @ColumnInfo(name = "StoreID")
+    private long storeId;
+
+    public Product(String name, String description, double price, double discount, Date fromDate, Date toDate, long storeId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.discount = discount;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.storeId = storeId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double standardPrice) {
+        this.price = standardPrice;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(long storeId) {
+        this.storeId = storeId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    //TODO:
+    @Ignore
     public Category category;
-    public String description;
-    public float price;
+    @Ignore
     public List<Tag> tags;
+    @Ignore
     public List<Store> stores;
 
-    public Product() {};
-    public Product(String name, Category category, String description, float price) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.price = price;
-        this.tags = new ArrayList<>();
-        this.stores = new ArrayList<>();
-    }
-    public Product(String name, Category category, String description, float price, List<Tag> tags, List<Store> stores) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.price = price;
-        this.tags = tags;
-        this.stores = stores;
-    }
 }
+

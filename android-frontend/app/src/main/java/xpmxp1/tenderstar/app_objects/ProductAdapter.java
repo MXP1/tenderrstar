@@ -58,10 +58,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(mDataset.get(position).name);
+        holder.name.setText(mDataset.get(position).getName());
         holder.category.setText(mDataset.get(position).category.toString());
-        holder.description.setText(mDataset.get(position).description.toString());
-        holder.price.setText("" + mDataset.get(position).price);
+        holder.description.setText(mDataset.get(position).getDescription().toString());
+        holder.price.setText("" + mDataset.get(position).getPrice());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
