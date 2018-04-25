@@ -79,10 +79,10 @@ public class StoreFragment extends Fragment {
         }
 
         // Create List view
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_store, container, false);
 
 //        view.setContentView(R.layout.activity_main);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.store_list);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

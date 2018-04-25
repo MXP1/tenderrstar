@@ -115,7 +115,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        view.setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
 
         // use this setting to improve performance if you know that changes

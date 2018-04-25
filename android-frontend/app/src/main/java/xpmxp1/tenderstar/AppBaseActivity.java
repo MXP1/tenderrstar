@@ -56,10 +56,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         Navigation.getInstance().setView(navigation_view);
 
         // load the home screen
-        navigation_view.setCheckedItem(R.id.nav_home);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFrame, new HomeFragment());
-        ft.commit();
+        Navigation.getInstance().navigateToHome();
     }
 
     @Override
@@ -120,12 +117,8 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        FragmentTransaction ft;
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Navigation.getInstance().navigateToHome();
-                break;
-            case R.id.nav_products:
                 Navigation.getInstance().navigateToHome();
                 break;
             case R.id.nav_stores:
