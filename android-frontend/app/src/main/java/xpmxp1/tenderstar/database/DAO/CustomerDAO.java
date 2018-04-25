@@ -29,7 +29,10 @@ public interface CustomerDAO {
     public List<Customer> getAllCustomers();
 
     @Query("SELECT * FROM Customer WHERE CustomerID = :customerId")
-    public Customer getCustomer(int customerId);
+    public Customer getCustomer(long customerId);
+
+    @Query("SELECT MAX(CustomerID) FROM Customer")
+    public long getLastUsedCustomerId();
 
     //Query with Parameters
     //@Query("SELECT * FROM user WHERE age > :minAge")

@@ -2,6 +2,7 @@ package xpmxp1.tenderstar;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 
 import java.util.Date;
 
@@ -29,7 +30,15 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").build();
-        //fillDbWithTestData();
+
+        /*
+        Thread t = new Thread(){
+            public void run(){
+                fillDbWithTestData();
+            }
+        };
+        */
+        //t.start();
     }
 
     public static synchronized TenderstarDB getDb() {

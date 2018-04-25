@@ -11,9 +11,9 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "Address")
 public class Address {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "AddressID")
-    private int addressId;
+    private long addressId;
     @ColumnInfo(name = "ZIP")
     private int zip;
     @ColumnInfo(name = "TownName")
@@ -21,26 +21,18 @@ public class Address {
     @ColumnInfo(name = "StreetName")
     private String streetName;
 
-    @Ignore
-    private static int nextId = 0;
-    @Ignore
-    private static int getNextId() {
-        return ++nextId;
-    }
-
     public Address(int zip, String townName, String streetName) {
-        this.addressId = getNextId();
         this.zip = zip;
         this.townName = townName;
         this.streetName = streetName;
     }
 
-    public int getAddressId() {
+    public long getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
-        //this.addressId = addressId;
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
     }
 
     public int getZip() {

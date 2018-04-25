@@ -24,20 +24,20 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         indices = {@Index("StoreID"), @Index("CustomerID")})
 public class Favorit {
     @ColumnInfo(name = "CustomerID")
-    private int customerId;
+    private long customerId;
     @ColumnInfo(name = "StoreID")
-    private int storeId;
+    private long storeId;
 
-    public Favorit(int customerId, int storeId) {
+    public Favorit(long customerId, long storeId) {
         this.customerId = customerId;
         this.storeId = storeId;
     }
 
-    public int getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public int getStoreId() {
+    public long getStoreId() {
         return storeId;
     }
 

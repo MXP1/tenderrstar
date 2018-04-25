@@ -24,20 +24,20 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         indices = {@Index("CustomerID"), @Index("ProductID")})
 public class SavedOffer {
     @ColumnInfo(name = "CustomerID")
-    private int customerId;
+    private long customerId;
     @ColumnInfo(name = "ProductID")
-    private int productId;
+    private long productId;
 
-    public SavedOffer(int customerId, int productId) {
+    public SavedOffer(long customerId, long productId) {
         this.customerId = customerId;
         this.productId = productId;
     }
 
-    public int getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public int getProductId() {
+    public long getProductId() {
         return productId;
     }
 }

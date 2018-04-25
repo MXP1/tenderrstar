@@ -25,7 +25,7 @@ public interface ProductDAO {
     public List<Product> getAllProducts();
 
     @Query("SELECT * FROM Product WHERE StoreID = :storeId")
-    public List<Product> getAllProductsForStore(int storeId);
+    public List<Product> getAllProductsForStore(long storeId);
 
     //Query with Parameters
     //@Query("SELECT * FROM user WHERE age > :minAge")

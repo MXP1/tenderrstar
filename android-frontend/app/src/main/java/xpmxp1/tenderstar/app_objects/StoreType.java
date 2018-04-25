@@ -12,31 +12,22 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "StoreType")
 public class StoreType
 {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "StoreTypeID")
-    private int id;
+    private long id;
     @ColumnInfo(name = "Type")
     private String type;
 
-    @Ignore
-    private static int nextId = 0;
-    @Ignore
-    private static int getNextId() {
-        return ++nextId;
-    }
-
     public StoreType(String type) {
-        this.id = getNextId();
         this.type = type;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    //DO NOT USE THIS SETTER!!!
-    public void setId(int id) {
-        //this.id = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getType() {

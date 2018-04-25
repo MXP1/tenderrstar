@@ -28,5 +28,5 @@ public interface SavedOfferDAO {
 
     //TODO:TEST!!!
     @Query("SELECT Product.* FROM SavedOffers INNER JOIN Customer ON Customer.CustomerID = SavedOffers.CustomerID INNER JOIN Product ON Product.ProductID = SavedOffers.ProductID WHERE SavedOffers.CustomerID = :customerId ")
-    public List<Product> getSavedOffersForCustomer(int customerId);
+    public List<Product> getSavedOffersForCustomer(long customerId);
 }

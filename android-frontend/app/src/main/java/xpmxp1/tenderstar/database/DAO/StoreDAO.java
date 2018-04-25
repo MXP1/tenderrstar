@@ -29,7 +29,7 @@ public interface StoreDAO {
     public List<Store> getAllStores();
 
     @Query("SELECT * FROM Store WHERE StoreID = :storeId")
-    public Store getStore(int storeId);
+    public Store getStore(long storeId);
 
     //Query with Parameters
     //@Query("SELECT * FROM user WHERE age > :minAge")
