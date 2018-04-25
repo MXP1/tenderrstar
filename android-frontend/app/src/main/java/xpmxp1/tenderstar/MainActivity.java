@@ -13,7 +13,8 @@ public class MainActivity
     implements
         HomeFragment.OnFragmentInteractionListener,
         StoreFragment.OnFragmentInteractionListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener,
+        FavoritesFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

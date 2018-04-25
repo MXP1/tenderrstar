@@ -132,8 +132,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
                 Navigation.getInstance().navigateToStores();
                 break;
             case R.id.nav_favorites:
-                Navigation.getInstance().PrintTestMessage();
-                break;
+                Navigation.getInstance().navigateToFavorites();
             case R.id.nav_shopping_cart:
                 break;
         }
