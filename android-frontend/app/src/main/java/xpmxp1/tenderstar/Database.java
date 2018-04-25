@@ -1,0 +1,58 @@
+package xpmxp1.tenderstar;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import xpmxp1.tenderstar.app_objects.Product;
+import xpmxp1.tenderstar.app_objects.Store;
+import xpmxp1.tenderstar.app_objects.Tag;
+
+/**
+ * Created by dominik on 18.04.18.
+ */
+
+public class Database {
+    // Singleton
+    static private Database instance = null;
+    static public Database getInstance() {
+        if (instance == null)
+            instance = new Database();
+        return instance;
+    }
+
+    private List<Product> products;
+    private List<Store> stores;
+    private List<Tag> tags;
+
+    // Constructor
+    private Database() {
+        createDummies();
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    private void createDummies() {
+        // create products
+        products = new ArrayList<>();
+        products.add(new Product("Milk", Product.Category.FOOD));
+        products.add(new Product("Water", Product.Category.FOOD));
+        products.add(new Product("Cereal", Product.Category.FOOD));
+        products.add(new Product("Sausage", Product.Category.FOOD));
+        products.add(new Product("Pizza", Product.Category.FOOD));
+        products.add(new Product("Rice", Product.Category.FOOD));
+        products.add(new Product("Beer", Product.Category.ALCOHOL));
+        products.add(new Product("Wine", Product.Category.ALCOHOL));
+        products.add(new Product("Whiskas", Product.Category.CATFOOD));
+
+    }
+}

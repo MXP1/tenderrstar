@@ -101,6 +101,7 @@ public class HomeFragment extends Fragment {
 
         // specify an adapter (see also next example)
 
+<<<<<<< HEAD
         ArrayList<Product> productsList = new ArrayList<>();
         productsList.add(new Product("Milk", Product.Category.FOOD, "description", "10 €"));
         productsList.add(new Product("Water", Product.Category.FOOD, "description", "10 €"));
@@ -116,6 +117,9 @@ public class HomeFragment extends Fragment {
         productsList.add(new Product("Bread", Product.Category.FOOD, "description", "10 €"));
 
         mAdapter = new ProductAdapter(productsList);
+=======
+        mAdapter = new ProductAdapter(Database.getInstance().getProducts());
+>>>>>>> 67bee65c5a8b3fab1a8732ad0e756ae897d46d10
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View
