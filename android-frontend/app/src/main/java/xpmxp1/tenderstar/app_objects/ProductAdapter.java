@@ -17,16 +17,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         // each data item is just a string in this case
         public CardView mCardView;
         public TextView name;
         public TextView category;
+        public TextView description;
+        public TextView price;
 
         public ViewHolder(CardView c) {
             super(c);
             mCardView = c;
             name = (TextView) c.findViewById(R.id.textView_name);
             category = (TextView) c.findViewById(R.id.textView_category);
+            description = (TextView) c.findViewById(R.id.textView_description);
+            price = (TextView) c.findViewById(R.id.textView_price);
         }
     }
 
@@ -55,11 +60,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // - replace the contents of the view with that element
         holder.name.setText(mDataset.get(position).name);
         holder.category.setText(mDataset.get(position).category.toString());
+        holder.description.setText(mDataset.get(position).description.toString());
+        holder.price.setText(mDataset.get(position).getPriceAsString());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public void clear() {
+        mDataset.clear();
+        notifyDataSetChanged();
+    }
+
+    public void setmDataset(List<Product> productList) {
+        mDataset = productList;
+        notifyDataSetChanged();
     }
 }

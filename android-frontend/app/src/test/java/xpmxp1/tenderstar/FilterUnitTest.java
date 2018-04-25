@@ -41,35 +41,35 @@ public class FilterUnitTest {
         Product tempProduct;
         products = new ArrayList<>();
 
-        tempProduct = new Product("Whiskey", Product.Category.ALCOHOL);
+        tempProduct = new Product("Whiskey", Product.Category.ALCOHOL,"descr", 2.0f);
         tempProduct.tags.add(tagSpirits);
         tempProduct.stores.add(storeBilla);
         tempProduct.stores.add(storeSpar);
         products.add(tempProduct);
 
-        tempProduct = new Product("Jack Daniels", Product.Category.ALCOHOL);
+        tempProduct = new Product("Jack Daniels", Product.Category.ALCOHOL, "descr", 2.0f);
         tempProduct.tags.add(tagSpirits);
         tempProduct.stores.add(storeBilla);
         tempProduct.stores.add(storePenny);
         products.add(tempProduct);
 
-        tempProduct = new Product("Banana", Product.Category.FOOD);
+        tempProduct = new Product("Banana", Product.Category.FOOD, "descr", 2.0f);
         tempProduct.tags.add(tagFruit);
         tempProduct.stores.add(storePenny);
         products.add(tempProduct);
 
-        tempProduct = new Product("Whiskas", Product.Category.CATFOOD);
+        tempProduct = new Product("Whiskas", Product.Category.CATFOOD, "descr", 2.0f);
         tempProduct.tags.add(tagAnimal);
         tempProduct.tags.add(tagCat);
         tempProduct.stores.add(storeSpar);
         products.add(tempProduct);
 
-        tempProduct = new Product("Carrot", Product.Category.FOOD);
+        tempProduct = new Product("Carrot", Product.Category.FOOD, "descr", 2.0f);
         tempProduct.tags.add(tagVegetable);
         tempProduct.stores.add(storeBilla);
         products.add(tempProduct);
 
-        tempProduct = new Product("Paprika", Product.Category.FOOD);
+        tempProduct = new Product("Paprika", Product.Category.FOOD, "descr", 2.0f);
         tempProduct.tags.add(tagVegetable);
         tempProduct.stores.add(storeSpar);
         products.add(tempProduct);

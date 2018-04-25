@@ -5,9 +5,11 @@
     tools:context="xpmxp1.tenderstar.StoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/store_list"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Store Fragment" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

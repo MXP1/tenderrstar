@@ -1,8 +1,13 @@
 package xpmxp1.tenderstar;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+
+import xpmxp1.tenderstar.app_objects.Store;
+import xpmxp1.tenderstar.app_objects.StoreAdapter;
 
 /**
  * Created by dominik on 18.04.18.
@@ -46,10 +51,23 @@ public class Navigation {
         ft.replace(R.id.mainFrame, new StoreFragment());
         ft.commit();
     }
+
     public void navigateToFavorites() {
         navigation_view.setCheckedItem(R.id.nav_favorites);
         ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new FavoritesFragment());
+    }
+
+
+    public void navigateToStoreDetail(Store store) {
+        Log.d("Navigation", "navigate to store details");
+        Log.d("Navigation", store.name);
+
+        navigation_view.setCheckedItem(R.id.nav_home);
+        ft = activity.getSupportFragmentManager().beginTransaction();
+        StoreDetailsFragment st = new StoreDetailsFragment();
+        st.setStore(store);
+        ft.replace(R.id.mainFrame, st);
         ft.commit();
     }
 }

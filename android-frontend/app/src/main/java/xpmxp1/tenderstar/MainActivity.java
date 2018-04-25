@@ -13,8 +13,9 @@ public class MainActivity
     implements
         HomeFragment.OnFragmentInteractionListener,
         StoreFragment.OnFragmentInteractionListener,
-        NavigationView.OnNavigationItemSelectedListener,
-        FavoritesFragment.OnFragmentInteractionListener{
+        FavoritesFragment.OnFragmentInteractionListener,
+        StoreDetailsFragment.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

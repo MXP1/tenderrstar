@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.ProductAdapter;
@@ -88,7 +90,31 @@ public class HomeFragment extends Fragment {
         // Create List view
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-//        view.setContentView(R.layout.activity_main);
+        final Button buttonSearch = view.findViewById(R.id.button_search);
+        final Button buttonReset = view.findViewById(R.id.button_reset);
+        final EditText search = view.findViewById(R.id.editText_search);
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ProductAdapter)mRecyclerView.getAdapter()).clear();
+                String search_string = search.getText().toString();
+
+                Filter filter = new Filter(Database.getInstance().getProducts());
+                filter.setSearchString(search_string);
+                List<Product> productList = filter.results();
+
+                ((ProductAdapter)mRecyclerView.getAdapter()).setmDataset(productList);
+            }
+        });
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search.getText().clear();
+                ((ProductAdapter)mRecyclerView.getAdapter()).setmDataset(Database.getInstance().getProducts());
+            }
+        });
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
 
         // use this setting to improve performance if you know that changes
