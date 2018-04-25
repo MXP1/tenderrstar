@@ -101,21 +101,7 @@ public class HomeFragment extends Fragment {
 
         // specify an adapter (see also next example)
 
-        ArrayList<Product> productsList = new ArrayList<>();
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
-        productsList.add(new Product("Milk", Product.Category.FOOD));
-        productsList.add(new Product("Water", Product.Category.FOOD));
-        productsList.add(new Product("Rice", Product.Category.FOOD));
-        productsList.add(new Product("Bread", Product.Category.FOOD));
-
-        mAdapter = new ProductAdapter(productsList);
+        mAdapter = new ProductAdapter(Database.getInstance().getProducts());
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View
