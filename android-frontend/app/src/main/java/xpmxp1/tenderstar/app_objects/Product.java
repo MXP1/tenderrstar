@@ -16,8 +16,9 @@ public class Product {
     public Category category;
     public List<Tag> tags;
     public List<Store> stores;
+    public int price;
 
-    public Product() {};
+    public Product() {}
     public Product(String name, Category category) {
         this.name = name;
         this.category = category;

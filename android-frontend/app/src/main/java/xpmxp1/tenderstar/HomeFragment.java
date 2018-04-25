@@ -80,6 +80,8 @@ public class HomeFragment extends Fragment {
             mListener.onFragmentInteraction(Uri.parse("Home"));
         }
 
+        
+
         // Create List view
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 

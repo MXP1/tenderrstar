@@ -2,7 +2,6 @@ package xpmxp1.tenderstar.app_objects;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 }
             });
 
-            name = (TextView) c.findViewById(R.id.textView_name);
+            name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
         }
     }

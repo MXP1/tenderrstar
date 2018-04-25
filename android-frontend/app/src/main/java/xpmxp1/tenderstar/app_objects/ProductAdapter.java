@@ -26,7 +26,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public ViewHolder(CardView c) {
             super(c);
             mCardView = c;
-            name = (TextView) c.findViewById(R.id.textView_name);
+            name = (TextView) c.findViewById(R.id.textView_search);
             category = (TextView) c.findViewById(R.id.textView_category);
         }
     }
