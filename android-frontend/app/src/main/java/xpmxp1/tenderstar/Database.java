@@ -30,15 +30,15 @@ public class Database {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return new ArrayList<Product>(products);
     }
 
     public List<Store> getStores() {
-        return stores;
+        return new ArrayList<>(stores);
     }
 
     public List<Tag> getTags() {
-        return tags;
+        return new ArrayList<>(tags);
     }
 
     private void createDummies() {

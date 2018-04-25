@@ -63,4 +63,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public int getItemCount() {
         return mDataset.size();
     }
+
+    public void clear() {
+        mDataset.clear();
+        notifyDataSetChanged();
+    }
+
+    public void setmDataset(List<Product> productList) {
+        mDataset = productList;
+        notifyDataSetChanged();
+    }
 }
