@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import xpmxp1.tenderstar.FavoritesFragment;
 import xpmxp1.tenderstar.HomeFragment;
 import xpmxp1.tenderstar.R;
+import xpmxp1.tenderstar.ShoppingCartFragment;
 import xpmxp1.tenderstar.StoreDetailsFragment;
 import xpmxp1.tenderstar.StoreFragment;
 
@@ -27,7 +28,8 @@ public class TestActivity extends AppCompatActivity     implements
         StoreFragment.OnFragmentInteractionListener,
         FavoritesFragment.OnFragmentInteractionListener,
         StoreDetailsFragment.OnFragmentInteractionListener,
-        NavigationView.OnNavigationItemSelectedListener{
+        NavigationView.OnNavigationItemSelectedListener,
+        ShoppingCartFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
