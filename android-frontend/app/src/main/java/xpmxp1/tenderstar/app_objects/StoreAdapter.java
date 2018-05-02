@@ -17,7 +17,7 @@ import xpmxp1.tenderstar.R;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
     private List<Store> storeList;
-    private boolean m_Show_Favorites_Button;
+    private boolean isFavoriteMenu;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -35,7 +35,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
         private StoreAdapter storeAdapter;
 
-        public ViewHolder(CardView c, boolean show_favorites, final StoreAdapter storeAdapter) {
+        public ViewHolder(CardView c, boolean isFavoriteMenu, final StoreAdapter storeAdapter) {
             super(c);
             this.storeAdapter = storeAdapter;
 
@@ -52,7 +52,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             favoriteBtn = (FloatingActionButton) c.findViewById(R.id.favoriteBtn);
             removeFavoriteBtn = (FloatingActionButton) c.findViewById(R.id.removeFavoriteBtn);
 
-            if(show_favorites)
+            if(isFavoriteMenu)
             {
                 removeFavoriteBtn.setVisibility(View.INVISIBLE);
             }
@@ -83,9 +83,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public StoreAdapter(List<Store> myDataset, boolean show_favorites_btn) {
+    public StoreAdapter(List<Store> myDataset, boolean isFavoriteMenu) {
         storeList = myDataset;
-        m_Show_Favorites_Button = show_favorites_btn;
+        this.isFavoriteMenu = isFavoriteMenu;
     }
 
     // Create new views (invoked by the layout manager)
@@ -95,7 +95,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         CardView c = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_card, parent, false);
 
-        ViewHolder vh = new ViewHolder(c, m_Show_Favorites_Button, this);
+        ViewHolder vh = new ViewHolder(c, isFavoriteMenu, this);
         return vh;
     }
 

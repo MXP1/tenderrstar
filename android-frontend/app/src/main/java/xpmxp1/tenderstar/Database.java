@@ -16,7 +16,20 @@ public class Database {
     static private Database instance = null;
     static public Database getInstance() {
         if (instance == null)
+        {
             instance = new Database();
+            instance.createDummies();
+        }
+        return instance;
+    }
+
+    static public Database getDummyInstance() {
+        if (instance == null)
+        {
+            instance = new Database();
+            instance.createDummies();
+        }
+
         return instance;
     }
 
@@ -29,7 +42,7 @@ public class Database {
 
     // Constructor
     private Database() {
-        createDummies();
+
     }
 
     public List<Product> getProducts() {
