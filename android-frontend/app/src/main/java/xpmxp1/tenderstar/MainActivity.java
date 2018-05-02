@@ -15,6 +15,7 @@ public class MainActivity
         StoreFragment.OnFragmentInteractionListener,
         FavoritesFragment.OnFragmentInteractionListener,
         StoreDetailsFragment.OnFragmentInteractionListener,
+        ShoppingCartFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     @Override

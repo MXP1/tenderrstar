@@ -3,32 +3,31 @@ package xpmxp1.tenderstar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import java.util.List;
 
-import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.ProductAdapter;
+import xpmxp1.tenderstar.app_objects.Store;
+import xpmxp1.tenderstar.app_objects.StoreAdapter;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
+ * {@link ShoppingCartFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link ShoppingCartFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class ShoppingCartFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,16 +37,13 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+
     private OnFragmentInteractionListener mListener;
 
-    private ListView listView;
-    private ProductAdapter productAdapter;
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
-
-    public HomeFragment() {
+    public ShoppingCartFragment() {
         // Required empty public constructor
     }
 
@@ -57,11 +53,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment ShoppingCartFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static ShoppingCartFragment newInstance(String param1, String param2) {
+        ShoppingCartFragment fragment = new ShoppingCartFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -81,60 +77,29 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(Uri.parse("Home"));
-        }
+
+        Log.d("TEST", Integer.toString(Database.getInstance().getShoppingCartProducts().size()));
 
         // Create List view
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
 
-        final Button buttonSearch = view.findViewById(R.id.button_search);
-        final Button buttonReset = view.findViewById(R.id.button_reset);
-        final EditText search = view.findViewById(R.id.editText_search);
-
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ProductAdapter)mRecyclerView.getAdapter()).clear();
-                String search_string = search.getText().toString();
-
-                Filter filter = new Filter(Database.getInstance().getProducts());
-                filter.setSearchString(search_string);
-                List<Product> productList = filter.results();
-
-                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(productList);
-            }
-        });
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                search.getText().clear();
-                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(Database.getInstance().getProducts());
-            }
-        });
-
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+//        view.setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) view.findViewById(R.id.shopping_cart_product_list);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this.getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        layoutManager = new LinearLayoutManager(this.getActivity());
+        recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-
-        mAdapter = new ProductAdapter(Database.getInstance().getProducts(), false);
-        mRecyclerView.setAdapter(mAdapter);
+        adapter = new ProductAdapter(Database.getInstance().getShoppingCartProducts(), true);
+        recyclerView.setAdapter(adapter);
 
         // return the View
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

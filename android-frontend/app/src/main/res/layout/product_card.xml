@@ -58,7 +58,15 @@
                 android:layout_alignParentRight="@id/textView_category" />
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/button"
+                android:id="@+id/button_add_shopping_cart"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_add_shopping_cart_black_24dp"
+                android:layout_marginLeft="180dp"
+                android:layout_alignParentRight="true" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/button_remove_shopping_cart"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_add_shopping_cart_black_24dp"

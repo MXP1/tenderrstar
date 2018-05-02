@@ -59,6 +59,12 @@ public class Navigation {
         ft.commit();
     }
 
+    public void navigateToShoppingCart() {
+        navigation_view.setCheckedItem(R.id.nav_shopping_cart);
+        ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new ShoppingCartFragment());
+        ft.commit();
+    }
 
     public void navigateToStoreDetail(Store store) {
         Log.d("Navigation", "navigate to store details");

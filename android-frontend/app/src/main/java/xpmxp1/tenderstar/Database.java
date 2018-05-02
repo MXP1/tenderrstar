@@ -24,6 +24,7 @@ public class Database {
     private List<Store> stores;
     private List<Tag> tags;
     private List<Store> favorites;
+    private List<Product> shoppingCartProducts;
 
 
     // Constructor
@@ -43,6 +44,7 @@ public class Database {
         return new ArrayList<>(tags);
     }
 
+    // Favorites
     public void AddFavorite(Store store)
     {
         favorites.add(store);
@@ -57,6 +59,18 @@ public class Database {
     {
         favorites.remove(store);
     }
+
+    // Shopping Cart
+    public void addShoppingCart(Product product) {
+        shoppingCartProducts.add(product);
+    }
+    public List<Product> getShoppingCartProducts() {
+        return shoppingCartProducts;
+    }
+    public void removeShoppingCart(Product product) {
+        shoppingCartProducts.remove(product);
+    }
+
 
     private void createDummies() {
         // create products
@@ -92,5 +106,6 @@ public class Database {
         stores.add(new Store("Zoo4You", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
 
         favorites = new ArrayList<>();
+        shoppingCartProducts = new ArrayList<>();
     }
 }
