@@ -27,6 +27,14 @@
             android:layout_below="@+id/textView_search"
             android:layout_marginTop="10dp"
             android:text="address" />
+        <TextView
+            android:id="@+id/textView_link"
+            android:autoLink="web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_address"
+            android:layout_marginTop="10dp"
+            android:text="link" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

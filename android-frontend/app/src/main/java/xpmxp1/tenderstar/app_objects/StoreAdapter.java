@@ -2,6 +2,7 @@ package xpmxp1.tenderstar.app_objects;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public CardView mCardView;
         public TextView name;
         public TextView address;
+        public TextView link;
         public Store store;
 
         public ViewHolder(CardView c) {
@@ -40,6 +42,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
             name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
+            link = (TextView) c.findViewById(R.id.textView_link);
+            //link.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 
@@ -68,6 +72,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         // - replace the contents of the view with that element
         holder.name.setText(mDataset.get(position).name);
         holder.address.setText(mDataset.get(position).address);
+        holder.link.setText(mDataset.get(position).link);
         holder.store = mDataset.get(position);
     }
 

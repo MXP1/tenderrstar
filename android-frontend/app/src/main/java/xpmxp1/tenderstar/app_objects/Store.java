@@ -91,10 +91,11 @@ public class Store {
         this.name = name;
     }
 
-    public Store(String name, OpeningHours openingHours, String address, String postalCode) {
+    public Store(String name, OpeningHours openingHours, String address, String postalCode, String link) {
         this.name = name;
         this.openingHours = openingHours;
         this.address = address;
         this.postalCode = postalCode;
+        this.link = link;
     }
 }
