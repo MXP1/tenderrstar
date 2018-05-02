@@ -10,11 +10,13 @@ import android.widget.Button;
 
 import java.util.List;
 
+import xpmxp1.tenderstar.Database;
 import xpmxp1.tenderstar.Navigation;
 import xpmxp1.tenderstar.R;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
     private List<Store> mDataset;
+    private boolean m_Show_Favorites_Button;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -44,18 +46,22 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             address = (TextView) c.findViewById(R.id.textView_address);
             favoriteBtn = (Button) c.findViewById(R.id.favoriteBtn);
 
+            favoriteBtn.setVisibility(View.INVISIBLE);
+
             favoriteBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
                     favoriteBtn.setBackgroundColor(6);
+                    Database.getInstance().AddFavorite(store);
                 }
             });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public StoreAdapter(List<Store> myDataset) {
+    public StoreAdapter(List<Store> myDataset, boolean show_favorites_btn) {
         mDataset = myDataset;
+        m_Show_Favorites_Button = show_favorites_btn;
     }
 
     // Create new views (invoked by the layout manager)

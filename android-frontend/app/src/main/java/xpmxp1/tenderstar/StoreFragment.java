@@ -96,7 +96,7 @@ public class StoreFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new StoreAdapter(Database.getInstance().getStores());
+        mAdapter = new StoreAdapter(Database.getInstance().getStores(), true);
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View

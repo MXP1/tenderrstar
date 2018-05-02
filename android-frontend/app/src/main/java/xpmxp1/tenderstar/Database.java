@@ -23,6 +23,8 @@ public class Database {
     private List<Product> products;
     private List<Store> stores;
     private List<Tag> tags;
+    private List<Store> favorites;
+
 
     // Constructor
     private Database() {
@@ -39,6 +41,16 @@ public class Database {
 
     public List<Tag> getTags() {
         return new ArrayList<>(tags);
+    }
+
+    public void AddFavorite(Store store)
+    {
+        favorites.add(store);
+    }
+
+    public List<Store> GetFavorites()
+    {
+        return favorites;
     }
 
     private void createDummies() {
@@ -73,5 +85,7 @@ public class Database {
         stores.add(new Store("Penny", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 3", "8010"));
         stores.add(new Store("Lidl", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
         stores.add(new Store("Zoo4You", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
+
+        favorites = new ArrayList<>();
     }
 }

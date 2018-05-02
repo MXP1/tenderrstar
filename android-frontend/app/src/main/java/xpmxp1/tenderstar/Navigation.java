@@ -56,6 +56,7 @@ public class Navigation {
         navigation_view.setCheckedItem(R.id.nav_favorites);
         ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new FavoritesFragment());
+        ft.commit();
     }
 
 

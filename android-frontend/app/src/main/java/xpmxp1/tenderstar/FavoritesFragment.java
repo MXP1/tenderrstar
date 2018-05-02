@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.StoreAdapter;
@@ -79,10 +80,10 @@ public class FavoritesFragment extends Fragment {
 
 
         // Create List view
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
 //        view.setContentView(R.layout.activity_main);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.favorite_list);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -94,12 +95,9 @@ public class FavoritesFragment extends Fragment {
 
         // specify an adapter (see also next example)
 
-        ArrayList<Store> favoritesList = new ArrayList<>();
-        favoritesList.add(new Store("SPAR"));
-        favoritesList.add(new Store("Lidl"));
+        List<Store> favoritesList = Database.getInstance().GetFavorites();
 
-
-        mAdapter = new StoreAdapter(favoritesList);
+        mAdapter = new StoreAdapter(favoritesList, false);
         mRecyclerView.setAdapter(mAdapter);
         // return the View
         return view;
