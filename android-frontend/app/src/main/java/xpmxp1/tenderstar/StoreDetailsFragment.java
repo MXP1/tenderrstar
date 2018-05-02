@@ -70,10 +70,11 @@ public class StoreDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_store_details, container, false);
-        ((TextView) view.findViewById(R.id.textView_search)).setText(store.name);
-        ((TextView) view.findViewById(R.id.textView_address)).setText(store.address);
-        ((TextView) view.findViewById(R.id.textView_hours)).setText(store.openingHours.toString());
-        ((TextView) view.findViewById(R.id.textView_link)).setText(store.link);
+        ((TextView) view.findViewById(R.id.textView_search)).setText(store.getStoreName());
+        //TODO: Store Address Query
+        ((TextView) view.findViewById(R.id.textView_address)).setText(store.getAddress());
+        ((TextView) view.findViewById(R.id.textView_hours)).setText(store.getOpeningHours().toString());
+        ((TextView) view.findViewById(R.id.textView_link)).setText(store.getLink());
         return view;
     }
 
