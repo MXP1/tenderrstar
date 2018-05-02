@@ -3,6 +3,7 @@ package xpmxp1.tenderstar.database.DAO;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import xpmxp1.tenderstar.app_objects.Favorit;
@@ -22,6 +23,6 @@ public interface FavoritDAO {
     @Delete
     public void deleteFavorit(Favorit favorit);
 
-    //@Query("SELECT * FROM Address")
-    //public List<Address> getAllAddresses();
+    @Query("DELETE FROM Favorit")
+    public void nukeTable();
 }

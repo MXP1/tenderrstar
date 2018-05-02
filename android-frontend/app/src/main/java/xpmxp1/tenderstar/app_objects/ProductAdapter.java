@@ -2,12 +2,14 @@ package xpmxp1.tenderstar.app_objects;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
 
+import xpmxp1.tenderstar.CustomApplication;
 import xpmxp1.tenderstar.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
@@ -58,8 +60,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        String category = CustomApplication.getDb().productCategoryDAO().getCategoryForProduct(mDataset.get(position).getCategoryId());
         holder.name.setText(mDataset.get(position).getName());
-        holder.category.setText(mDataset.get(position).category.toString());
+        holder.category.setText(category);
         holder.description.setText(mDataset.get(position).getDescription().toString());
         holder.price.setText("" + mDataset.get(position).getPrice());
     }

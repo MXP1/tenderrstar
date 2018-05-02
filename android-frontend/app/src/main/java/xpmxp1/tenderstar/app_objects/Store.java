@@ -28,8 +28,6 @@ public class Store {
     private String link;
     @ColumnInfo(name = "StoreTypeID")
     private int storeTypeID;
-    @ColumnInfo(name = "LocationID")
-    private int locationID;
     @ColumnInfo(name = "OpeningHours")
     private OpeningHours openingHours;
     @ColumnInfo(name = "Address")
@@ -37,13 +35,12 @@ public class Store {
     @ColumnInfo(name = "PostalCode")
     private String postalCode;
 
-    public Store(String username, String password, String storeName, String link, int storeTypeID, int locationID, OpeningHours openingHours, String address, String postalCode) {
+    public Store(String username, String password, String storeName, String link, int storeTypeID, OpeningHours openingHours, String address, String postalCode) {
         this.username = username;
         this.password = password;
         this.storeName = storeName;
         this.link = link;
         this.storeTypeID = storeTypeID;
-        this.locationID = locationID;
         this.openingHours = openingHours;
         this.address = address;
         this.postalCode = postalCode;
@@ -81,13 +78,6 @@ public class Store {
         this.storeTypeID = storeTypeID;
     }
 
-    public int getLocationID() {
-        return locationID;
-    }
-
-    public void setLocationID(int locationID) {
-        this.locationID = locationID;
-    }
 
     public OpeningHours getOpeningHours() {
         return openingHours;

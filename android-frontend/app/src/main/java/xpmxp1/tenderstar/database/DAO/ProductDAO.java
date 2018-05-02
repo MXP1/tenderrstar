@@ -27,7 +27,6 @@ public interface ProductDAO {
     @Query("SELECT * FROM Product WHERE StoreID = :storeId")
     public List<Product> getAllProductsForStore(long storeId);
 
-    //Query with Parameters
-    //@Query("SELECT * FROM user WHERE age > :minAge")
-    //public User[] loadAllUsersOlderThan(int minAge);
+    @Query("DELETE FROM Product")
+    public void nukeTable();
 }

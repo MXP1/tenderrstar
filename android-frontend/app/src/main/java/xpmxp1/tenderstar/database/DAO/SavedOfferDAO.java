@@ -26,7 +26,9 @@ public interface SavedOfferDAO {
     @Delete
     public void deleteSavedOffer(SavedOffer savedOffer);
 
-    //TODO:TEST!!!
-    @Query("SELECT Product.* FROM SavedOffers INNER JOIN Customer ON Customer.CustomerID = SavedOffers.CustomerID INNER JOIN Product ON Product.ProductID = SavedOffers.ProductID WHERE SavedOffers.CustomerID = :customerId ")
+    @Query("DELETE FROM SavedOffer")
+    public void nukeTable();
+
+    @Query("SELECT Product.* FROM SavedOffer INNER JOIN Customer ON Customer.CustomerID = SavedOffer.CustomerID INNER JOIN Product ON Product.ProductID = SavedOffer.ProductID WHERE SavedOffer.CustomerID = :customerId ")
     public List<Product> getSavedOffersForCustomer(long customerId);
 }

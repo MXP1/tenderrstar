@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,19 +32,21 @@ public class Database {
     }
 
     public List<Product> getProducts() {
-        return new ArrayList<Product>(products);
+        return CustomApplication.getDb().productDAO().getAllProducts();
     }
 
     public List<Store> getStores() {
-        return new ArrayList<>(stores);
+        return CustomApplication.getDb().storeDAO().getAllStores();
     }
 
     public List<Tag> getTags() {
-        return new ArrayList<>(tags);
+        //TODO
+        return null;
     }
 
     private void createDummies() {
         // create products
+
         /*
         products = new ArrayList<>();
         products.add(new Product("Milk", Product.Category.FOOD, "descr", 2.0f));

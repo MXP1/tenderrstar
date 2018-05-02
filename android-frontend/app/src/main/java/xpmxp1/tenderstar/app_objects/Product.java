@@ -12,10 +12,6 @@ import java.util.Date;
 @Entity(tableName = "Product")
 public class Product {
 
-    public enum Category {
-        FOOD, ALCOHOL, CATFOOD
-    }
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ProductID")
     private long id;
@@ -33,8 +29,10 @@ public class Product {
     private Date toDate;
     @ColumnInfo(name = "StoreID")
     private long storeId;
+    @ColumnInfo(name = "CategoryID")
+    private long categoryId;
 
-    public Product(String name, String description, double price, double discount, Date fromDate, Date toDate, long storeId) {
+    public Product(String name, String description, double price, double discount, Date fromDate, Date toDate, long storeId, long categoryId) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -42,6 +40,7 @@ public class Product {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.storeId = storeId;
+        this.categoryId = categoryId;
     }
 
     public long getId() {
@@ -108,9 +107,15 @@ public class Product {
         this.description = description;
     }
 
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     //TODO:
-    @Ignore
-    public Category category;
     @Ignore
     public List<Tag> tags;
     @Ignore

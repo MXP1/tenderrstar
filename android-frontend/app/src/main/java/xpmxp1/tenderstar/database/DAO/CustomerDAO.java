@@ -34,7 +34,7 @@ public interface CustomerDAO {
     @Query("SELECT MAX(CustomerID) FROM Customer")
     public long getLastUsedCustomerId();
 
-    //Query with Parameters
-    //@Query("SELECT * FROM user WHERE age > :minAge")
-    //public User[] loadAllUsersOlderThan(int minAge);
+    @Query("DELETE FROM Customer")
+    public void nukeTable();
+
 }

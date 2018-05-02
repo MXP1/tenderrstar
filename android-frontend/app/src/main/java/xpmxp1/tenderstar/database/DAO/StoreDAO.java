@@ -31,7 +31,7 @@ public interface StoreDAO {
     @Query("SELECT * FROM Store WHERE StoreID = :storeId")
     public Store getStore(long storeId);
 
-    //Query with Parameters
-    //@Query("SELECT * FROM user WHERE age > :minAge")
-    //public User[] loadAllUsersOlderThan(int minAge);
+    @Query("DELETE FROM Store")
+    public void nukeTable();
+
 }

@@ -8,7 +8,9 @@ import java.util.Date;
 
 import xpmxp1.tenderstar.app_objects.Customer;
 import xpmxp1.tenderstar.app_objects.Favorit;
+import xpmxp1.tenderstar.app_objects.OpeningHours;
 import xpmxp1.tenderstar.app_objects.Product;
+import xpmxp1.tenderstar.app_objects.ProductCategory;
 import xpmxp1.tenderstar.app_objects.ProductRating;
 import xpmxp1.tenderstar.app_objects.SavedOffer;
 import xpmxp1.tenderstar.app_objects.Store;
@@ -28,38 +30,48 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").build();
 
-        /*
-        Thread t = new Thread(){
-            public void run(){
-                fillDbWithTestData();
-            }
-        };
-        */
-        //t.start();
+        db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        nukeTables();
+        fillDbWithTestData();
     }
 
     public static synchronized TenderstarDB getDb() {
         return db;
     }
 
-    /*
+    private void nukeTables(){
+        db.customerDAO().nukeTable();
+        db.favoritDAO().nukeTable();
+        db.productCategoryDAO().nukeTable();
+        db.productDAO().nukeTable();
+        db.productRatingDAO().nukeTable();
+        db.savedOfferDAO().nukeTable();
+        db.storeDAO().nukeTable();
+        db.storeRatingDAO().nukeTable();
+        db.storeTypeDAO().nukeTable();
+        db.tagDAO().nukeTable();
+    }
+
     private void fillDbWithTestData(){
-        Customer c1 = new Customer("Max", "Max", "max@asdf.com");
+
+        Customer c1 = new Customer("Admin", "Admin", "admin@asdf.com");
         Customer c2 = new Customer("Susi", "Susi", "susi@asdf.com");
 
-        Store s1 = new Store("LoremIpsum", "LoremIpsum", "LoremIpsum-Store", 1, 1, "08:00-18:00");
-        Store s2 = new Store("MediaSat", "MediaSat", "MediaSat-Store", 2, 2, "08:30-20:00");
-        Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", 2, 3, "00:00-24:00");
+        Store s1 = new Store("LoremIpsum", "LoremIpsum", "LoremIpsum-Store", "ex-link", 1,
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "1010");
+        Store s2 = new Store("MediaSat", "MediaSat", "MediaSat-Store", "ex-link", 2,
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "1010");
+        Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link",3,
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "8010");
+
+        Product p1 = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
+        Product p2 = new Product("Egg", "desc",  1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
+        Product p3 = new Product("TV", "desc",699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 2, 2);
+        Product p4 = new Product("Computer", "desc", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 3, 2);
 
         Favorit f1 = new Favorit(1,1);
         Favorit f2 = new Favorit(2,2);
-
-        Product p1 = new Product("Ham", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1);
-        Product p2 = new Product("Egg", 1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1);
-        Product p3 = new Product("TV", 699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 2);
-        Product p4 = new Product("Computer", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 3);
 
         ProductRating pr1 = new ProductRating(1,1, 5, "Great!");
         ProductRating pr2 = new ProductRating(2,1, 3, "Meeh...");
@@ -81,17 +93,21 @@ public class CustomApplication extends Application {
         Tag t1 = new Tag("Food");
         Tag t2 = new Tag("Tech");
 
+        ProductCategory pc1 = new ProductCategory("Food");
+        ProductCategory pc2 = new ProductCategory("Tech");
+
+
         db.customerDAO().insertCustomer(c1);
         db.customerDAO().insertCustomer(c2);
         db.storeDAO().insertStore(s1);
         db.storeDAO().insertStore(s2);
         db.storeDAO().insertStore(s3);
-        db.favoritDAO().insertFavorit(f1);
-        db.favoritDAO().insertFavorit(f2);
         db.productDAO().insertProduct(p1);
         db.productDAO().insertProduct(p2);
         db.productDAO().insertProduct(p3);
         db.productDAO().insertProduct(p4);
+        db.favoritDAO().insertFavorit(f1);
+        db.favoritDAO().insertFavorit(f2);
         db.productRatingDAO().insertProductRating(pr1);
         db.productRatingDAO().insertProductRating(pr2);
         db.productRatingDAO().insertProductRating(pr3);
@@ -107,6 +123,7 @@ public class CustomApplication extends Application {
         db.storeTypeDAO().insertStoreType(st2);
         db.tagDAO().insertTag(t1);
         db.tagDAO().insertTag(t2);
+        db.productCategoryDAO().insertCategory(pc1);
+        db.productCategoryDAO().insertCategory(pc2);
     }
-    */
 }

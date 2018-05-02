@@ -3,6 +3,7 @@ package xpmxp1.tenderstar.database.DAO;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import xpmxp1.tenderstar.app_objects.ProductRating;
@@ -21,4 +22,7 @@ public interface ProductRatingDAO {
 
     @Delete
     public void deleteProductRating(ProductRating productRating);
+
+    @Query("DELETE FROM ProductRating")
+    public void nukeTable();
 }

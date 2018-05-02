@@ -11,7 +11,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
  * Created by sebastian on 4/21/18.
  */
 
-@Entity(tableName = "SavedOffers",
+@Entity(tableName = "SavedOffer",
         primaryKeys = {"CustomerID", "ProductID"},
         foreignKeys = {@ForeignKey(entity = Customer.class,
         parentColumns = "CustomerID",
