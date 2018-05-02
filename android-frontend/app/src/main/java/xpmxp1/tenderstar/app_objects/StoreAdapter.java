@@ -80,6 +80,17 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 }
             });
         }
+
+        public void setAddButtonInvisible() {
+            // make add button invisible if they are in the favorites list
+            List<Store> storeList = Database.getInstance().GetFavorites();
+            for (Store s : storeList) {
+                if (s.getId() == store.getId()) {
+                    favoriteBtn.setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
+        }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -107,6 +118,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         holder.name.setText(storeList.get(position).getStoreName());
         holder.address.setText(storeList.get(position).getAddress());
         holder.store = storeList.get(position);
+        holder.setAddButtonInvisible();
     }
 
     // Return the size of your dataset (invoked by the layout manager)

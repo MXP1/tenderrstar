@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import xpmxp1.tenderstar.Utils.TestActivity;
+import xpmxp1.tenderstar.app_objects.OpeningHours;
 import xpmxp1.tenderstar.app_objects.Store;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -26,17 +27,16 @@ public class FavoritesInstrumentedTests {
 
     private FavoritesFragment m_Fragment;
     private Store TestStore;
-    private Database Database;
+//    private Database Database;
 
     @Rule
     public ActivityTestRule<TestActivity> TestRule =
             new ActivityTestRule<>(TestActivity.class, true, true);
 
     @Before
-    public void init(){
-        TestStore = new Store("TestStore", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 1", "8010");
-        Database = Database.getDummyInstance();
-        Database.AddFavorite(TestStore);
+    public void init() {
+        TestStore = Database.getInstance().getStores().get(0);
+        Database.getInstance().AddFavorite(TestStore);
 
         m_Fragment = new FavoritesFragment();
         TestRule.getActivity().setFragment(m_Fragment);

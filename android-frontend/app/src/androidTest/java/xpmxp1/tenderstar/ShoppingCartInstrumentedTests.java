@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar;
 
+import android.provider.ContactsContract;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -8,6 +9,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.Date;
 
 import xpmxp1.tenderstar.Utils.TestActivity;
 import xpmxp1.tenderstar.app_objects.Product;
@@ -20,13 +23,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.core.IsNot.not;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
+import static xpmxp1.tenderstar.Database.*;
 
 @RunWith(AndroidJUnit4.class)
 public class ShoppingCartInstrumentedTests {
 
     private ShoppingCartFragment m_Fragment;
     private Product TestProduct;
-    private Database Database;
 
     @Rule
     public ActivityTestRule<TestActivity> TestRule =
@@ -34,9 +37,10 @@ public class ShoppingCartInstrumentedTests {
 
     @Before
     public void init(){
-        TestProduct = new Product("TestProduct", Product.Category.FOOD, "descr", 1.2f);
-        Database = Database.getDummyInstance();
-        Database.addShoppingCart(TestProduct);
+        TestProduct = Database.getInstance().getProducts().get(0);
+        //TestProduct = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
+        //Database = Database.getDummyInstance();
+        Database.getInstance().addShoppingCart(TestProduct);
 
         m_Fragment = new ShoppingCartFragment();
         TestRule.getActivity().setFragment(m_Fragment);
@@ -44,7 +48,7 @@ public class ShoppingCartInstrumentedTests {
 
     @After
     public void tear_down(){
-        Database.getInstance().removeShoppingCart(TestProduct);
+        getInstance().removeShoppingCart(TestProduct);
     }
 
     @Test
@@ -55,7 +59,7 @@ public class ShoppingCartInstrumentedTests {
     @Test
     public void checkEntryVisible() {
         onView(withId(R.id.textView_name)).check(matches(isDisplayed()));
-        onView(withId(R.id.textView_category)).check(matches(isDisplayed()));
+//        onView(withId(R.id.textView_category)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_description)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_price)).check(matches(isDisplayed()));
 

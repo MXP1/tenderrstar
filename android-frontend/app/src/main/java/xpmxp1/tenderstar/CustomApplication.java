@@ -32,15 +32,18 @@ public class CustomApplication extends Application {
         super.onCreate();
 
         db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+
         nukeTables();
         fillDbWithTestData();
+
     }
+
 
     public static synchronized TenderstarDB getDb() {
         return db;
     }
 
-    private void nukeTables(){
+    public static void nukeTables(){
         db.customerDAO().nukeTable();
         db.favoritDAO().nukeTable();
         db.productCategoryDAO().nukeTable();
@@ -53,7 +56,7 @@ public class CustomApplication extends Application {
         db.tagDAO().nukeTable();
     }
 
-    private void fillDbWithTestData(){
+    public static void fillDbWithTestData(){
 
         Customer c1 = new Customer("Admin", "Admin", "admin@asdf.com");
         Customer c2 = new Customer("Susi", "Susi", "susi@asdf.com");
@@ -65,7 +68,7 @@ public class CustomApplication extends Application {
         Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link",3,
                 new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "8010");
 
-        Product p1 = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
+        Product p1 = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 0);
         Product p2 = new Product("Egg", "desc",  1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
         Product p3 = new Product("TV", "desc",699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 2, 2);
         Product p4 = new Product("Computer", "desc", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 3, 2);

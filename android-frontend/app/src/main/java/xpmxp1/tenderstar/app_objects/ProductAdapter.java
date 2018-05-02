@@ -75,6 +75,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 }
             });
         }
+
+        public void setAddButtonInvisible() {
+            // make add button invisible if they are in the favorites list
+            List<Product> productList = Database.getInstance().getShoppingCartProducts();
+            for (Product p : productList) {
+                if (p.getId() == product.getId()) {
+                    addShoppingCartButton.setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
+        }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -107,6 +118,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.description.setText(productList.get(position).getDescription().toString());
         holder.price.setText(productList.get(position).getPriceAsString());
         holder.product = productList.get(position);
+        holder.setAddButtonInvisible();
     }
 
     // Return the size of your dataset (invoked by the layout manager)
