@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar.app_objects;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,8 +29,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public TextView name;
         public TextView address;
         public Store store;
-        public Button favoriteBtn;
-        public Button removeFavoriteBtn;
+
+        public FloatingActionButton favoriteBtn;
+        public FloatingActionButton removeFavoriteBtn;
+
         private StoreAdapter storeAdapter;
 
         public ViewHolder(CardView c, boolean show_favorites, final StoreAdapter storeAdapter) {
@@ -46,8 +49,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
             name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
-            favoriteBtn = (Button) c.findViewById(R.id.favoriteBtn);
-            removeFavoriteBtn = (Button) c.findViewById(R.id.removeFavoriteBtn);
+            favoriteBtn = (FloatingActionButton) c.findViewById(R.id.favoriteBtn);
+            removeFavoriteBtn = (FloatingActionButton) c.findViewById(R.id.removeFavoriteBtn);
 
             if(show_favorites)
             {
@@ -63,6 +66,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 public void onClick(View v) {
                     favoriteBtn.setBackgroundColor(6);
                     Database.getInstance().AddFavorite(store);
+                    favoriteBtn.setVisibility(View.INVISIBLE);
                 }
             });
 
