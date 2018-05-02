@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import xpmxp1.tenderstar.Database;
+import xpmxp1.tenderstar.CustomApplication;
 import xpmxp1.tenderstar.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
@@ -100,9 +101,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(productList.get(position).name);
-        holder.category.setText(productList.get(position).category.toString());
-        holder.description.setText(productList.get(position).description.toString());
+        String category = CustomApplication.getDb().productCategoryDAO().getCategoryForProduct(productList.get(position).getCategoryId());
+        holder.name.setText(productList.get(position).getName());
+        holder.category.setText(category);
+        holder.description.setText(productList.get(position).getDescription().toString());
         holder.price.setText(productList.get(position).getPriceAsString());
         holder.product = productList.get(position);
     }

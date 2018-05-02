@@ -1,9 +1,13 @@
 package xpmxp1.tenderstar;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import xpmxp1.tenderstar.app_objects.Customer;
+import xpmxp1.tenderstar.app_objects.Favorit;
 import xpmxp1.tenderstar.app_objects.Product;
+import xpmxp1.tenderstar.app_objects.SavedOffer;
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.Tag;
 
@@ -14,11 +18,12 @@ import xpmxp1.tenderstar.app_objects.Tag;
 public class Database {
     // Singleton
     static private Database instance = null;
+
     static public Database getInstance() {
         if (instance == null)
         {
             instance = new Database();
-            instance.createDummies();
+//            instance.createDummies();
         }
         return instance;
     }
@@ -27,11 +32,14 @@ public class Database {
         if (instance == null)
         {
             instance = new Database();
-            instance.createDummies();
+           // instance.createDummies();
         }
 
         return instance;
     }
+
+    // get first customer for debugging
+    Customer customer = CustomApplication.getDb().customerDAO().getAllCustomers().get(0);
 
     private List<Product> products;
     private List<Store> stores;
@@ -46,11 +54,11 @@ public class Database {
     }
 
     public List<Product> getProducts() {
-        return new ArrayList<Product>(products);
+        return CustomApplication.getDb().productDAO().getAllProducts();
     }
 
     public List<Store> getStores() {
-        return new ArrayList<>(stores);
+        return CustomApplication.getDb().storeDAO().getAllStores();
     }
 
     public List<Tag> getTags() {
@@ -58,37 +66,37 @@ public class Database {
     }
 
     // Favorites
-    public void AddFavorite(Store store)
-    {
-        favorites.add(store);
+    public void AddFavorite(Store store) {
+        Favorit f = new Favorit(customer.getId(), store.getId());
+        CustomApplication.getDb().favoritDAO().insertFavorit(f);
     }
-
-    public List<Store> GetFavorites()
-    {
-        return favorites;
+    public List<Store> GetFavorites() {
+        return CustomApplication.getDb().favoritDAO().getAllFavoritesStores();
     }
-
-    public void RemoveFavorite(Store store)
-    {
-        favorites.remove(store);
+    public void RemoveFavorite(Store store) {
+        Favorit f = new Favorit(customer.getId(), store.getId());
+        CustomApplication.getDb().favoritDAO().deleteFavorit(f);
     }
 
     // Shopping Cart
     public void addShoppingCart(Product product) {
-        shoppingCartProducts.add(product);
+        SavedOffer savedOffer = new SavedOffer(customer.getId(), product.getId());
+        CustomApplication.getDb().savedOfferDAO().insertSavedOffer(savedOffer);
     }
     public List<Product> getShoppingCartProducts() {
-        return shoppingCartProducts;
+        return CustomApplication.getDb().savedOfferDAO().getSavedOffersForCustomer(customer.getId());
     }
     public void removeShoppingCart(Product product) {
-        shoppingCartProducts.remove(product);
+        SavedOffer savedOffer = new SavedOffer(customer.getId(), product.getId());
+        CustomApplication.getDb().savedOfferDAO().deleteSavedOffer(savedOffer);
     }
 
-
+/*
     private void createDummies() {
+
         // create products
         products = new ArrayList<>();
-        products.add(new Product("Milk", Product.Category.FOOD, "descr", 1.2f));
+        products.add(new Product("Milk", , "descr", 1.2f));
         products.add(new Product("Water", Product.Category.FOOD,"descr", 0.8f));
         products.add(new Product("Cereal", Product.Category.FOOD, "descr", 3.8f));
         products.add(new Product("Sausage", Product.Category.FOOD, "descr", 2.0f));
@@ -120,5 +128,7 @@ public class Database {
 
         favorites = new ArrayList<>();
         shoppingCartProducts = new ArrayList<>();
+
     }
+    */
 }

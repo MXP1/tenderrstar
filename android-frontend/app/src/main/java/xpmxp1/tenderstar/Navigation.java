@@ -68,7 +68,7 @@ public class Navigation {
 
     public void navigateToStoreDetail(Store store) {
         Log.d("Navigation", "navigate to store details");
-        Log.d("Navigation", store.name);
+        Log.d("Navigation", store.getStoreName());
 
         navigation_view.setCheckedItem(R.id.nav_home);
         ft = activity.getSupportFragmentManager().beginTransaction();

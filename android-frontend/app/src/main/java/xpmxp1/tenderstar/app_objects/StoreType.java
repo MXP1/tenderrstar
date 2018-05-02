@@ -6,21 +6,20 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by dominik on 21.03.18.
+ * Created by sebastian on 4/21/18.
  */
 
-
-@Entity(tableName = "Tag")
-public class Tag {
+@Entity(tableName = "StoreType")
+public class StoreType
+{
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "TagID")
+    @ColumnInfo(name = "StoreTypeID")
     private long id;
-    @ColumnInfo(name = "Name")
-    public String name;
+    @ColumnInfo(name = "Type")
+    private String type;
 
-
-    public Tag(String name) {
-        this.name = name;
+    public StoreType(String type) {
+        this.type = type;
     }
 
     public long getId() {
@@ -31,11 +30,11 @@ public class Tag {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 }

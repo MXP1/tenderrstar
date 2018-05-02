@@ -104,8 +104,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(storeList.get(position).name);
-        holder.address.setText(storeList.get(position).address);
+        holder.name.setText(storeList.get(position).getStoreName());
+        holder.address.setText(storeList.get(position).getAddress());
         holder.store = storeList.get(position);
     }
 
