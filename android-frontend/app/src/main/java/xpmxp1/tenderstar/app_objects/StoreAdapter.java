@@ -15,7 +15,7 @@ import xpmxp1.tenderstar.Navigation;
 import xpmxp1.tenderstar.R;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
-    private List<Store> mDataset;
+    private List<Store> storeList;
     private boolean m_Show_Favorites_Button;
 
     // Provide a reference to the views for each data item
@@ -29,10 +29,12 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public TextView address;
         public Store store;
         public Button favoriteBtn;
+        public Button removeFavoriteBtn;
+        private StoreAdapter storeAdapter;
 
-        public ViewHolder(CardView c) {
-
+        public ViewHolder(CardView c, boolean show_favorites, final StoreAdapter storeAdapter) {
             super(c);
+            this.storeAdapter = storeAdapter;
 
             mCardView = c;
             c.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +47,16 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
             favoriteBtn = (Button) c.findViewById(R.id.favoriteBtn);
+            removeFavoriteBtn = (Button) c.findViewById(R.id.removeFavoriteBtn);
 
-            favoriteBtn.setVisibility(View.INVISIBLE);
+            if(show_favorites)
+            {
+                removeFavoriteBtn.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                favoriteBtn.setVisibility(View.INVISIBLE);
+            }
 
             favoriteBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -55,12 +65,22 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                     Database.getInstance().AddFavorite(store);
                 }
             });
+
+            removeFavoriteBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    favoriteBtn.setBackgroundColor(6);
+                    Database.getInstance().RemoveFavorite(store);
+
+                    storeAdapter.setStoreList(Database.getInstance().GetFavorites());
+                }
+            });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public StoreAdapter(List<Store> myDataset, boolean show_favorites_btn) {
-        mDataset = myDataset;
+        storeList = myDataset;
         m_Show_Favorites_Button = show_favorites_btn;
     }
 
@@ -71,9 +91,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         CardView c = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_card, parent, false);
 
-        //TextView v = c.findViewById(R.id.textView_name);
-
-        ViewHolder vh = new ViewHolder(c);
+        ViewHolder vh = new ViewHolder(c, m_Show_Favorites_Button, this);
         return vh;
     }
 
@@ -82,14 +100,19 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(mDataset.get(position).name);
-        holder.address.setText(mDataset.get(position).address);
-        holder.store = mDataset.get(position);
+        holder.name.setText(storeList.get(position).name);
+        holder.address.setText(storeList.get(position).address);
+        holder.store = storeList.get(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return storeList.size();
+    }
+
+    public void setStoreList(List<Store> storeList) {
+        this.storeList = storeList;
+        notifyDataSetChanged();
     }
 }

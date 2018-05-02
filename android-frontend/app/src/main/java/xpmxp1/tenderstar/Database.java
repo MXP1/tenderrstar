@@ -53,6 +53,11 @@ public class Database {
         return favorites;
     }
 
+    public void RemoveFavorite(Store store)
+    {
+        favorites.remove(store);
+    }
+
     private void createDummies() {
         // create products
         products = new ArrayList<>();
