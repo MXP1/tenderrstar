@@ -33,14 +33,14 @@ public class Product {
     private long categoryId;
 
     public Product(String name, String description, double price, double discount, Date fromDate, Date toDate, long storeId, long categoryId) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.discount = discount;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.storeId = storeId;
-        this.categoryId = categoryId;
+        setName(name);
+        setDescription(description);
+        setPrice(price);
+        setDiscount(discount);
+        setFromDate(fromDate);
+        setToDate(toDate);
+        setStoreId(storeId);
+        setCategoryId(categoryId);
     }
 
     public long getId() {

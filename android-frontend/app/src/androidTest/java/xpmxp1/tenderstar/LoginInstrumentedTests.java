@@ -54,6 +54,13 @@ public class LoginInstrumentedTests {
     }
 
     @Test
+    public void click_back_button() {
+        onView(withId(R.id.btnBack)).perform(click());
+        onView(withId(R.id.bSignUp)).check(matches(isDisplayed()));
+        onView(withId(R.id.bLogin)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void missing_email() {
         onView(withId(R.id.btnLogin)).perform(click());
         onView(withId(R.id.viewAttempts)).check(matches(isDisplayed()));

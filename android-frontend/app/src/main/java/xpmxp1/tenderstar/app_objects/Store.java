@@ -35,14 +35,14 @@ public class Store {
     private String postalCode;
 
     public Store(String username, String password, String storeName, String link, long storeTypeID, OpeningHours openingHours, String address, String postalCode) {
-        this.username = username;
-        this.password = password;
-        this.storeName = storeName;
-        this.link = link;
-        this.storeTypeID = storeTypeID;
-        this.openingHours = openingHours;
-        this.address = address;
-        this.postalCode = postalCode;
+        setUsername(username);
+        setPassword(password);
+        setStoreName(storeName);
+        setLink(link);
+        setStoreTypeID(storeTypeID);
+        setOpeningHours(openingHours);
+        setAddress(address);
+        setPostalCode(postalCode);
     }
 
     public long getId() {

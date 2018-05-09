@@ -19,7 +19,8 @@ public class StoreType
     private String type;
 
     public StoreType(String type) {
-        this.type = type;
+
+        setType(type);
     }
 
     public long getId() {
