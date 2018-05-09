@@ -78,7 +78,7 @@ public class ShoppingCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(Uri.parse("Shopping Cardy"));
+            mListener.onFragmentInteraction(Uri.parse("Shopping Card"));
         }
 
         // Create List view
