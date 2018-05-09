@@ -40,46 +40,68 @@ public class Filter {
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
-            boolean matches = true;
+            boolean matchesProduct = true;
+            boolean matchesStore = true;
+            boolean matchesPostal = true;
 
             // Filter category
             if (category != null && product.category != category) {
-                matches = false;
+                matchesProduct = false;
             }
 
             // Filter tags
             if (tags != null && !tags.isEmpty()) {
                 if (product.tags != null && !product.tags.containsAll(tags)) {
-                    matches = false;
+                    matchesProduct = false;
                 }
                 else if (product.tags == null) {
-                    matches = false;
+                    matchesProduct = false;
                 }
             }
 
-            // Filter stores
-            if (stores != null && !stores.isEmpty()) {
-                if (product.stores != null && !product.stores.containsAll(stores)) {
-                    matches = false;
-                }
-                else if (product.stores == null) {
-                    matches = false;
-                }
+            // Filter Store
+            if (matchesStore && searchString != "") {
+                // create regex
+                String searchPattern = createSearchRegex(searchString);
+                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
+                Matcher matcher = pattern.matcher(product.stores.toLowerCase());
+
+                // find matches
+                matchesStore = matcher.matches();
             }
+
+            // Filter Postaö
+            if (matchesPostal && searchString != "") {
+                // create regex
+                String searchPattern = createSearchRegex(searchString);
+                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
+                Matcher matcher = pattern.matcher(product.postal.toLowerCase());
+
+                // find matches
+                matchesPostal = matcher.matches();
+            }
+
 
             // Filter searchString
-            if (matches && searchString != "") {
+            if (matchesProduct && searchString != "") {
                 // create regex
                 String searchPattern = createSearchRegex(searchString);
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
                 Matcher matcher = pattern.matcher(product.name.toLowerCase());
 
                 // find matches
-                matches = matcher.matches();
+                matchesProduct = matcher.matches();
             }
-
-            // add product if filter matches
-            if (matches) {
+            // add product if name filter matches
+            if (matchesProduct) {
+                results.add(product);
+            }
+            // add product if store filter matches
+            if (matchesStore) {
+                results.add(product);
+            }
+            // add product if postal filter matches
+            if (matchesPostal) {
                 results.add(product);
             }
         }

@@ -17,18 +17,20 @@ public class Product {
     public String description;
     public float price;
     public List<Tag> tags;
-    public List<Store> stores;
+    public String stores;
+    public String postal;
 
     public Product() {};
-    public Product(String name, Category category, String description, float price) {
+    public Product(String name, Category category, String description, float price, String store, String postal) {
         this.name = name;
         this.category = category;
         this.description = description;
         this.price = price;
         this.tags = new ArrayList<>();
-        this.stores = new ArrayList<>();
+        this.stores = store;
+        this.postal = postal;
     }
-    public Product(String name, Category category, String description, float price, List<Tag> tags, List<Store> stores) {
+    public Product(String name, Category category, String description, float price, List<Tag> tags, String stores) {
         this.name = name;
         this.category = category;
         this.description = description;
