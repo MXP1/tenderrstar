@@ -18,6 +18,8 @@ public class MainActivity
         ShoppingCartFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
 
+    private Navigation m_Navigation = Navigation.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +34,10 @@ public class MainActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
         getSupportActionBar().setTitle(uri.toString());
+    }
+
+    public Navigation getNavigation()
+    {
+        return m_Navigation;
     }
 }

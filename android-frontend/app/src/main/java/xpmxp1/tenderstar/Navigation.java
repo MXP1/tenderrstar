@@ -43,6 +43,14 @@ public class Navigation {
         showFragment(new HomeFragment());
     }
 
+    public void navigateToHomeWithoutBackStack() {
+        navigation_view.setCheckedItem(R.id.nav_home);
+        ft = activity.getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.mainFrame, new HomeFragment());
+        ft.commit();
+    }
+
     public void navigateToStores() {
         navigation_view.setCheckedItem(R.id.nav_stores);
         showFragment(new StoreFragment());
@@ -59,9 +67,6 @@ public class Navigation {
     }
 
     public void navigateToStoreDetail(Store store) {
-        Log.d("Navigation", "navigate to store details");
-        Log.d("Navigation", store.getStoreName());
-
         navigation_view.setCheckedItem(R.id.nav_home);
 
         StoreDetailsFragment st = new StoreDetailsFragment();

@@ -56,7 +56,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         Navigation.getInstance().setView(navigation_view);
 
         // load the home screen
-        Navigation.getInstance().navigateToHome();
+        Navigation.getInstance().navigateToHomeWithoutBackStack();
     }
 
     @Override
@@ -134,4 +134,5 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         mDrawerLayout.closeDrawers();
         return false;
     }
+
 }
