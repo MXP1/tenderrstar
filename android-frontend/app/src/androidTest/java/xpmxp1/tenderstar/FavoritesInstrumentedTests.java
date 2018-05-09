@@ -36,6 +36,7 @@ public class FavoritesInstrumentedTests {
     @Before
     public void init() {
         TestStore = Database.getInstance().getStores().get(0);
+        Database.getInstance().loginCustomer("Admin", "Admin");
         Database.getInstance().AddFavorite(TestStore);
 
         m_Fragment = new FavoritesFragment();

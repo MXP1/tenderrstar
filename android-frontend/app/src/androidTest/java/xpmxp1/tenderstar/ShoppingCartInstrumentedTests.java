@@ -37,9 +37,8 @@ public class ShoppingCartInstrumentedTests {
 
     @Before
     public void init(){
+        Database.getInstance().loginCustomer("Admin", "Admin");
         TestProduct = Database.getInstance().getProducts().get(0);
-        //TestProduct = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
-        //Database = Database.getDummyInstance();
         Database.getInstance().addShoppingCart(TestProduct);
 
         m_Fragment = new ShoppingCartFragment();
