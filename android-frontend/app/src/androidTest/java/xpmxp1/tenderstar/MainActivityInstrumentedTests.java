@@ -4,6 +4,8 @@ package xpmxp1.tenderstar;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,14 @@ public class MainActivityInstrumentedTests {
     @Rule
     public ActivityTestRule<MainActivity> TestRule =
             new ActivityTestRule<>(MainActivity.class, true, true);
+
+    @BeforeClass
+    public static void init(){
+        CustomApplication.nukeTables();
+        CustomApplication.fillDbWithTestData();
+        Database.getInstance().loginCustomer("Admin", "Admin");
+    }
+
 
     @Test
     public void home_visible() {

@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,12 +36,17 @@ public class ShoppingCartInstrumentedTests {
     public ActivityTestRule<TestActivity> TestRule =
             new ActivityTestRule<>(TestActivity.class, true, true);
 
-    @Before
-    public void init(){
+    @BeforeClass
+    public static void init(){
+        CustomApplication.nukeTables();
+        CustomApplication.fillDbWithTestData();
         Database.getInstance().loginCustomer("Admin", "Admin");
+    }
+
+    @Before
+    public void initTest(){
         TestProduct = Database.getInstance().getProducts().get(0);
         Database.getInstance().addShoppingCart(TestProduct);
-
         m_Fragment = new ShoppingCartFragment();
         TestRule.getActivity().setFragment(m_Fragment);
     }

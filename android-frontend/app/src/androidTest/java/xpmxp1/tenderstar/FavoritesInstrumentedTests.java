@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,10 +34,16 @@ public class FavoritesInstrumentedTests {
     public ActivityTestRule<TestActivity> TestRule =
             new ActivityTestRule<>(TestActivity.class, true, true);
 
-    @Before
-    public void init() {
-        TestStore = Database.getInstance().getStores().get(0);
+    @BeforeClass
+    public static void init(){
+        CustomApplication.nukeTables();
+        CustomApplication.fillDbWithTestData();
         Database.getInstance().loginCustomer("Admin", "Admin");
+    }
+
+    @Before
+    public void initTest() {
+        TestStore = Database.getInstance().getStores().get(0);
         Database.getInstance().AddFavorite(TestStore);
 
         m_Fragment = new FavoritesFragment();
