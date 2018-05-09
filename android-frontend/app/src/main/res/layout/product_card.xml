@@ -52,7 +52,6 @@
                 android:id="@+id/textView_storename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="200dp"
                 android:layout_alignParentRight="@id/textView_name" />

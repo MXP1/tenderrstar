@@ -24,6 +24,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public TextView category;
         public TextView description;
         public TextView price;
+        public TextView storename;
+        public TextView storepostal;
 
         public ViewHolder(CardView c) {
             super(c);
@@ -32,6 +34,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             category = (TextView) c.findViewById(R.id.textView_category);
             description = (TextView) c.findViewById(R.id.textView_description);
             price = (TextView) c.findViewById(R.id.textView_price);
+            storename = (TextView) c.findViewById(R.id.textView_storename);
+            storepostal = (TextView) c.findViewById(R.id.textView_storepostal);
         }
     }
 
@@ -62,6 +66,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.category.setText(mDataset.get(position).category.toString());
         holder.description.setText(mDataset.get(position).description.toString());
         holder.price.setText(mDataset.get(position).getPriceAsString());
+        holder.storename.setText(mDataset.get(position).stores.toString());
+        holder.storepostal.setText(mDataset.get(position).postal);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
