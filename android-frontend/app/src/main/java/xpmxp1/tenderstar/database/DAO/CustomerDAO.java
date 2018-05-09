@@ -31,10 +31,9 @@ public interface CustomerDAO {
     @Query("SELECT * FROM Customer WHERE CustomerID = :customerId")
     public Customer getCustomer(long customerId);
 
-    @Query("SELECT MAX(CustomerID) FROM Customer")
-    public long getLastUsedCustomerId();
+    @Query("SELECT * FROM Customer WHERE Username = :username AND Password = :password")
+    public Customer loginCustomer(String username, String password);
 
     @Query("DELETE FROM Customer")
     public void nukeTable();
-
 }

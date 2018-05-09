@@ -26,8 +26,8 @@ public interface FavoritDAO {
     @Delete
     public void deleteFavorit(Favorit favorit);
 
-    @Query("SELECT Store.* FROM Store INNER JOIN Favorit ON Store.StoreID = Favorit.StoreID")
-    public List<Store> getAllFavoritesStores();
+    @Query("SELECT Store.* FROM Store INNER JOIN Favorit ON Store.StoreID = Favorit.StoreID WHERE Favorit.CustomerID = :customerId ")
+    public List<Store> getAllFavoritesStores(long customerId);
 
     @Query("DELETE FROM Favorit")
     public void nukeTable();

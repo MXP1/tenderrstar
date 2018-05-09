@@ -27,7 +27,7 @@ import xpmxp1.tenderstar.app_objects.Tag;
 @Database(entities = {Customer.class, Store.class, ProductCategory.class,
         Favorit.class, Product.class, StoreType.class, Tag.class,
         SavedOffer.class, ProductRating.class, StoreRating.class},
-        version = 4, exportSchema = false)
+        version = 5, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class TenderstarDB extends RoomDatabase {
     public abstract CustomerDAO customerDAO();

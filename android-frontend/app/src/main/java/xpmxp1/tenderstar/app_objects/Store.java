@@ -26,7 +26,7 @@ public class Store {
     @ColumnInfo(name = "Link")
     private String link;
     @ColumnInfo(name = "StoreTypeID")
-    private int storeTypeID;
+    private long storeTypeID;
     @ColumnInfo(name = "OpeningHours")
     private OpeningHours openingHours;
     @ColumnInfo(name = "Address")
@@ -34,7 +34,7 @@ public class Store {
     @ColumnInfo(name = "PostalCode")
     private String postalCode;
 
-    public Store(String username, String password, String storeName, String link, int storeTypeID, OpeningHours openingHours, String address, String postalCode) {
+    public Store(String username, String password, String storeName, String link, long storeTypeID, OpeningHours openingHours, String address, String postalCode) {
         this.username = username;
         this.password = password;
         this.storeName = storeName;
@@ -69,11 +69,11 @@ public class Store {
         this.password = password;
     }
 
-    public int getStoreTypeID() {
+    public long getStoreTypeID() {
         return storeTypeID;
     }
 
-    public void setStoreTypeID(int storeTypeID) {
+    public void setStoreTypeID(long storeTypeID) {
         this.storeTypeID = storeTypeID;
     }
 

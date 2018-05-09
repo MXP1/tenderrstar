@@ -26,6 +26,7 @@ import xpmxp1.tenderstar.database.TenderstarDB;
 public class CustomApplication extends Application {
 
     private static TenderstarDB db;
+    private static Customer loggedInCustomer;
 
     @Override
     public void onCreate() {
@@ -33,11 +34,18 @@ public class CustomApplication extends Application {
 
         db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
-        nukeTables();
-        fillDbWithTestData();
-
+        //nukeTables();
+        if(db.customerDAO().getAllCustomers().size() == 0)
+            fillDbWithTestData();
     }
 
+    public static void setLoggedInCustomer(Customer customer){
+        loggedInCustomer = customer;
+    }
+
+    public static Customer getLoggedInCustomer() {
+        return loggedInCustomer;
+    }
 
     public static synchronized TenderstarDB getDb() {
         return db;
@@ -59,74 +67,81 @@ public class CustomApplication extends Application {
     public static void fillDbWithTestData(){
 
         Customer c1 = new Customer("Admin", "Admin", "admin@asdf.com");
-        Customer c2 = new Customer("Susi", "Susi", "susi@asdf.com");
+        Customer c2 = new Customer("Max", "Muster", "susi@asdf.com");
 
-        Store s1 = new Store("LoremIpsum", "LoremIpsum", "LoremIpsum-Store", "ex-link", 1,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "1010");
-        Store s2 = new Store("MediaSat", "MediaSat", "MediaSat-Store", "ex-link", 2,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "1010");
-        Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link",3,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "8010");
-
-        Product p1 = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 0);
-        Product p2 = new Product("Egg", "desc",  1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 1, 1);
-        Product p3 = new Product("TV", "desc",699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 2, 2);
-        Product p4 = new Product("Computer", "desc", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), 3, 2);
-
-        Favorit f1 = new Favorit(0,0);
-        Favorit f2 = new Favorit(0,0);
-
-        ProductRating pr1 = new ProductRating(0, 0, 5, "Great!");
-        ProductRating pr2 = new ProductRating(0, 0, 3, "Meeh...");
-        ProductRating pr3 = new ProductRating(0, 0, 4, "Nice.");
-        ProductRating pr4 = new ProductRating(0, 0, 2, "Worst PC EVER!");
-        ProductRating pr5 = new ProductRating(0, 0, 5, "Best PC EVER!!!!");
-
-        SavedOffer so1 = new SavedOffer(0,0);
-        SavedOffer so2 = new SavedOffer(0,0);
-        SavedOffer so3 = new SavedOffer(0,0);
-
-        StoreRating sr1 = new StoreRating(0,0, 5, "");
-        StoreRating sr2 = new StoreRating(0,0, 3, "okay...");
-        StoreRating sr3 = new StoreRating(0,0, 5, "Super helpful staff");
+        long i = db.customerDAO().insertCustomer(c1);
+        c1.setId(i);
+        i = db.customerDAO().insertCustomer(c2);
+        c2.setId(i);
 
         StoreType st1 = new StoreType("Food");
         StoreType st2 = new StoreType("Tech");
 
-        Tag t1 = new Tag("Food");
-        Tag t2 = new Tag("Tech");
+        i = db.storeTypeDAO().insertStoreType(st1);
+        st1.setId(i);
+        i = db.storeTypeDAO().insertStoreType(st2);
+        st2.setId(i);
 
         ProductCategory pc1 = new ProductCategory("Food");
         ProductCategory pc2 = new ProductCategory("Tech");
 
+        i = db.productCategoryDAO().insertCategory(pc1);
+        pc1.setId(i);
+        i = db.productCategoryDAO().insertCategory(pc2);
+        pc2.setId(i);
 
-        db.customerDAO().insertCustomer(c1);
-        db.customerDAO().insertCustomer(c2);
-        db.storeDAO().insertStore(s1);
-        db.storeDAO().insertStore(s2);
-        db.storeDAO().insertStore(s3);
-        db.productDAO().insertProduct(p1);
-        db.productDAO().insertProduct(p2);
-        db.productDAO().insertProduct(p3);
-        db.productDAO().insertProduct(p4);
-//        db.favoritDAO().insertFavorit(f1);
-//        db.favoritDAO().insertFavorit(f2);
-//        db.productRatingDAO().insertProductRating(pr1);
-//        db.productRatingDAO().insertProductRating(pr2);
-//        db.productRatingDAO().insertProductRating(pr3);
-//        db.productRatingDAO().insertProductRating(pr4);
-//        db.productRatingDAO().insertProductRating(pr5);
-//        db.savedOfferDAO().insertSavedOffer(so1);
-//        db.savedOfferDAO().insertSavedOffer(so2);
-//        db.savedOfferDAO().insertSavedOffer(so3);
-//        db.storeRatingDAO().insertStoreRating(sr1);
-//        db.storeRatingDAO().insertStoreRating(sr2);
-//        db.storeRatingDAO().insertStoreRating(sr3);
-//        db.storeTypeDAO().insertStoreType(st1);
-//        db.storeTypeDAO().insertStoreType(st2);
-//        db.tagDAO().insertTag(t1);
-//        db.tagDAO().insertTag(t2);
-        db.productCategoryDAO().insertCategory(pc1);
-        db.productCategoryDAO().insertCategory(pc2);
+        Tag t1 = new Tag("Food");
+        Tag t2 = new Tag("Tech");
+
+        i = db.tagDAO().insertTag(t1);
+        t1.setId(i);
+        i = db.tagDAO().insertTag(t2);
+        t2.setId(i);
+
+        Store s1 = new Store("LoremIpsum", "LoremIpsum", "LoremIpsum-Store", "ex-link", st1.getId(),
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Main Street 7", "1010");
+        Store s2 = new Store("MediaSat", "MediaSat", "MediaSat-Store", "ex-link", st2.getId(),
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Tech Street 1", "1010");
+        Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link", st2.getId(),
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Test Street 192", "8010");
+        i = db.storeDAO().insertStore(s1);
+        s1.setId(i);
+        i = db.storeDAO().insertStore(s2);
+        s2.setId(i);
+        i = db.storeDAO().insertStore(s3);
+        s3.setId(i);
+
+        Product p1 = new Product("Ham", "desc", 2.0, 10.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId());
+        Product p2 = new Product("Egg", "desc",  1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId());
+        Product p3 = new Product("TV", "desc",699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s2.getId(), pc2.getId());
+        Product p4 = new Product("Computer", "desc", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s3.getId(), pc2.getId());
+
+        i = db.productDAO().insertProduct(p1);
+        p1.setId(i);
+        i = db.productDAO().insertProduct(p2);
+        p2.setId(i);
+        i = db.productDAO().insertProduct(p3);
+        p3.setId(i);
+        i = db.productDAO().insertProduct(p4);
+        p4.setId(i);
+
+        ProductRating pr1 = new ProductRating(p1.getId(), c1.getId(), 5, "Great!");
+        ProductRating pr2 = new ProductRating(p2.getId(), c1.getId(), 3, "Meeh...");
+        ProductRating pr3 = new ProductRating(p3.getId(), c2.getId(), 4, "Nice.");
+        ProductRating pr4 = new ProductRating(p4.getId(), c1.getId(), 2, "Worst PC EVER!");
+        ProductRating pr5 = new ProductRating(p4.getId(), c2.getId(), 5, "Best PC EVER!!!!");
+        db.productRatingDAO().insertProductRating(pr1);
+        db.productRatingDAO().insertProductRating(pr2);
+        db.productRatingDAO().insertProductRating(pr3);
+        db.productRatingDAO().insertProductRating(pr4);
+        db.productRatingDAO().insertProductRating(pr5);
+
+        StoreRating sr1 = new StoreRating(s1.getId(),c1.getId(), 5, "");
+        StoreRating sr2 = new StoreRating(s2.getId(),c1.getId(), 3, "okay...");
+        StoreRating sr3 = new StoreRating(s2.getId(),c2.getId(), 5, "Super helpful staff");
+
+        db.storeRatingDAO().insertStoreRating(sr1);
+        db.storeRatingDAO().insertStoreRating(sr2);
+        db.storeRatingDAO().insertStoreRating(sr3);
     }
 }
