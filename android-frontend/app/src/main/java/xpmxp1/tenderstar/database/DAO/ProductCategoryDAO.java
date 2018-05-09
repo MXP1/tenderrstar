@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 import xpmxp1.tenderstar.app_objects.ProductCategory;
 
 /**
@@ -28,4 +30,7 @@ public interface ProductCategoryDAO {
 
     @Query("SELECT Name FROM Category WHERE ID = :categoryId")
     public String getCategoryForProduct(long categoryId);
+
+    @Query("SELECT * FROM Category")
+    public List<ProductCategory> getAllProductCategories();
 }

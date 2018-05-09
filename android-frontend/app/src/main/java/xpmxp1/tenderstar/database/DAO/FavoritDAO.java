@@ -20,8 +20,8 @@ public interface FavoritDAO {
     @Insert
     public long insertFavorit(Favorit favorit);
 
-    @Update
-    public void updateFavorit(Favorit favorit);
+    //@Update
+    //public void updateFavorit(Favorit favorit);
 
     @Delete
     public void deleteFavorit(Favorit favorit);
