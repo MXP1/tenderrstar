@@ -20,9 +20,6 @@ public interface SavedOfferDAO {
     @Insert
     public long insertSavedOffer(SavedOffer savedOffer);
 
-    @Update
-    public void updateSavedOffer(SavedOffer savedOffer);
-
     @Delete
     public void deleteSavedOffer(SavedOffer savedOffer);
 

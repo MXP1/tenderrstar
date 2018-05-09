@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 import xpmxp1.tenderstar.app_objects.ProductRating;
 
 /**
@@ -25,4 +27,7 @@ public interface ProductRatingDAO {
 
     @Query("DELETE FROM ProductRating")
     public void nukeTable();
+
+    @Query("SELECT * FROM ProductRating WHERE ProductID = :productId")
+    public List<ProductRating> getRatingsForProduct(long productId);
 }

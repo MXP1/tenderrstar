@@ -6,6 +6,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 import xpmxp1.tenderstar.app_objects.StoreType;
 
 /**
@@ -25,4 +27,7 @@ public interface StoreTypeDAO {
 
     @Query("DELETE FROM StoreType")
     public void nukeTable();
+
+    @Query("SELECT * FROM StoreType")
+    public List<StoreType> getAllStoreTypes();
 }
