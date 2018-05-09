@@ -112,9 +112,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        String category = CustomApplication.getDb().productCategoryDAO().getCategoryForProduct(productList.get(position).getCategoryId());
         holder.name.setText(productList.get(position).getName());
-        holder.category.setText(category);
+        holder.category.setText(Database.getInstance().getCategoryForProduct(productList.get(position).getCategoryId()));
         holder.description.setText(productList.get(position).getDescription().toString());
         holder.price.setText(productList.get(position).getPriceAsString());
         holder.product = productList.get(position);
