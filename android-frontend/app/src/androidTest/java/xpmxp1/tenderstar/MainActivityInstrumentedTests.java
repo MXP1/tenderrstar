@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -37,100 +38,53 @@ public class MainActivityInstrumentedTests {
 
     @Test
     public void navigate_home() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToHome();
-            }
-        });
-
+        onView(withId(R.id.nav_home)).perform(click());
         checkHomeVisible();
     }
 
     @Test
     public void navigate_home_back() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToHome();
-                TestRule.getActivity().onBackPressed();
-            }
-        });
-
+        onView(withId(R.id.nav_home)).perform(click());
         checkHomeVisible();
     }
 
     @Test
     public void navigate_favorites() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToFavorites();
-            }
-        });
-
+        onView(withId(R.id.nav_favorites)).perform(click());
         checkFavoritesVisible();
     }
 
     @Test
     public void navigate_favorites_back() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToFavorites();
-                TestRule.getActivity().onBackPressed();
-            }
-        });
-
+        onView(withId(R.id.nav_favorites)).perform(click());
+        TestRule.getActivity().onBackPressed();
         checkHomeVisible();
     }
 
     @Test
     public void navigate_shopping_cart() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToShoppingCart();
-            }
-        });
+        onView(withId(R.id.nav_shopping_cart)).perform(click());
         checkShoppingCartVisible();
     }
 
     @Test
     public void navigate_shopping_cart_back() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToShoppingCart();
-                TestRule.getActivity().onBackPressed();
-            }
-        });
-
+        onView(withId(R.id.nav_shopping_cart)).perform(click());
+        TestRule.getActivity().onBackPressed();
         checkHomeVisible();
     }
 
 
     @Test
     public void navigate_stores() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToStores();
-            }
-        });
+        onView(withId(R.id.nav_stores)).perform(click());
         checkStoresVisible();
     }
 
     @Test
     public void navigate_stores_back() {
-        TestRule.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TestRule.getActivity().getNavigation().navigateToStores();
-                TestRule.getActivity().onBackPressed();
-            }
-        });
-
+        onView(withId(R.id.nav_stores)).perform(click());
+        TestRule.getActivity().onBackPressed();
         checkHomeVisible();
     }
 
