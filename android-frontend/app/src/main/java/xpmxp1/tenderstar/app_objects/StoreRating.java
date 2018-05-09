@@ -35,8 +35,9 @@ public class StoreRating {
     public StoreRating(long storeId, long customerId, int rating, String comment) {
         this.storeId = storeId;
         this.customerId = customerId;
-        this.rating = rating;
-        this.comment = comment;
+
+        setRating(rating);
+        setComment(comment);
     }
 
     public long getStoreId() {

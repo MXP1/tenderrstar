@@ -36,8 +36,9 @@ public class ProductRating {
     public ProductRating(long productId, long customerId, int rating, String comment) {
         this.productId = productId;
         this.customerId = customerId;
-        this.rating = rating;
-        this.comment = comment;
+
+        setRating(rating);
+        setComment(comment);
     }
 
     public long getProductId() {

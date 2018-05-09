@@ -20,7 +20,8 @@ public class Tag {
 
 
     public Tag(String name) {
-        this.name = name;
+
+        setName(name);
     }
 
     public long getId() {

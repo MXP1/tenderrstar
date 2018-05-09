@@ -19,9 +19,9 @@ public class Customer {
     private String email;
 
     public Customer(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
     }
 
     public String getEmail() {
