@@ -27,6 +27,9 @@ public interface ProductDAO {
     @Query("SELECT * FROM Product WHERE StoreID = :storeId")
     public List<Product> getAllProductsForStore(long storeId);
 
+    @Query("SELECT Product.* FROM PRODUCT INNER JOIN Store ON Product.StoreID = Store.StoreID WHERE Store.StoreName = :storeName")
+    public List<Product> getAllProductsForStoreName(String storeName);
+
     @Query("DELETE FROM Product")
     public void nukeTable();
 }
