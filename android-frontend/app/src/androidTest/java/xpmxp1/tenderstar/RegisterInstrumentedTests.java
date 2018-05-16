@@ -119,4 +119,24 @@ public class RegisterInstrumentedTests {
         onView(withId((R.id.viewPasswordError))).check(matches(isDisplayed()));
         onView(withId((R.id.viewPasswordError))).check(matches(withText("Username already exists")));
     }
+
+    @Test
+    public void register_passwords_do_not_match() {
+        onView(withId(R.id.txtEmail)).perform(typeText("user"));
+        onView(withId(R.id.txtPassword)).perform(typeText("password1"));
+        onView(withId(R.id.txtPasswordRepeat)).perform(typeText("password2"), ViewActions.closeSoftKeyboard());
+
+        onView(withId(R.id.btnRegister)).perform(click());
+
+        onView(withId((R.id.viewPasswordError))).check(matches(isDisplayed()));
+        onView(withId((R.id.viewPasswordError))).check(matches(withText("Passwords do not match")));
+    }
+
+    @Test
+    public void register_back_button() {
+        onView(withId(R.id.btnBack)).perform(click());
+
+        onView(withId(R.id.bSignUp)).check(matches(isDisplayed()));
+        onView(withId(R.id.bLogin)).check(matches(isDisplayed()));
+    }
 }
