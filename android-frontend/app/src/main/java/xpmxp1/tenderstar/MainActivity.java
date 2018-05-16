@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity

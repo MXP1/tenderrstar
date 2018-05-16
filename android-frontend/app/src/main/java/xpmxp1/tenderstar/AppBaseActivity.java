@@ -12,16 +12,12 @@
 
 package xpmxp1.tenderstar;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -103,6 +99,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         }
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
@@ -110,8 +107,8 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle your other action bar items...
 
+        // Handle your other action bar items...
         return super.onOptionsItemSelected(item);
     }
 

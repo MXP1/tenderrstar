@@ -18,12 +18,4 @@
             android:title="Shopping Cart" />
     </group>
 
-    <item android:title="Placeholder">
-        <menu>
-            <item
-                android:id="@+id/nav_placeholder"
-                android:title="Placeholder" />
-        </menu>
-    </item>
-
 </menu>
