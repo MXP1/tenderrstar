@@ -1,53 +1,129 @@
 package xpmxp1.tenderstar.app_objects;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by dominik on 21.03.18.
- */
+import java.util.*;
+import java.util.Date;
 
+
+@Entity(tableName = "Product")
 public class Product {
-    public enum Category {
-        FOOD, ALCOHOL, CATFOOD
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ProductID")
+    private long id;
+    @ColumnInfo(name = "Name")
+    private String name;
+    @ColumnInfo(name = "Description")
+    private String description;
+    @ColumnInfo(name = "Price")
+    private double price;
+    @ColumnInfo(name = "Discount")
+    private double discount;
+    @ColumnInfo(name = "FromDate")
+    private Date fromDate;
+    @ColumnInfo(name = "ToDate")
+    private Date toDate;
+    @ColumnInfo(name = "StoreID")
+    private long storeId;
+    @ColumnInfo(name = "CategoryID")
+    private long categoryId;
+
+    public Product(String name, String description, double price, double discount, Date fromDate, Date toDate, long storeId, long categoryId) {
+        setName(name);
+        setDescription(description);
+        setPrice(price);
+        setDiscount(discount);
+        setFromDate(fromDate);
+        setToDate(toDate);
+        setStoreId(storeId);
+        setCategoryId(categoryId);
     }
 
-    public String name;
-    public Category category;
-    public String description;
-    public float price;
-    public List<Tag> tags;
-    public String stores;
-    public String postal;
+    public long getId() {
+        return id;
+    }
 
-    public Product() {};
-    public Product(String name, Category category, String description, float price, String store, String postal) {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.category = category;
-        this.description = description;
-        this.price = price;
-        this.tags = new ArrayList<>();
-        this.stores = store;
-        this.postal = postal;
-    }
-    public Product(String name, Category category, String description, float price, List<Tag> tags, String stores) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.price = price;
-        this.tags = tags;
-        this.stores = stores;
     }
 
-    public Product(String name, Category category, String description, float price) {
-        this.name = name;
-        this.category = category;
-        this.description = description;
-        this.price = price;
-        this.tags = new ArrayList<>();
+    public double getPrice() {
+        return price;
     }
 
+    public void setPrice(double standardPrice) {
+        this.price = standardPrice;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(long storeId) {
+        this.storeId = storeId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Ignore
     public String getPriceAsString() {
         return String.format("%.2f", price) + "€";
     }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    //TODO:
+    @Ignore
+    public List<Tag> tags;
+    @Ignore
+    public List<Store> stores;
 }
+

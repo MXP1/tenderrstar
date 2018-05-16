@@ -1,6 +1,9 @@
 package xpmxp1.tenderstar.app_objects;
 
-import android.util.Log;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
 import java.util.List;
 
@@ -8,93 +11,113 @@ import java.util.List;
  * Created by dominik on 21.03.18.
  */
 
+@Entity(tableName = "Store")
 public class Store {
-    static public class Time {
-        private Integer hour;
-        private Integer minute;
 
-        public Time() {
-            this.hour = 0;
-            this.minute = 0;
-        }
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "StoreID")
+    private long id;
+    @ColumnInfo(name = "Username")
+    private String username;
+    @ColumnInfo(name = "Password")
+    private String password;
+    @ColumnInfo(name = "StoreName")
+    private String storeName;
+    @ColumnInfo(name = "Link")
+    private String link;
+    @ColumnInfo(name = "StoreTypeID")
+    private long storeTypeID;
+    @ColumnInfo(name = "OpeningHours")
+    private OpeningHours openingHours;
+    @ColumnInfo(name = "Address")
+    private String address;
+    @ColumnInfo(name = "PostalCode")
+    private String postalCode;
 
-        public Time(int hour, int minute) {
-            if (hour < 0 || hour >= 24 || minute < 0 || minute >= 60) {
-                Log.e("Store.OpeningHours.Time","invalid time " + hour + ":" + minute);
-            }
-
-            this.hour = hour;
-            this.minute = minute;
-        }
-
-        public String toString() {
-            String h = "", m = "";
-            if (hour < 10)
-                h += "0";
-            if (minute < 10)
-                m += "0";
-            h += hour.toString();
-            m += minute.toString();
-            return h + ":" + m;
-        }
+    public Store(String username, String password, String storeName, String link, long storeTypeID, OpeningHours openingHours, String address, String postalCode) {
+        setUsername(username);
+        setPassword(password);
+        setStoreName(storeName);
+        setLink(link);
+        setStoreTypeID(storeTypeID);
+        setOpeningHours(openingHours);
+        setAddress(address);
+        setPostalCode(postalCode);
     }
 
-    static public class TimeSlot {
-        public Time begin;
-        public Time end;
-
-        public TimeSlot() {
-            this.begin = new Time(8, 0);
-            this.end = new Time(16,0);
-        }
-
-        public TimeSlot(Time begin, Time end) {
-            this.begin = begin;
-            this.end = end;
-        }
+    public long getId() {
+        return id;
     }
 
-    static public class OpeningHours {
-        // Members
-        private TimeSlot[] timeSlots = new TimeSlot[7];
-
-        private String[] daysWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-
-        // Constructor
-        OpeningHours() { }
-
-        public OpeningHours(Time open, Time close, boolean weekend) {
-            for (int i = 0; i < (weekend ? 7 : 5); i++) {
-                timeSlots[i] = new TimeSlot(open, close);
-            }
-        }
-
-        public String toString() {
-            String out = "";
-            for (TimeSlot ts: timeSlots ) {
-                if (ts != null)
-                    out += ts.begin.toString() + " - " + ts.end.toString() + "\n";
-            }
-            return out;
-        }
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String name;
-    public List<Product> products;
-    public OpeningHours openingHours;
-    public String link;
-
-    public String address;
-    public String postalCode;
-
-    public Store(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
     }
 
-    public Store(String name, OpeningHours openingHours, String address, String postalCode) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getStoreTypeID() {
+        return storeTypeID;
+    }
+
+    public void setStoreTypeID(long storeTypeID) {
+        this.storeTypeID = storeTypeID;
+    }
+
+
+    public OpeningHours getOpeningHours() {
+        return openingHours;
+    }
+
+    public void setOpeningHours(OpeningHours openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
+
+    @Ignore
+    public List<Product> products;
 }

@@ -13,8 +13,12 @@ public class MainActivity
     implements
         HomeFragment.OnFragmentInteractionListener,
         StoreFragment.OnFragmentInteractionListener,
+        FavoritesFragment.OnFragmentInteractionListener,
         StoreDetailsFragment.OnFragmentInteractionListener,
+        ShoppingCartFragment.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener {
+
+    private Navigation m_Navigation = Navigation.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +34,10 @@ public class MainActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
         getSupportActionBar().setTitle(uri.toString());
+    }
+
+    public Navigation getNavigation()
+    {
+        return m_Navigation;
     }
 }

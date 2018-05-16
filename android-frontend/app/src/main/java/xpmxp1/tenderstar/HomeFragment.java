@@ -4,11 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,14 +102,14 @@ public class HomeFragment extends Fragment {
                 filter.setSearchString(search_string);
                 List<Product> productList = filter.results();
 
-                ((ProductAdapter)mRecyclerView.getAdapter()).setmDataset(productList);
+                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(productList);
             }
         });
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 search.getText().clear();
-                ((ProductAdapter)mRecyclerView.getAdapter()).setmDataset(Database.getInstance().getProducts());
+                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(Database.getInstance().getProducts());
             }
         });
 
@@ -127,7 +125,7 @@ public class HomeFragment extends Fragment {
 
         // specify an adapter (see also next example)
 
-        mAdapter = new ProductAdapter(Database.getInstance().getProducts());
+        mAdapter = new ProductAdapter(Database.getInstance().getProducts(), false);
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View
