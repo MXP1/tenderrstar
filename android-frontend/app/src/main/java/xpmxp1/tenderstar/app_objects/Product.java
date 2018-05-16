@@ -46,13 +46,6 @@ public class Product {
     public long getId() {
         return id;
     }
-    public String name;
-    public Category category;
-    public String description;
-    public float price;
-    public List<Tag> tags;
-    public String stores;
-    public String postal;
 
     public void setId(long id) {
         this.id = id;
@@ -111,9 +104,6 @@ public class Product {
     }
 
     public void setDescription(String description) {
-    public Product(String name, Category category, String description, float price, List<Tag> tags, String stores) {
-        this.name = name;
-        this.category = category;
         this.description = description;
     }
 
@@ -136,4 +126,3 @@ public class Product {
     @Ignore
     public List<Store> stores;
 }
-

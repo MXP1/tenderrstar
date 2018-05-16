@@ -42,9 +42,7 @@ public class Filter {
 
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
-            boolean matchesProduct = true;
-            boolean matchesStore = true;
-            boolean matchesPostal = true;
+            boolean matches = true;
 
             //TODO:
             // Filter category
@@ -55,56 +53,36 @@ public class Filter {
             // Filter tags
             if (tags != null && !tags.isEmpty()) {
                 if (product.tags != null && !product.tags.containsAll(tags)) {
-                    matchesProduct = false;
+                    matches = false;
                 }
                 else if (product.tags == null) {
-                    matchesProduct = false;
+                    matches = false;
                 }
             }
 
-            // Filter Store
-            if (matchesStore && searchString != "") {
-                // create regex
-                String searchPattern = createSearchRegex(searchString);
-                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
-                Matcher matcher = pattern.matcher(product.stores.toLowerCase());
-
-                // find matches
-                matchesStore = matcher.matches();
+            // Filter stores
+            if (stores != null && !stores.isEmpty()) {
+                if (product.stores != null && !product.stores.containsAll(stores)) {
+                    matches = false;
+                }
+                else if (product.stores == null) {
+                    matches = false;
+                }
             }
-
-            // Filter Postaö
-            if (matchesPostal && searchString != "") {
-                // create regex
-                String searchPattern = createSearchRegex(searchString);
-                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
-                Matcher matcher = pattern.matcher(product.postal.toLowerCase());
-
-                // find matches
-                matchesPostal = matcher.matches();
-            }
-
 
             // Filter searchString
-            if (matchesProduct && searchString != "") {
+            if (matches && searchString != "") {
                 // create regex
                 String searchPattern = createSearchRegex(searchString);
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
                 Matcher matcher = pattern.matcher(product.getName().toLowerCase());
 
                 // find matches
-                matchesProduct = matcher.matches();
+                matches = matcher.matches();
             }
-            // add product if name filter matches
-            if (matchesProduct) {
-                results.add(product);
-            }
-            // add product if store filter matches
-            if (matchesStore) {
-                results.add(product);
-            }
-            // add product if postal filter matches
-            if (matchesPostal) {
+
+            // add product if filter matches
+            if (matches) {
                 results.add(product);
             }
         }
