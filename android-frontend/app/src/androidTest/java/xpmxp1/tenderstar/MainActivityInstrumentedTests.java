@@ -199,6 +199,17 @@ public class MainActivityInstrumentedTests {
     }
     */
 
+    @Test
+    public void navigationHeader_Username() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.nav_head_username)).check(matches(isDisplayed()));
+    }
+
     private void checkHomeVisible()
     {
         onView(withId(R.id.filter_view)).check(matches(isDisplayed()));
