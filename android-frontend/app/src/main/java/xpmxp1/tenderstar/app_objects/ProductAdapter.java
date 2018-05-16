@@ -50,6 +50,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             category = (TextView) c.findViewById(R.id.textView_category);
             description = (TextView) c.findViewById(R.id.textView_description);
             price = (TextView) c.findViewById(R.id.textView_price);
+            storename = (TextView) c.findViewById(R.id.textView_storename);
+            storepostal = (TextView) c.findViewById(R.id.textView_storepostal);
 
             addShoppingCartButton = (FloatingActionButton) c.findViewById(R.id.button_add_shopping_cart);
             removeShoppingCartButton = (FloatingActionButton) c.findViewById(R.id.button_remove_shopping_cart);
@@ -114,12 +116,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.storename.setText(mDataset.get(position).stores.toString());
         holder.name.setText(productList.get(position).getName());
         holder.category.setText(Database.getInstance().getCategoryForProduct(productList.get(position).getCategoryId()));
         holder.description.setText(productList.get(position).getDescription().toString());
         holder.price.setText(productList.get(position).getPriceAsString());
         holder.product = productList.get(position);
         holder.setAddButtonInvisible();
+        holder.storepostal.setText(mDataset.get(position).postal);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
