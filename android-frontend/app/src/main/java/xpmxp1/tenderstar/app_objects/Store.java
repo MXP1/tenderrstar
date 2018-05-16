@@ -33,8 +33,12 @@ public class Store {
     private String address;
     @ColumnInfo(name = "PostalCode")
     private String postalCode;
+    @ColumnInfo(name = "longitude")
+    private double longitude;
+    @ColumnInfo(name = "latitude")
+    private double latitude;
 
-    public Store(String username, String password, String storeName, String link, long storeTypeID, OpeningHours openingHours, String address, String postalCode) {
+    public Store(String username, String password, String storeName, String link, long storeTypeID, OpeningHours openingHours, String address, String postalCode, double longitude, double latitude) {
         setUsername(username);
         setPassword(password);
         setStoreName(storeName);
@@ -43,6 +47,8 @@ public class Store {
         setOpeningHours(openingHours);
         setAddress(address);
         setPostalCode(postalCode);
+        setLongitude(longitude);
+        setLatitude(latitude);
     }
 
     public long getId() {
@@ -116,6 +122,22 @@ public class Store {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     @Ignore
