@@ -126,4 +126,3 @@ public class Product {
     @Ignore
     public List<Store> stores;
 }
-

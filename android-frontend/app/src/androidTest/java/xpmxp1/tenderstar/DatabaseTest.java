@@ -209,7 +209,7 @@ public class DatabaseTest {
     @Test
     public void ProductCategoryDAOTest() throws Exception {
         List<ProductCategory> categories = db.productCategoryDAO().getAllProductCategories();
-        if(categories.size() == 0){
+        if (categories.size() == 0) {
             throw new Exception("Query: No ProductCategory found in DB!");
         }
         ProductCategory category = categories.get(0);
@@ -226,6 +226,28 @@ public class DatabaseTest {
         db.productCategoryDAO().insertCategory(productCategory);
         categories = db.productCategoryDAO().getAllProductCategories();
         assertEquals(2, categories.size());
+    }
+
+    @Test
+    public void ProductStoreDAOTest() throws Exception {
+        List<Product> products = db.productDAO().getAllProductsForStoreName("LoremIpsum-Store");
+        if(products.size() == 0) {
+            throw new Exception("Query: No Products found in DB!");
+        }
+        Product product = products.get(0);
+        product.setDescription("UpdatedDescription");
+        db.productDAO().updateProduct(product);
+        products = db.productDAO().getAllProducts();
+        assertEquals("UpdatedDescription", products.get(0).getDescription());
+        Store store = db.storeDAO().getAllStores().get(0);
+        if(store == null) {
+            throw new Exception("Query: No Store found in DB!");
+        }
+        products = db.productDAO().getAllProductsForStore(store.getId());
+        assertEquals(2, products.size());
+        db.productDAO().deleteProduct(products.get(0));
+        products = db.productDAO().getAllProductsForStore(store.getId());
+        assertEquals(1, products.size());
     }
 
     @Test
