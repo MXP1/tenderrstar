@@ -39,6 +39,14 @@ public class Product {
         this.stores = stores;
     }
 
+    public Product(String name, Category category, String description, float price) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+        this.tags = new ArrayList<>();
+    }
+
     public String getPriceAsString() {
         return String.format("%.2f", price) + "€";
     }
