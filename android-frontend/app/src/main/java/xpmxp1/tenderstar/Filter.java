@@ -13,10 +13,12 @@ import xpmxp1.tenderstar.app_objects.Tag;
  * Created by dominik on 21.03.18.
  */
 
+//TODO: FILTER nach Category mit DB Entity
+
 public class Filter {
     private List<Product> products;
     private String searchString = "";
-    private Product.Category category = null;
+    //private Product.Category category = null;
     private List<Tag> tags = new ArrayList<>();
     private List<Store> stores = new ArrayList<>();
 
@@ -26,14 +28,14 @@ public class Filter {
 
     public void reset() {
         searchString = "";
-        category = null;
+        //category = null;
         tags = new ArrayList<>();
         stores = new ArrayList<>();
     }
 
-    public void setCategory(Product.Category category) {
+    /*public void setCategory(Product.Category category) {
         this.category = category;
-    }
+    }*/
 
     public List<Product> results() {
         List<Product> results = new ArrayList<>();
@@ -44,6 +46,7 @@ public class Filter {
             boolean matchesStore = true;
             boolean matchesPostal = true;
 
+            //TODO:
             // Filter category
             if (category != null && product.category != category) {
                 matchesProduct = false;
@@ -87,7 +90,7 @@ public class Filter {
                 // create regex
                 String searchPattern = createSearchRegex(searchString);
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
-                Matcher matcher = pattern.matcher(product.name.toLowerCase());
+                Matcher matcher = pattern.matcher(product.getName().toLowerCase());
 
                 // find matches
                 matchesProduct = matcher.matches();

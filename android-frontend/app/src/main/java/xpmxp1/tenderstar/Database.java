@@ -1,9 +1,14 @@
 package xpmxp1.tenderstar;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import xpmxp1.tenderstar.app_objects.Customer;
+import xpmxp1.tenderstar.app_objects.Favorit;
 import xpmxp1.tenderstar.app_objects.Product;
+import xpmxp1.tenderstar.app_objects.ProductCategory;
+import xpmxp1.tenderstar.app_objects.SavedOffer;
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.Tag;
 
@@ -14,31 +19,31 @@ import xpmxp1.tenderstar.app_objects.Tag;
 public class Database {
     // Singleton
     static private Database instance = null;
+
     static public Database getInstance() {
         if (instance == null)
+        {
             instance = new Database();
+        }
         return instance;
     }
 
-    private List<Product> products;
-    private List<Store> stores;
-    private List<Tag> tags;
-
     // Constructor
     private Database() {
-        createDummies();
+
     }
 
     public List<Product> getProducts() {
-        return new ArrayList<Product>(products);
+        return CustomApplication.getDb().productDAO().getAllProducts();
     }
 
     public List<Store> getStores() {
-        return new ArrayList<>(stores);
+        return CustomApplication.getDb().storeDAO().getAllStores();
     }
 
     public List<Tag> getTags() {
-        return new ArrayList<>(tags);
+        //TODO: Query
+        return null;
     }
 
     private void createDummies() {
@@ -65,13 +70,44 @@ public class Database {
         products.add(new Product("Rum", Product.Category.ALCOHOL, "descr", 4.7f, "Lidl", "8060"));
         products.add(new Product("Alami", Product.Category.CATFOOD, "descr", 11.6f, "Spar", "8010"));
         products.add(new Product("Gourmet", Product.Category.CATFOOD, "descr", 16.9f, "Spar", "8020"));
+    // Favorites
+    public void AddFavorite(Store store) {
+        Favorit f = new Favorit(CustomApplication.getLoggedInCustomer().getId(), store.getId());
+        CustomApplication.getDb().favoritDAO().insertFavorit(f);
+    }
 
-        // create stores
-        stores = new ArrayList<>();
-        stores.add(new Store("Billa", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 1", "8010"));
-        stores.add(new Store("Spar", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 2", "8010"));
-        stores.add(new Store("Penny", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 3", "8010"));
-        stores.add(new Store("Lidl", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
-        stores.add(new Store("Zoo4You", new Store.OpeningHours(new Store.Time(), new Store.Time(), false), "Straße 4", "8010"));
+    public List<Store> GetFavorites() {
+        return CustomApplication.getDb().favoritDAO().getAllFavoritesStores(CustomApplication.getLoggedInCustomer().getId());
+    }
+
+    public void RemoveFavorite(Store store) {
+        Favorit f = new Favorit(CustomApplication.getLoggedInCustomer().getId(), store.getId());
+        CustomApplication.getDb().favoritDAO().deleteFavorit(f);
+    }
+
+    // Shopping Cart
+    public void addShoppingCart(Product product) {
+        SavedOffer savedOffer = new SavedOffer(CustomApplication.getLoggedInCustomer().getId(), product.getId());
+        CustomApplication.getDb().savedOfferDAO().insertSavedOffer(savedOffer);
+    }
+
+    public List<Product> getShoppingCartProducts() {
+        return CustomApplication.getDb().savedOfferDAO().getSavedOffersForCustomer(CustomApplication.getLoggedInCustomer().getId());
+    }
+
+    public void removeShoppingCart(Product product) {
+        SavedOffer savedOffer = new SavedOffer(CustomApplication.getLoggedInCustomer().getId(), product.getId());
+        CustomApplication.getDb().savedOfferDAO().deleteSavedOffer(savedOffer);
+    }
+
+    public String getCategoryForProduct(long categoryId) {
+        return CustomApplication.getDb().productCategoryDAO().getCategoryForProduct(categoryId);
+    }
+
+    public Customer loginCustomer(String username, String password) {
+        Customer c = CustomApplication.getDb().customerDAO().loginCustomer(username, password);
+        if(c != null)
+            CustomApplication.setLoggedInCustomer(c);
+        return c;
     }
 }

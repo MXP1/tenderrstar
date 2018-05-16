@@ -56,7 +56,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
         Navigation.getInstance().setView(navigation_view);
 
         // load the home screen
-        Navigation.getInstance().navigateToHome();
+        Navigation.getInstance().navigateToHomeWithoutBackStack();
     }
 
     @Override
@@ -125,12 +125,14 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
                 Navigation.getInstance().navigateToStores();
                 break;
             case R.id.nav_favorites:
-                Navigation.getInstance().PrintTestMessage();
+                Navigation.getInstance().navigateToFavorites();
                 break;
             case R.id.nav_shopping_cart:
+                Navigation.getInstance().navigateToShoppingCart();
                 break;
         }
         mDrawerLayout.closeDrawers();
         return false;
     }
+
 }

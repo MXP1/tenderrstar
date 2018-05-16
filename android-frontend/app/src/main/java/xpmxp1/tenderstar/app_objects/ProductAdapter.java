@@ -1,17 +1,25 @@
 package xpmxp1.tenderstar.app_objects;
 
+import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
 
+import xpmxp1.tenderstar.Database;
+import xpmxp1.tenderstar.CustomApplication;
 import xpmxp1.tenderstar.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private List<Product> mDataset;
+    private List<Product> productList;
+    private boolean isShoppingCart;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -19,6 +27,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         // each data item is just a string in this case
+        private Product product;
+        private ProductAdapter productAdapter;
+
         public CardView mCardView;
         public TextView name;
         public TextView category;
@@ -27,8 +38,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public TextView storename;
         public TextView storepostal;
 
-        public ViewHolder(CardView c) {
+        public FloatingActionButton addShoppingCartButton;
+        public FloatingActionButton removeShoppingCartButton;
+
+        public ViewHolder(CardView c, boolean isShoppingCart, final ProductAdapter productAdapter) {
             super(c);
+
+            this.productAdapter = productAdapter;
             mCardView = c;
             name = (TextView) c.findViewById(R.id.textView_name);
             category = (TextView) c.findViewById(R.id.textView_category);
@@ -36,12 +52,50 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             price = (TextView) c.findViewById(R.id.textView_price);
             storename = (TextView) c.findViewById(R.id.textView_storename);
             storepostal = (TextView) c.findViewById(R.id.textView_storepostal);
+
+            addShoppingCartButton = (FloatingActionButton) c.findViewById(R.id.button_add_shopping_cart);
+            removeShoppingCartButton = (FloatingActionButton) c.findViewById(R.id.button_remove_shopping_cart);
+
+            if (isShoppingCart) {
+                addShoppingCartButton.setVisibility(View.INVISIBLE);
+            }
+            else {
+                removeShoppingCartButton.setVisibility(View.INVISIBLE);
+            }
+
+            addShoppingCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Database.getInstance().addShoppingCart(product);
+                    addShoppingCartButton.setVisibility(View.INVISIBLE);
+                }
+            });
+
+            removeShoppingCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Database.getInstance().removeShoppingCart(product);
+                    productAdapter.setProductList(Database.getInstance().getShoppingCartProducts());
+                }
+            });
+        }
+
+        public void setAddButtonInvisible() {
+            // make add button invisible if they are in the favorites list
+            List<Product> productList = Database.getInstance().getShoppingCartProducts();
+            for (Product p : productList) {
+                if (p.getId() == product.getId()) {
+                    addShoppingCartButton.setVisibility(View.INVISIBLE);
+                    break;
+                }
+            }
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ProductAdapter(List<Product> myDataset) {
-        mDataset = myDataset;
+    public ProductAdapter(List<Product> myDataset, boolean isShoppingCart) {
+        this.isShoppingCart = isShoppingCart;
+        productList = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
@@ -53,7 +107,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         //TextView v = c.findViewById(R.id.textView_name);
 
-        ViewHolder vh = new ViewHolder(c);
+        ViewHolder vh = new ViewHolder(c, isShoppingCart, this);
         return vh;
     }
 
@@ -62,27 +116,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(mDataset.get(position).name);
-        holder.category.setText(mDataset.get(position).category.toString());
-        holder.description.setText(mDataset.get(position).description.toString());
-        holder.price.setText(mDataset.get(position).getPriceAsString());
         holder.storename.setText(mDataset.get(position).stores.toString());
+        holder.name.setText(productList.get(position).getName());
+        holder.category.setText(Database.getInstance().getCategoryForProduct(productList.get(position).getCategoryId()));
+        holder.description.setText(productList.get(position).getDescription().toString());
+        holder.price.setText(productList.get(position).getPriceAsString());
+        holder.product = productList.get(position);
+        holder.setAddButtonInvisible();
         holder.storepostal.setText(mDataset.get(position).postal);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return productList.size();
     }
 
     public void clear() {
-        mDataset.clear();
+        productList.clear();
         notifyDataSetChanged();
     }
 
-    public void setmDataset(List<Product> productList) {
-        mDataset = productList;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
         notifyDataSetChanged();
     }
 }

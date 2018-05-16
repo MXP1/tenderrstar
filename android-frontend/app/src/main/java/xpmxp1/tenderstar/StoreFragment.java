@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 
@@ -64,6 +66,7 @@ public class StoreFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -93,7 +96,7 @@ public class StoreFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new StoreAdapter(Database.getInstance().getStores());
+        mAdapter = new StoreAdapter(Database.getInstance().getStores(), true);
         mRecyclerView.setAdapter(mAdapter);
 
         // return the View

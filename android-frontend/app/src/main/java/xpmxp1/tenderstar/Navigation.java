@@ -40,27 +40,45 @@ public class Navigation {
 
     public void navigateToHome() {
         navigation_view.setCheckedItem(R.id.nav_home);
+        showFragment(new HomeFragment());
+    }
+
+    public void navigateToHomeWithoutBackStack() {
+        navigation_view.setCheckedItem(R.id.nav_home);
         ft = activity.getSupportFragmentManager().beginTransaction();
+
         ft.replace(R.id.mainFrame, new HomeFragment());
         ft.commit();
     }
 
     public void navigateToStores() {
         navigation_view.setCheckedItem(R.id.nav_stores);
-        ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFrame, new StoreFragment());
-        ft.commit();
+        showFragment(new StoreFragment());
+    }
+
+    public void navigateToFavorites() {
+        navigation_view.setCheckedItem(R.id.nav_favorites);
+        showFragment(new FavoritesFragment());
+    }
+
+    public void navigateToShoppingCart() {
+        navigation_view.setCheckedItem(R.id.nav_shopping_cart);
+        showFragment(new ShoppingCartFragment());
     }
 
     public void navigateToStoreDetail(Store store) {
-        Log.d("Navigation", "navigate to store details");
-        Log.d("Navigation", store.name);
-
         navigation_view.setCheckedItem(R.id.nav_home);
-        ft = activity.getSupportFragmentManager().beginTransaction();
+
         StoreDetailsFragment st = new StoreDetailsFragment();
         st.setStore(store);
-        ft.replace(R.id.mainFrame, st);
+        showFragment(st);
+    }
+
+    private void showFragment(Fragment fragment)
+    {
+        ft = activity.getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.mainFrame, fragment).addToBackStack( fragment.getTag() );
         ft.commit();
     }
 }

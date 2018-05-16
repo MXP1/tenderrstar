@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.content.Intent;
 
+import xpmxp1.tenderstar.app_objects.Customer;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText Email;
@@ -44,8 +46,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void validateLogin(String userEmail, String userPassword){
-        if((userEmail.equals("Admin")) && (userPassword.equals("Admin"))){
+
+    private void validateLogin(String userEmail, String userPassword) {
+        Customer customer = Database.getInstance().loginCustomer(userEmail, userPassword);
+        if(customer != null){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }else{
