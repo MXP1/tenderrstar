@@ -86,4 +86,17 @@ public class Database {
             CustomApplication.setLoggedInCustomer(c);
         return c;
     }
+
+    public boolean registerCustomer(String username, String password) {
+        Customer customer = CustomApplication.getDb().customerDAO().findCustomer(username);
+
+        if(customer == null)
+        {
+            Customer newCustomer = new Customer(username, password, username);
+            CustomApplication.getDb().customerDAO().insertCustomer(newCustomer);
+            return true;
+        }
+
+        return false;
+    }
 }
