@@ -38,8 +38,8 @@ public class StoreInstrumentedTests {
 
     @BeforeClass
     public static void init(){
-        CustomApplication.nukeTables();
-        CustomApplication.fillDbWithTestData();
+        Database.nukeTables();
+        Database.fillDbWithTestData();
         Database.getInstance().loginCustomer("Admin", "Admin");
     }
 
@@ -55,7 +55,7 @@ public class StoreInstrumentedTests {
         onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_stores));
 
         onView(withRecyclerView(R.id.store_list).atPosition(0))
-                .check(matches(hasDescendant(withText("LoremIpsum-Store")))).perform(click());
+                .check(matches(hasDescendant(withText("DM")))).perform(click());
 
         onView(withId(R.id.textView_search)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_address)).check(matches(isDisplayed()));
