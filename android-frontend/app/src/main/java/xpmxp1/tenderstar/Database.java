@@ -131,57 +131,57 @@ public class Database {
         i = db.tagDAO().insertTag(t2);
         t2.setId(i);
 
-        Store s1 = new Store("Billa", "Billa", "Billa", "www.billa.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(20,0), false), "Main Street 7", "1010");
+        Store s1 = new Store("Billa", "Billa", "Billa", "www.billa.at", st1.getId(), new OpeningHours(new OpeningHours.Time(8,0),
+                new OpeningHours.Time(20,0), false), "Main Street 7", "1010", 47.060320, 15.451831);
         Store s2 = new Store("Hofer", "Hofer", "Hofer", "www.hofer.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(19,30), true), "Main Street 2", "1010");
+                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(19,30), true), "Main Street 2", "1010", 47.056385, 15.441722);
         Store s3 = new Store("Spar", "Spar", "Spar", "www.spar.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(18,30), false), "Spar Street 1", "9010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(18,30), false), "Spar Street 1", "9010", 47.055076, 15.438686);
         Store s4 = new Store("Eurospar", "Eurospar", "Eurospar", "www.spar.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(19,30), false), "Spar Street 2", "8010");
+                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(19,30), false), "Spar Street 2", "8010", 47.071961, 15.437109);
         Store s5 = new Store("Interspar", "Interspar", "Interspar", "www.spar.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(22,0), true), "Spar Street 3", "8010");
+                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(22,0), true), "Spar Street 3", "8010", 47.061020, 15.426144);
         Store s6 = new Store("Merkur", "Merkur", "Merkur", "www.merkurmarkt.at", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010", 47.057921, 15.439319);
         Store s7 = new Store("Penny", "Penny", "Penny", "https://www.penny.at/", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010", 47.071197, 15.431112);
 
         Store s8 = new Store("MediaMarkt", "MediaMarkt", "MediaMarkt", "www.mediamarkt.at", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(9,30), new OpeningHours.Time(19,30), false), "Acorn Avenue 1", "4010");
+                new OpeningHours(new OpeningHours.Time(9,30), new OpeningHours.Time(19,30), false), "Acorn Avenue 1", "4010", 47.041229, 15.460976);
         Store s9 = new Store("Saturn", "Saturn", "Saturn", "www.saturn.at", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "West Lane 192", "4010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "West Lane 192", "4010", 47.060389, 15.428701);
         Store s10 = new Store("Conrad", "Conrad", "Conrad", "www.conrad.at", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(19,0), false), "Mount Lane 203", "8010");
+                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(19,0), false), "Mount Lane 203", "8010", 47.034347, 15.417707);
         Store s11 = new Store("Hartlauer", "Hartlauer", "Hartlauer", "www.hartlauer.at", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Bath Boulevard 27", "1010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Bath Boulevard 27", "1010", 47.072336, 15.438712);
         Store s12 = new Store("Best Buy", "Best Buy", "Best Buy", "www.bestbuy.com", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Hart Passage 82", "1010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Hart Passage 82", "1010", 47.072336, 15.438712);
         Store s13 = new Store("Euronics", "Euronics", "Euronics", "www.euronics.de", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Flint Avenue 23", "8010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Flint Avenue 23", "8010", 47.630421, 13.001406);
 
         Store s14 = new Store("Bipa", "Bipa", "Bipa", "www.bipa.at", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Circus Street 54", "8010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Circus Street 54", "8010", 47.067896, 15.443823);
         Store s15 = new Store("DM", "DM", "DM", "www.meindm.at", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(18,30), false), "Windmill Route 14", "1010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(18,30), false), "Windmill Route 14", "1010", 47.067465, 15.443834);
         Store s16 = new Store("Müller", "Müller", "Müller", "www.mueller-drogerie.at", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(20,0), false), "Hazelnut Row 7", "4010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(20,0), false), "Hazelnut Row 7", "4010", 47.060251, 15.427372);
         Store s17 = new Store("Walgreens", "Walgreen", "Walgreen", "www.walgreens.com", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(22,30), false), "Castle Avenue 5", "4010");
+                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(22,30), false), "Castle Avenue 5", "4010", 40.756409, -73.986460);
         Store s18 = new Store("CVSHealth", "CVSHealth", "CVSHealth", "www.cvshealth.com", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Ivy Row 8", "1010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Ivy Row 8", "1010", 40.754357, -73.986328);
         Store s19 = new Store("Express Scripts", "Express Scripts", "Express Scripts", "www.express-scripts.com", st3.getId(),
-                new OpeningHours(new OpeningHours.Time(9,30), new OpeningHours.Time(21,0), true), "Serenity Row 1", "1010");
+                new OpeningHours(new OpeningHours.Time(9,30), new OpeningHours.Time(21,0), true), "Serenity Row 1", "1010", 40.944276, -74.125042);
 
         Store s20 = new Store("Möbelix", "Möbelix", "Möbelix", "www.moebelix.at", st4.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,30), false), "Bright Avenue 2", "8010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,30), false), "Bright Avenue 2", "8010", 47.057353, 15.434170);
         Store s21 = new Store("Kika", "Kika", "Kika", "www.kika.at", st4.getId(),
-                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(20,0), false), "Duke Passage 47", "8010");
+                new OpeningHours(new OpeningHours.Time(7,30), new OpeningHours.Time(20,0), false), "Duke Passage 47", "8010", 47.034150, 15.410045);
         Store s22 = new Store("IKEA", "IKEA", "IKEA", "www.ikea.com", st4.getId(),
-                new OpeningHours(new OpeningHours.Time(9,0), new OpeningHours.Time(20,0), true), "University Lane 16", "8010");
+                new OpeningHours(new OpeningHours.Time(9,0), new OpeningHours.Time(20,0), true), "University Lane 16", "8010", 47.033607, 15.422605);
         Store s23 = new Store("XXXLutz", "XXXLutz", "XXXLutz", "www.xxxlutz.at", st4.getId(),
-                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Snowflake Street 73", "1010");
+                new OpeningHours(new OpeningHours.Time(8,30), new OpeningHours.Time(18,30), false), "Snowflake Street 73", "1010", 47.057099, 15.433161);
         Store s24 = new Store("Leiner", "Leiner", "Leiner", "www.leiner.at", st4.getId(),
-                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,30), true), "Butcher Boulevard 134", "4010");
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,30), true), "Butcher Boulevard 134", "4010", 47.070931, 15.421218);
 
         i = db.storeDAO().insertStore(s15);
         s15.setId(i);
