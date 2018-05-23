@@ -78,6 +78,15 @@ public class Navigation {
 
         MapsFragment f = new MapsFragment();
         f.setStoreList(Database.getInstance().getStores());
+//        f.activateNavigation(Database.getInstance().getStores().get(0));
+        showFragment(f);
+    }
+
+    public void navigateToMap(Store store) {
+        navigation_view.setCheckedItem(R.id.temp_test);
+
+        MapsFragment f = new MapsFragment();
+        f.activateNavigation(store);
         showFragment(f);
     }
 

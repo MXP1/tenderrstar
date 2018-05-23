@@ -3,10 +3,12 @@ package xpmxp1.tenderstar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import xpmxp1.tenderstar.app_objects.Store;
@@ -44,6 +46,15 @@ public class StoreDetailsFragment extends Fragment {
         ((TextView) view.findViewById(R.id.textView_address)).setText(store.getAddress());
         ((TextView) view.findViewById(R.id.textView_hours)).setText(store.getOpeningHours().toString());
         ((TextView) view.findViewById(R.id.textView_link)).setText(store.getLink());
+
+        final FloatingActionButton buttonNavigate = view.findViewById(R.id.button_navigate);
+
+        buttonNavigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.getInstance().navigateToMap(store);
+            }
+        });
         return view;
     }
 
