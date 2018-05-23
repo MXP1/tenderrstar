@@ -1,12 +1,12 @@
 package xpmxp1.tenderstar;
 
-
-import android.content.pm.ActivityInfo;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
 
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -21,6 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
 import static android.support.test.espresso.contrib.DrawerMatchers.isOpen;
 import static android.support.test.espresso.action.ViewActions.click;
+
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityInstrumentedTests {

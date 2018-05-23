@@ -1,6 +1,5 @@
 package xpmxp1.tenderstar;
 
-import android.provider.ContactsContract;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -10,8 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.Date;
 
 import xpmxp1.tenderstar.Utils.TestActivity;
 import xpmxp1.tenderstar.app_objects.Product;

@@ -21,7 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class StoreDetailsInstrumentedTests {
 
-    private Store store = Database.getInstance().getStores().get(0);;
+    private Store store = Database.getInstance().getStores().get(0);
     private StoreDetailsFragment m_Fragment;
 
     @Rule
@@ -49,5 +49,8 @@ public class StoreDetailsInstrumentedTests {
         onView(withId(R.id.textView_hours)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_link)).check(matches(isDisplayed()));
     }
+
+
+
 
 }

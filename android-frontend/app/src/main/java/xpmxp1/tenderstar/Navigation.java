@@ -26,10 +26,6 @@ public class Navigation {
         return instance;
     }
 
-    public void PrintTestMessage() {
-        Log.d("Navigation", "Singleton");
-    }
-
     public void setActivity(AppBaseActivity activity) {
         this.activity = activity;
     }
