@@ -52,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         if(customer != null){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-        }else{
+        }
+        else{
             counter --;
             Attempts.setVisibility(View.VISIBLE);
             Attempts.setText("Wrong Combination! Attempts remaining: " + String.valueOf(counter));

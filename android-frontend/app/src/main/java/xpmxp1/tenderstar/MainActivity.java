@@ -4,8 +4,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import xpmxp1.tenderstar.app_objects.Customer;
 
 public class MainActivity
     extends
@@ -24,6 +27,13 @@ public class MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView userName = headerView.findViewById(R.id.nav_head_username);
+        Customer customer = CustomApplication.getLoggedInCustomer();
+
+        userName.setText(customer.getUsername());
     }
 
     @Override

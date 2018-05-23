@@ -1,10 +1,13 @@
 package xpmxp1.tenderstar;
 
-
+import android.support.test.espresso.contrib.DrawerActions;
+import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,6 +18,11 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
+import static android.support.test.espresso.contrib.DrawerMatchers.isClosed;
+import static android.support.test.espresso.contrib.DrawerMatchers.isOpen;
+import static android.support.test.espresso.action.ViewActions.click;
+
+
 @RunWith(AndroidJUnit4.class)
 public class MainActivityInstrumentedTests {
 
@@ -24,8 +32,8 @@ public class MainActivityInstrumentedTests {
 
     @BeforeClass
     public static void init(){
-        CustomApplication.nukeTables();
-        CustomApplication.fillDbWithTestData();
+        Database.nukeTables();
+        Database.fillDbWithTestData();
         Database.getInstance().loginCustomer("Admin", "Admin");
     }
 
@@ -132,6 +140,75 @@ public class MainActivityInstrumentedTests {
         });
 
         checkHomeVisible();
+    }
+
+
+    @Test
+    public void openDrawer_NavigateFavorites() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_favorites));
+        checkFavoritesVisible();
+    }
+
+    @Test
+    public void openDrawer_NavigateStores() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_stores));
+        checkStoresVisible();
+    }
+
+    @Test
+    public void openDrawer_NavigateShoppingCart() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_shopping_cart));
+        checkShoppingCartVisible();
+    }
+
+    @Test
+    public void openDrawer_NavigateHome() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_home));
+        checkHomeVisible();
+    }
+
+    /*
+    @Test
+    public void change_configuration_landscape() {
+        TestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        TestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        checkHomeVisible();
+    }
+    */
+
+    @Test
+    public void navigationHeader_Username() {
+        onView(withId(R.id.drawer_layout))
+                .check(matches(isClosed(Gravity.LEFT))) // Left Drawer should be closed.
+                .perform(DrawerActions.open()); // Open Drawer
+
+        onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
+
+        onView(withId(R.id.nav_head_username)).check(matches(isDisplayed()));
     }
 
     private void checkHomeVisible()

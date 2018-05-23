@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
 
-import static java.lang.Object.*;
-
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -35,7 +33,18 @@ public class RegisterActivity extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                validateRegPassword(Password.getText().toString(), PasswordRepeat.getText().toString());
+                if(validateRegPassword(Password.getText().toString(), PasswordRepeat.getText().toString()))
+                {
+                    if(Database.getInstance().registerCustomer(Email.getText().toString(), Password.getText().toString()))
+                    {
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        return;
+                    }
+
+                    PasswordError.setText("Username already exists");
+                    PasswordError.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -47,15 +56,15 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void validateRegPassword(String passwordOne, String passwordTwo){
+    private boolean validateRegPassword(String passwordOne, String passwordTwo){
         if(passwordOne.equals(passwordTwo) ){
             PasswordError.setVisibility(View.INVISIBLE);
-            // Register Continuation
-
-        }else{
-            PasswordError.setVisibility(View.VISIBLE);
-            PasswordError.setText("Passwords do not match");
+            return true;
         }
+
+        PasswordError.setVisibility(View.VISIBLE);
+        PasswordError.setText("Passwords do not match");
+        return false;
     }
 
 }
