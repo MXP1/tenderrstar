@@ -20,10 +20,14 @@ public class Filter {
     private String searchString = "";
     //private Product.Category category = null;
     private List<Tag> tags = new ArrayList<>();
-    private List<Store> stores = new ArrayList<>();
+    private List<Store> stores;
 
     public Filter(List<Product> products) {
         this.products = products;
+    }
+
+    public Filter(List<Store> stores, int a) {
+        this.stores = stores;
     }
 
     public void reset() {
@@ -36,6 +40,32 @@ public class Filter {
     /*public void setCategory(Product.Category category) {
         this.category = category;
     }*/
+
+    public List<Store> resultsStore(){
+        List<Store> resultsStore = new ArrayList<>();
+
+        for (int i = 0; i < stores.size(); i++){
+        Store store = stores.get(i);
+        boolean matches = true;
+
+            if (matches && searchString != "") {
+                String searchPattern = createSearchRegex(searchString);
+                Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
+                Matcher matcher = pattern.matcher(store.getStoreName().toLowerCase());
+
+                // find matches
+                matches = matcher.matches();
+            }
+            if (matches) {
+                resultsStore.add(store);
+            }
+
+
+        }
+        return resultsStore;
+
+
+    }
 
     public List<Product> results() {
         List<Product> results = new ArrayList<>();

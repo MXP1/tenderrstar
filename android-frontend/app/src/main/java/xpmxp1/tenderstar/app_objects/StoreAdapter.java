@@ -131,4 +131,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         this.storeList = storeList;
         notifyDataSetChanged();
     }
+    public void clear() {
+        storeList.clear();
+        notifyDataSetChanged();
+    }
 }

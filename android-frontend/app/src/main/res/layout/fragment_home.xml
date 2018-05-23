@@ -54,9 +54,15 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/products_list"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stores_list"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
+            android:scrollbars="vertical"
+            android:visibility="invisible"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
