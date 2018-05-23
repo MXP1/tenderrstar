@@ -49,14 +49,13 @@ public class FilterUnitTest{
         StoreType st1 = new StoreType("Food");
         StoreType st2 = new StoreType("Tech");
 
-        Store store1 = new Store("Billa", "Billa", "Billa-Store", "ex-link", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Main Street 7", "1010");
+        Store store1 = new Store("Interspar", "Interspar", "Interspar", "www.spar.at", st1.getId(),
+                new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(22,0), true), "Spar Street 3", "8010", 47.061020, 15.426144);
+        Store store2 = new Store("Merkur", "Merkur", "Merkur", "www.merkurmarkt.at", st1.getId(),
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010", 47.057921, 15.439319);
+        Store store3 = new Store("Penny", "Penny", "Penny", "https://www.penny.at/", st1.getId(),
+                new OpeningHours(new OpeningHours.Time(8,0), new OpeningHours.Time(19,0), false), "Greenfield Street 1", "8010", 47.071197, 15.431112);
 
-        Store store2 = new Store("Spar", "Spar", "Spar-Store", "ex-link", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Tech Street 1", "1010");
-
-        Store store3 = new Store("Saturn", "Saturn", "Saturn-Store", "ex-link", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Test Street 192", "8010");
 
         stores.add(store1);
         stores.add(store2);
@@ -98,7 +97,7 @@ public class FilterUnitTest{
 
     @Test
     public void testSearchStore1() throws Exception {
-        filter_stores.setSearchString("Saturn");
+        filter_stores.setSearchString("Penny");
         List<Store> results = filter_stores.resultsStore();
 
         assertEquals(1, results.size());
