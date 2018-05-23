@@ -2,6 +2,7 @@ package xpmxp1.tenderstar;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -231,28 +232,179 @@ public class Database {
         i = db.storeDAO().insertStore(s24);
         s24.setId(i);
 
-        Product p1 = new Product("Ham", "desc", 2.0, 10.0,
-                new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId());
-        Product p2 = new Product("Ham", "desc", 2.0, 10.0,
-                new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId();
-        Product p3 = new Product("Ham", "desc", 2.0, 10.0,
-                new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId();
-        Product p4 = new Product("Ham", "desc", 2.0, 10.0,
-                new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId();
+        Calendar offerEnds = Calendar.getInstance();
+        offerEnds.add(Calendar.MONTH, 1);
 
-        Product p2 = new Product("Egg", "desc",  1.3, 5.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s1.getId(), pc1.getId());
-        Product p3 = new Product("TV", "desc",699.99, 25.0, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s2.getId(), pc2.getId());
-        Product p4 = new Product("Computer", "desc", 1229.79, 12.5, new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis() + 10000), s3.getId(), pc2.getId());
+        //Perfume
+        Product p44 = new Product("Burberry", "Burberry Brit Sheer Eau De Toilette Spray, Perfume for Women, 3.3 Oz", 30.48, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s14.getId(), pc7.getId());
+        Product p45 = new Product("Chloe", "Chloe Eau de Parfum Spray, Perfume For Women 2.5 Oz", 56.98, 15.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s15.getId(), pc7.getId());
+        Product p46 = new Product("Marc Jacobs", "Marc Jacobs Daisy Eau De Toilette Spray, Perfume for Women, 1.7 Oz", 40.39, 25.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s16.getId(), pc7.getId());
+        Product p47 = new Product("Hermes", "Hermes Un Jardin Sur Le Nil Eau De Toilette Spray, 3.4 Oz", 65.95, 13.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s17.getId(), pc7.getId());
+        Product p48 = new Product("Gucci", "Gucci Bamboo Perfume For Women Spray 2.5 Oz", 57.17, 23.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s18.getId(), pc7.getId());
+        Product p49 = new Product("Dolce & Gabbana", "Dolce & Gabbana The One Perfume For Women Spray 2.5 Oz", 59.39, 3.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s19.getId(), pc7.getId());
 
-        i = db.productDAO().insertProduct(p1);
-        p1.setId(i);
-        i = db.productDAO().insertProduct(p2);
-        p2.setId(i);
-        i = db.productDAO().insertProduct(p3);
-        p3.setId(i);
-        i = db.productDAO().insertProduct(p4);
-        p4.setId(i);
+        i = db.productDAO().insertProduct(p44);
+        p44.setId(i);
+        i = db.productDAO().insertProduct(p45);
+        p45.setId(i);
+        i = db.productDAO().insertProduct(p46);
+        p46.setId(i);
+        i = db.productDAO().insertProduct(p47);
+        p47.setId(i);
+        i = db.productDAO().insertProduct(p48);
+        p48.setId(i);
+        i = db.productDAO().insertProduct(p49);
+        p49.setId(i);
 
+        //Medical Care
+        Product p50 = new Product("Equate Allergy Relief Diphenhydramine Antihistamine", "Capsules, 25 mg, 100 Ct", 4.0, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s14.getId(), pc8.getId());
+        Product p51 = new Product("Benadryl Ultratabs Antihistamine Allergy Medicine", "Tablets, 24 ct", 4.44, 20.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s14.getId(), pc8.getId());
+        Product p52 = new Product("SmartyPants Women’s Complete Dietary Supplement", "120 CT Gummies", 16.88, 25.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s15.getId(), pc8.getId());
+        Product p53 = new Product("Vitafusion Adult Women's Multivitamin Gummies", "Berry, 150 Ct", 9.88, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s15.getId(), pc8.getId());
+        Product p54 = new Product("Centrum Silver Women 50+ Multivitamin Tablets", "200 Ct", 17.44, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s16.getId(), pc8.getId());
+
+        i = db.productDAO().insertProduct(p50);
+        p50.setId(i);
+        i = db.productDAO().insertProduct(p51);
+        p51.setId(i);
+        i = db.productDAO().insertProduct(p52);
+        p52.setId(i);
+        i = db.productDAO().insertProduct(p53);
+        p53.setId(i);
+        i = db.productDAO().insertProduct(p54);
+        p54.setId(i);
+
+        //Makeup
+        Product p55 = new Product("Milani Conceal + Perfect 2-in-1 Foundation + Concealer", "Natural", 9.99, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s14.getId(), pc9.getId());
+        Product p56 = new Product("L'Oréal Paris Voluminous Primer Mascara", "Instantly thicker, longer lashes", 5.84, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s15.getId(), pc9.getId());
+        Product p57 = new Product("L'Oréal Paris Infallible Pro-Matte Foundation", "Classic Ivory", 10.97, 20.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s16.getId(), pc9.getId());
+        Product p58 = new Product("e.l.f. Makeup Mist & Set Setting Spray, Clear", "Long-lasting formula with a smooth finish", 4.0, 2.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s17.getId(), pc9.getId());
+        Product p59 = new Product("NYX Professional Makeup Matte Bronzer, Deep Tan", "Gives you the bronze effect without the shimmer", 8.97, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s18.getId(), pc9.getId());
+        Product p60 = new Product("Maybelline New York Great Lash Washable Mascara, Very Black", "Classic volume brush", 4.44, 13.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s19.getId(), pc9.getId());
+
+        i = db.productDAO().insertProduct(p55);
+        p55.setId(i);
+        i = db.productDAO().insertProduct(p56);
+        p56.setId(i);
+        i = db.productDAO().insertProduct(p57);
+        p57.setId(i);
+        i = db.productDAO().insertProduct(p58);
+        p58.setId(i);
+        i = db.productDAO().insertProduct(p59);
+        p59.setId(i);
+        i = db.productDAO().insertProduct(p60);
+        p60.setId(i);
+
+        //Chair
+        Product p61 = new Product("Mainstays 24\" Ladder Back Swivel Barstool with Microfiber Cushion, Tan", "Features sturdy metal construction with a dark hammered bronze finish that complements a wide range of color schemes and decorative styles", 27.4, 12.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s20.getId(), pc10.getId());
+        Product p62 = new Product("Angel Line Cambridge 24\" Padded Saddle Stool, White w/ Gray Cushion", "This Cambridge 24\" Padded Stool in White with Gray Upholstered Seat and Nail Head Trim is perfect for any counter space or high top table.", 49.99, 2.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s21.getId(), pc10.getId());
+        Product p63 = new Product("Better Homes and Gardens Bankston Counter Height Stool, Set of 2, Mocha", "Pair with Bankston Counter Height Dining Table to create complete dining set", 89.99, 20.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s22.getId(), pc10.getId());
+        Product p64 = new Product("Costway Set Of 2 Bar Stools PU Leather Adjustable Barstool Swivel Pub Chairs Brown", "This is our Bar stools, which will offer you a comfortable seating experience. Its simple but elegant design makes it perfect for home, restaurant, company use etc.", 79.99, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s23.getId(), pc10.getId());
+        Product p65 = new Product("Better Homes & Gardens 29\" Harper Stool, Multiple Colors", "Vintage oak finish", 44.97, 25.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s24.getId(), pc10.getId());
+
+        i = db.productDAO().insertProduct(p61);
+        p61.setId(i);
+        i = db.productDAO().insertProduct(p62);
+        p62.setId(i);
+        i = db.productDAO().insertProduct(p63);
+        p63.setId(i);
+        i = db.productDAO().insertProduct(p64);
+        p64.setId(i);
+        i = db.productDAO().insertProduct(p65);
+        p65.setId(i);
+
+        //Table
+        Product p66 = new Product("Better Homes and Gardens Mercer Dining Table, Vintage Oak finish", "Accommodates seating for 6", 159.0, 3.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s20.getId(), pc11.getId());
+        Product p67 = new Product("Better Homes and Gardens Bryant Dining Table, Comfortably Seats 6, Rustic Brown Finish", "This sturdy wood dining room table is the perfect blend of modern and classic design that will complement most any decor, from contemporary to traditional and all things in between", 199.99, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s21.getId(), pc11.getId());
+        Product p68 = new Product("Ansa Dining Table, Multiple Colors", "Rectangular table", 91.51, 2.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s22.getId(), pc11.getId());
+        Product p69 = new Product("Farmhouse Table, White/Natural", "Handsome hardwood dining table made of durable hardwood construction", 170.0, 4.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s23.getId(), pc11.getId());
+        Product p70 = new Product("Better Homes and Gardens Maddox Crossing Dining Table, Brown", "The simple, sleek design of this table fits well with most any decor, from modern or contemporary to traditional or minimalist", 149.0, 9.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s24.getId(), pc11.getId());
+
+        i = db.productDAO().insertProduct(p66);
+        p66.setId(i);
+        i = db.productDAO().insertProduct(p67);
+        p67.setId(i);
+        i = db.productDAO().insertProduct(p68);
+        p68.setId(i);
+        i = db.productDAO().insertProduct(p69);
+        p69.setId(i);
+        i = db.productDAO().insertProduct(p70);
+        p70.setId(i);
+
+        //Wardrobe
+        Product p71 = new Product("Manhattan Comfort Eldridge Wardrobe", "Inspired by Danish design, the Manhattan Comfort Eldridge Wardrobe is the perfect complement to your modern bedroom décor", 799.0, 12.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s20.getId(), pc12.getId());
+        Product p72 = new Product("Mainstays Closet Storage, Silver/Black", "Convenient, efficient method for organization", 60.0, 8.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s21.getId(), pc12.getId());
+        Product p73 = new Product("Rubbermaid Portable Garment Closet, 60 In.", "Breathable fabric cover to help prevent mildewing and accumulated moisturer", 24.65, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s22.getId(), pc12.getId());
+        Product p74 = new Product("Whitmor Deluxe Utility Closet with Gray Cover", "This easy, no tools required closet, looks great and adds function to almost any space", 55.14, 4.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s23.getId(), pc12.getId());
+        Product p75 = new Product("Closetmaid Vertical Closet Organizer, 12\", White", "Includes tower and 3 expandable hanging rods", 48.55, 9.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s24.getId(), pc12.getId());
+
+        i = db.productDAO().insertProduct(p71);
+        p71.setId(i);
+        i = db.productDAO().insertProduct(p72);
+        p72.setId(i);
+        i = db.productDAO().insertProduct(p73);
+        p73.setId(i);
+        i = db.productDAO().insertProduct(p74);
+        p74.setId(i);
+        i = db.productDAO().insertProduct(p75);
+        p75.setId(i);
+
+        //Bed
+        Product p76 = new Product("DHP Rose Linen Tufted Upholstered Platform Bed", "Contemporary style", 127.5, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s20.getId(), pc13.getId());
+        Product p77 = new Product("Maven Upholstered Platform Bed", "Simple design ideal for modern decor", 92.0, 3.5,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s21.getId(), pc13.getId());
+        Product p78 = new Product("Mainstays Upholstered Bed, Grey Linen,", "Wood slats keep the mattress supported", 128.0, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s22.getId(), pc13.getId());
+        Product p79 = new Product("Mainstays Westlake Twin Bed", "Includes headboard and footboard", 99.0, 7.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s23.getId(), pc13.getId());
+        Product p80 = new Product("LuXeo Bedford King Upholstered Platform Bed in Beige", "Includes a headboard, footboard, bed slats and upholstered rails", 468.40, 12.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s24.getId(), pc13.getId());
+
+        i = db.productDAO().insertProduct(p76);
+        p76.setId(i);
+        i = db.productDAO().insertProduct(p77);
+        p77.setId(i);
+        i = db.productDAO().insertProduct(p78);
+        p78.setId(i);
+        i = db.productDAO().insertProduct(p79);
+        p79.setId(i);
+        i = db.productDAO().insertProduct(p80);
+        p80.setId(i);
+
+        /*
         ProductRating pr1 = new ProductRating(p1.getId(), c1.getId(), 5, "Great!");
         ProductRating pr2 = new ProductRating(p2.getId(), c1.getId(), 3, "Meeh...");
         ProductRating pr3 = new ProductRating(p3.getId(), c2.getId(), 4, "Nice.");
@@ -263,6 +415,7 @@ public class Database {
         db.productRatingDAO().insertProductRating(pr3);
         db.productRatingDAO().insertProductRating(pr4);
         db.productRatingDAO().insertProductRating(pr5);
+        */
 
         StoreRating sr1 = new StoreRating(s1.getId(),c1.getId(), 5, "");
         StoreRating sr2 = new StoreRating(s2.getId(),c1.getId(), 3, "okay...");
