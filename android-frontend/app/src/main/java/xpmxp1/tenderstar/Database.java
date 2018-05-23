@@ -1,6 +1,7 @@
 package xpmxp1.tenderstar;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -88,7 +89,6 @@ public class Database {
         ProductCategory pc5 = new ProductCategory("Movie");
         ProductCategory pc6 = new ProductCategory("Games");
         ProductCategory pc7 = new ProductCategory("Perfume");
-
         ProductCategory pc8 = new ProductCategory("Medical Care");
         ProductCategory pc9 = new ProductCategory("Makeup");
         ProductCategory pc10 = new ProductCategory("Chair");
@@ -234,6 +234,139 @@ public class Database {
 
         Calendar offerEnds = Calendar.getInstance();
         offerEnds.add(Calendar.MONTH, 1);
+
+        Product p1 = new Product("Peanut Butter", "Peanut Butter is loaded with delicious peanut flavor and has a smooth creamy texture.", 2.4, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s1.getId(), pc1.getId());
+        Product p2 = new Product("Sugar", "This stuff is gluten-free!", 2.1, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s2.getId(), pc1.getId());
+        Product p3 = new Product("Spam Classic Canned Meat", "Have a nice and hearty meal ready to enjoy in just minutes with this 12-oz can of Spam Canned Meat.", 8.0, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s3.getId(), pc1.getId());
+        Product p4 = new Product("Barilla Pasta Penne", "Barilla pasta is synonymous with high quality and al dente perfection every time.", 1.95, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s4.getId(), pc1.getId());
+        Product p5 = new Product("Kidney Beans", "These juicy beans are high in dietary fiber, with a creamy texture that lends itself easily to a variety of different recipes.", 1.64, 20.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s5.getId(), pc1.getId());
+
+        i = db.productDAO().insertProduct(p1);
+        p1.setId(i);
+        i = db.productDAO().insertProduct(p2);
+        p2.setId(i);
+        i = db.productDAO().insertProduct(p3);
+        p3.setId(i);
+        i = db.productDAO().insertProduct(p4);
+        p4.setId(i);
+        i = db.productDAO().insertProduct(p5);
+        p5.setId(i);
+
+        Product p6 = new Product("Nescafe Clasico", "Launch your morning with a refreshing cup of java with this Nescafe Clasico Instant Coffee.", 7.77, 4.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s6.getId(), pc2.getId());
+        Product p7 = new Product("Coca-Cola", "The best softdrink in the world.", 1.99, 25.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s7.getId(), pc2.getId());
+        Product p8 = new Product("Apple Juice", "This beverage has a delicious mix of carefully chosen ingredients, allowing you to savor every sip of the drink.", 3.77, 15.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s1.getId(), pc2.getId());
+        Product p9 = new Product("Mountain Dew", "Mountain Dew Soda, the original instigator, refreshes with its one of a kind great taste.", 3.19, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s2.getId(), pc2.getId());
+        Product p10 = new Product("Gatorade Sports Drink", "With a legacy over 40 years in the making, its the most scientifically researched and game-tested way to replace electrolytes lost in sweat.", 3.09, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s3.getId(), pc2.getId());
+
+        i = db.productDAO().insertProduct(p6);
+        p6.setId(i);
+        i = db.productDAO().insertProduct(p7);
+        p7.setId(i);
+        i = db.productDAO().insertProduct(p8);
+        p8.setId(i);
+        i = db.productDAO().insertProduct(p9);
+        p9.setId(i);
+        i = db.productDAO().insertProduct(p10);
+        p10.setId(i);
+
+
+        Product p11 = new Product("SAMSUNG 55\" Smart LED TV ", "Enter a new world of entertainment with the Samsung 55\" LED Smart HDTV ", 549.49, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s8.getId(), pc3.getId());
+        Product p12 = new Product("Sceptre 32\" LED TV", "Escape into a world of splendid color and clarity with the Sceptre 32\" LED TV", 179.99, 50.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s9.getId(), pc3.getId());
+        Product p13 = new Product("VIZIO 65\" 4K XLED", "Powered by XLED, VIZIOs powerful full-array local dimming backlight technology, the E-Series offers enhanced contrast, deep black levels, and stunning clarity. ", 899.99, 30.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s10.getId(), pc3.getId());
+        Product p14 = new Product("Seiki 40\" FHD", "Enjoy sports broadcasts, movies and more on the Seiki 40\" LED TV.", 269.09, 12.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s11.getId(), pc3.getId());
+        Product p15 = new Product("LG 55\" 4K LED TV ", "This model optimizes content scene-by-scene for an even more striking, more breathtaking High Dynamic Range experience.", 999.99, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s12.getId(), pc3.getId());
+
+        i = db.productDAO().insertProduct(p11);
+        p11.setId(i);
+        i = db.productDAO().insertProduct(p12);
+        p12.setId(i);
+        i = db.productDAO().insertProduct(p13);
+        p13.setId(i);
+        i = db.productDAO().insertProduct(p14);
+        p14.setId(i);
+        i = db.productDAO().insertProduct(p15);
+        p15.setId(i);
+
+        Product p16 = new Product("HP Stream 14\" Laptop", "Get the essential productivity you want, without slowing down. This nimble laptop lets you easily shift from homework workhorse to marathoning your favorite shows. ", 299.99, 8.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s13.getId(), pc4.getId());
+        Product p17 = new Product("Dell Inspiron 15 3000", "Dell Inspiron 15, 3552, 15.6-inch HD Truelife LED-Backlit Display, Intel Celeron Processor N3060 (2M Cache, up to 2.48 GHz), 4GB 1600MHz DDR3L", 269.19, 7.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s9.getId(), pc4.getId());
+        Product p18 = new Product("HP Slim 270 Desktop Tower", "Newly redesigned HP desktop tower that is reliable, and slimmer, with performance backed by over 100 tests.", 319.99, 2.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s10.getId(), pc4.getId());
+        Product p19 = new Product("HP Pavilion 570 Desktop Tower", "Transform your workspace with the HP Pavilion desktop tower eye-catching design.", 649.00, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s11.getId(), pc4.getId());
+        Product p20 = new Product("Lenovo Gaming Laptop 15.6\"", "Enter the arena with this slim, lightweight and powerful portable gaming PC.", 870.70, 30.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s12.getId(), pc4.getId());
+
+        i = db.productDAO().insertProduct(p16);
+        p16.setId(i);
+        i = db.productDAO().insertProduct(p17);
+        p17.setId(i);
+        i = db.productDAO().insertProduct(p18);
+        p18.setId(i);
+        i = db.productDAO().insertProduct(p19);
+        p19.setId(i);
+        i = db.productDAO().insertProduct(p20);
+        p20.setId(i);
+
+        Product p21 = new Product("Black Panther", "After the death of his father, the king of Wakanda, young TChalla returns home to the isolated high-tech African nation to succeed to the throne and take his rightful place as king.", 16.09, 5.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s8.getId(), pc5.getId());
+        Product p22 = new Product("Red Sparrow", "In this international spy thriller, Academy Award Winner Jennifer Lawrence* is Dominika, a former ballerina forced to enter Sparrow School, a secret government program", 14.99, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s13.getId(), pc5.getId());
+        Product p23 = new Product("Justice League", "Fueled by his restored faith in humanity and inspired by Supermans selfless act, Bruce Wayne enlists the help of his newfound ally, Diana Prince, to face an even greater enemy.", 12.39, 8.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s10.getId(), pc5.getId());
+        Product p24 = new Product("Coco", "In DisneyPixars vibrant tale of family, fun and adventure, an aspiring young musician named Miguel embarks on an extraordinary journey to the magical land of his ancestors.", 22.00, 15.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s11.getId(), pc5.getId());
+        Product p25 = new Product("The Lion King", "The Lion King is a magnificent coming-of-age masterpiece.", 10.99, 24.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s12.getId(), pc5.getId());
+
+        i = db.productDAO().insertProduct(p21);
+        p21.setId(i);
+        i = db.productDAO().insertProduct(p22);
+        p22.setId(i);
+        i = db.productDAO().insertProduct(p23);
+        p23.setId(i);
+        i = db.productDAO().insertProduct(p24);
+        p24.setId(i);
+        i = db.productDAO().insertProduct(p25);
+        p25.setId(i);
+
+        Product p26 = new Product("Call of Duty: Black Ops 4", "Call of Duty: Black Ops 4 Multiplayer raises the bar, delivering the most thrilling experience yet with a focus on tactical, grounded gameplay and player choice.", 59.99, 2.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s8.getId(), pc6.getId());
+        Product p27 = new Product("Super Mario Odyssey", "Join Mario on a massive, globe-trotting 3D adventure and use his incredible new abilities to collect Moons so you can power up your airship, the Odyssey, and rescue Princess Peach from Bowser's wedding plans! ", 46.99, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s9.getId(), pc6.getId());
+        Product p28 = new Product("Battlefront 2", "Embark on an endless Star Wars; action experience from the bestselling Star Wars HD videogame franchise of all time.", 53.99, 7.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s13.getId(), pc6.getId());
+        Product p29 = new Product("Assassin's Creed: Origins", "Ancient Egypt home of colossal pyramids, gilded tombs, tyrannical god-kings, and the origin story of the Assassins.", 39.89, 10.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s11.getId(), pc6.getId());
+        Product p30 = new Product("Final Fantasy XV", "As the Crown Prince Noctis and his three best friends set out on a journey to wed his fiancee Luna, a terrible tragedy befalls his country. ", 19.99, 50.0,
+                new Date(System.currentTimeMillis()), offerEnds.getTime(), s12.getId(), pc6.getId());
+
+        i = db.productDAO().insertProduct(p26);
+        p26.setId(i);
+        i = db.productDAO().insertProduct(p27);
+        p27.setId(i);
+        i = db.productDAO().insertProduct(p28);
+        p28.setId(i);
+        i = db.productDAO().insertProduct(p29);
+        p29.setId(i);
+        i = db.productDAO().insertProduct(p30);
+        p30.setId(i);
 
         //Perfume
         Product p44 = new Product("Burberry", "Burberry Brit Sheer Eau De Toilette Spray, Perfume for Women, 3.3 Oz", 30.48, 5.0,
@@ -404,7 +537,6 @@ public class Database {
         i = db.productDAO().insertProduct(p80);
         p80.setId(i);
 
-        /*
         ProductRating pr1 = new ProductRating(p1.getId(), c1.getId(), 5, "Great!");
         ProductRating pr2 = new ProductRating(p2.getId(), c1.getId(), 3, "Meeh...");
         ProductRating pr3 = new ProductRating(p3.getId(), c2.getId(), 4, "Nice.");
@@ -415,7 +547,7 @@ public class Database {
         db.productRatingDAO().insertProductRating(pr3);
         db.productRatingDAO().insertProductRating(pr4);
         db.productRatingDAO().insertProductRating(pr5);
-        */
+
 
         StoreRating sr1 = new StoreRating(s1.getId(),c1.getId(), 5, "");
         StoreRating sr2 = new StoreRating(s2.getId(),c1.getId(), 3, "okay...");
