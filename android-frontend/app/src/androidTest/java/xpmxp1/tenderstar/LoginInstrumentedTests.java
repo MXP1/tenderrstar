@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -76,6 +77,19 @@ public class LoginInstrumentedTests {
     public void insert_password() {
         onView(withId(R.id.txtPassword)).perform(typeText("password"));
         onView(withId(R.id.txtPassword)).check(matches(withText("password")));
+    }
+
+    @Test
+    public void login_too_many_attempts() {
+        onView(withId(R.id.txtEmail)).perform(typeText("email"));
+        onView(withId(R.id.txtPassword)).perform(typeText("blub"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.btnLogin)).perform(click());
+        onView(withId(R.id.btnLogin)).perform(click());
+
+        onView(withId(R.id.viewAttempts)).check(matches(isDisplayed()));
+        onView(withId(R.id.viewAttempts)).check(matches(withText("Too many invalid login attempts!")));
     }
 
 }

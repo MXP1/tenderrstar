@@ -88,7 +88,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
-            view_stub.addView(view, lp);
+            setContentView(view_stub, lp);
         }
     }
 

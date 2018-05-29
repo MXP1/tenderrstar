@@ -87,6 +87,7 @@ public class DatabaseTest {
                 new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Tech Street 1", "1010", 47.066181, 15.468644);
         Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link", st2.getId(),
                 new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Test Street 192", "8010", 47.066181, 15.468644);
+
         i = db.storeDAO().insertStore(s1);
         s1.setId(i);
         i = db.storeDAO().insertStore(s2);

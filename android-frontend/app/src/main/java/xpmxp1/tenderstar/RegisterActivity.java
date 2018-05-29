@@ -2,14 +2,11 @@ package xpmxp1.tenderstar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.TextView;
-
-import static java.lang.Object.*;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -63,12 +60,11 @@ public class RegisterActivity extends AppCompatActivity {
         if(passwordOne.equals(passwordTwo) ){
             PasswordError.setVisibility(View.INVISIBLE);
             return true;
-
         }
 
-            PasswordError.setVisibility(View.VISIBLE);
-            PasswordError.setText("Passwords do not match");
-            return false;
+        PasswordError.setVisibility(View.VISIBLE);
+        PasswordError.setText("Passwords do not match");
+        return false;
     }
 
 }

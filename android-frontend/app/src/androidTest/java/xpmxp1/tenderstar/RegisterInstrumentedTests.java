@@ -29,8 +29,8 @@ public class RegisterInstrumentedTests {
 
     @BeforeClass
     public static void init(){
-        CustomApplication.nukeTables();
-        CustomApplication.fillDbWithTestData();
+        Database.nukeTables();
+        Database.fillDbWithTestData();
     }
 
     @Test

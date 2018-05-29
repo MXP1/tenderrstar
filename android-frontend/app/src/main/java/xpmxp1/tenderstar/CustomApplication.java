@@ -37,7 +37,7 @@ public class CustomApplication extends Application {
 
         nukeTables();
         if(db.customerDAO().getAllCustomers().size() == 0)
-            fillDbWithTestData();
+            Database.fillDbWithTestData();
     }
 
     public static void setLoggedInCustomer(Customer customer){

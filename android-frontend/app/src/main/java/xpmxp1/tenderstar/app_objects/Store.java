@@ -139,7 +139,4 @@ public class Store {
     public double getLatitude() {
         return latitude;
     }
-
-    @Ignore
-    public List<Product> products;
 }

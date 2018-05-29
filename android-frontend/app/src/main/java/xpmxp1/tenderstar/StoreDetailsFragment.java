@@ -19,8 +19,6 @@ import xpmxp1.tenderstar.app_objects.Store;
  * Activities that contain this fragment must implement the
  * {@link StoreDetailsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link StoreDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class StoreDetailsFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
@@ -58,21 +56,11 @@ public class StoreDetailsFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
         }
     }
 
