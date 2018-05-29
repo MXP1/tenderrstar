@@ -127,7 +127,7 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
             case R.id.nav_shopping_cart:
                 Navigation.getInstance().navigateToShoppingCart();
                 break;
-            case R.id.temp_test:
+            case R.id.nav_map:
                 Navigation.getInstance().navigateToMap();
                 break;
         }

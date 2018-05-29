@@ -164,40 +164,23 @@ public class MapsFragment extends Fragment {
         boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        Location location = null;
-
-        if (!(isGPSEnabled || isNetworkEnabled))
-            Snackbar.make(mMapView, "ERROR", Snackbar.LENGTH_INDEFINITE).show();
-
-        else {
-            if (isNetworkEnabled) {
-                if (ContextCompat.checkSelfPermission(this.getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                            LOCATION_UPDATE_MIN_TIME, LOCATION_UPDATE_MIN_DISTANCE, locationListener);
-                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    googleMap.setMyLocationEnabled(true);
-                }
-            }
-
-            if (isGPSEnabled) {
-                if (ContextCompat.checkSelfPermission(this.getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                            LOCATION_UPDATE_MIN_TIME, LOCATION_UPDATE_MIN_DISTANCE, locationListener);
-                    location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    googleMap.setMyLocationEnabled(true);
-                }
+        if (isNetworkEnabled) {
+            if (ContextCompat.checkSelfPermission(this.getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                        LOCATION_UPDATE_MIN_TIME, LOCATION_UPDATE_MIN_DISTANCE, locationListener);
+                googleMap.setMyLocationEnabled(true);
             }
         }
-        if (location != null) {
-            Log.d("getCurrentLocation", location.getLatitude() + " " + location.getLongitude());
+
+        if (isGPSEnabled) {
+            if (ContextCompat.checkSelfPermission(this.getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                        LOCATION_UPDATE_MIN_TIME, LOCATION_UPDATE_MIN_DISTANCE, locationListener);
+                googleMap.setMyLocationEnabled(true);
+            }
+
         }
     }
-
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -252,13 +235,6 @@ public class MapsFragment extends Fragment {
         super.onDestroy();
         mMapView.onDestroy();
         Log.d("MapsFragment", "Destroyed");
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mMapView.onLowMemory();
-        Log.d("MapsFragment", "Low Memory");
     }
 
     public void setStoreList(List<Store> storeList) {

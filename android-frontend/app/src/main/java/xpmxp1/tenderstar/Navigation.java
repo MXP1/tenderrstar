@@ -74,7 +74,7 @@ public class Navigation {
     }
 
     public void navigateToMap() {
-        navigation_view.setCheckedItem(R.id.temp_test);
+        navigation_view.setCheckedItem(R.id.nav_map);
 
         MapsFragment f = new MapsFragment();
         f.setStoreList(Database.getInstance().getStores());
@@ -82,7 +82,7 @@ public class Navigation {
     }
 
     public void navigateToMap(Store store) {
-        navigation_view.setCheckedItem(R.id.temp_test);
+        navigation_view.setCheckedItem(R.id.nav_map);
 
         MapsFragment f = new MapsFragment();
         f.activateNavigation(store);
