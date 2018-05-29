@@ -78,7 +78,6 @@ public class Navigation {
 
         MapsFragment f = new MapsFragment();
         f.setStoreList(Database.getInstance().getStores());
-//        f.activateNavigation(Database.getInstance().getStores().get(0));
         showFragment(f);
     }
 

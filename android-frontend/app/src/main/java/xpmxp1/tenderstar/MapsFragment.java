@@ -25,6 +25,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONObject;
@@ -63,6 +64,7 @@ public class MapsFragment extends Fragment {
 
     private List<Store> storeList = null;
     private boolean navigate = false;
+    private List<Polyline> routeLines = null;
 
     double latitude, longitude;
     double end_latitude, end_longitude;
@@ -87,6 +89,8 @@ public class MapsFragment extends Fragment {
 
             // Start downloading json data from Google Directions API
             FetchUrl.execute(url);
+
+            Log.d("MapsFragment", "onLocationChanged");
         }
 
         @Override
@@ -109,7 +113,7 @@ public class MapsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        setRetainInstance(true);
         locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -129,27 +133,31 @@ public class MapsFragment extends Fragment {
             e.printStackTrace();
         }
 
-        if (savedInstanceState == null) {
-            mMapView.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap mMap) {
-                    googleMap = mMap;
-
-                    if (storeList != null) {
-                        for (Store s : storeList) {
-                            LatLng store_position = new LatLng(s.getLongitude(), s.getLatitude());
-                            googleMap.addMarker(new MarkerOptions().position(store_position).title(s.getStoreName()));
-                        }
-                    }
-
-                    // get the current location from the location service
-                    getCurrentLocation();
-
-                }
-            });
-        }
+        initializeMap();
 
         return rootView;
+    }
+
+    private void initializeMap() {
+
+        mMapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                googleMap = mMap;
+
+                if (storeList != null) {
+                    for (Store s : storeList) {
+                        LatLng store_position = new LatLng(s.getLongitude(), s.getLatitude());
+                        googleMap.addMarker(new MarkerOptions().position(store_position).title(s.getStoreName()));
+                    }
+                }
+
+                // get the current location from the location service
+                getCurrentLocation();
+
+                Log.d("MapReady", "Map ready");
+            }
+        });
     }
 
     private void getCurrentLocation() {
@@ -185,11 +193,11 @@ public class MapsFragment extends Fragment {
         }
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -200,12 +208,14 @@ public class MapsFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        Log.d("MapFragment", "onAttach");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        Log.d("MapFragment", "onDetach");
     }
 
     /**
@@ -227,24 +237,28 @@ public class MapsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+        Log.d("MapsFragment", "Resume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mMapView.onPause();
+        Log.d("MapsFragment", "Pause");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
+        Log.d("MapsFragment", "Destroyed");
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+        Log.d("MapsFragment", "Low Memory");
     }
 
     public void setStoreList(List<Store> storeList) {
@@ -274,14 +288,13 @@ public class MapsFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... url) {
-
             // For storing data from web service
             String data = "";
 
             try {
                 // Fetching the data from web service
                 data = downloadUrl(url[0]);
-                Log.d("Background Task data", data.toString());
+                Log.d("Background Task data", data);
             } catch (Exception e) {
                 Log.d("Background Task", e.toString());
             }
@@ -371,6 +384,13 @@ public class MapsFragment extends Fragment {
             ArrayList<LatLng> points;
             PolylineOptions lineOptions = null;
 
+            if (routeLines != null) {
+                for (int i = 0; i < routeLines.size(); i++) {
+                    routeLines.get(i).remove();
+                }
+            }
+            routeLines = new ArrayList<>();
+
             // Traversing through all the routes
             for (int i = 0; i < result.size(); i++) {
                 points = new ArrayList<>();
@@ -401,7 +421,7 @@ public class MapsFragment extends Fragment {
 
             // Drawing polyline in the Google Map for the i-th route
             if (lineOptions != null) {
-                googleMap.addPolyline(lineOptions);
+                routeLines.add(googleMap.addPolyline(lineOptions));
             } else {
                 Log.d("onPostExecute", "without Polylines drawn");
             }

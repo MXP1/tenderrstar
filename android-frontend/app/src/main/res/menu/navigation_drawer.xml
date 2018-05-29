@@ -18,7 +18,7 @@
             android:title="Shopping Cart" />
         <item
             android:id="@+id/temp_test"
-            android:title="Maps" />
+            android:title="Map" />
     </group>
 
 </menu>

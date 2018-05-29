@@ -1,12 +1,10 @@
 package xpmxp1.tenderstar;
 
-import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
 
 public class MainActivity
@@ -24,8 +22,6 @@ public class MainActivity
     private Navigation m_Navigation = Navigation.getInstance();
 
     private boolean mLocationPermissionGranted = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
