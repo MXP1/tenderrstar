@@ -25,8 +25,6 @@ public class MainActivity
 
     private Navigation m_Navigation = Navigation.getInstance();
 
-    private boolean mLocationPermissionGranted = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +54,4 @@ public class MainActivity
         return m_Navigation;
     }
 
-    public boolean LocationPermissionGranted() {
-        return mLocationPermissionGranted;
-    }
 }
