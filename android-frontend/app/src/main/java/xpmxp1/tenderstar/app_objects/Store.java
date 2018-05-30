@@ -139,5 +139,4 @@ public class Store {
     public double getLatitude() {
         return latitude;
     }
-
 }

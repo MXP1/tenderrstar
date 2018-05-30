@@ -1,10 +1,13 @@
 package xpmxp1.tenderstar;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.StoreAdapter;
@@ -68,6 +71,22 @@ public class Navigation {
         StoreDetailsFragment st = new StoreDetailsFragment();
         st.setStore(store);
         showFragment(st);
+    }
+
+    public void navigateToMap() {
+        navigation_view.setCheckedItem(R.id.nav_map);
+
+        MapsFragment f = new MapsFragment();
+        f.setStoreList(Database.getInstance().getStores());
+        showFragment(f);
+    }
+
+    public void navigateToMap(Store store) {
+        navigation_view.setCheckedItem(R.id.nav_map);
+
+        MapsFragment f = new MapsFragment();
+        f.activateNavigation(store);
+        showFragment(f);
     }
 
     private void showFragment(Fragment fragment)

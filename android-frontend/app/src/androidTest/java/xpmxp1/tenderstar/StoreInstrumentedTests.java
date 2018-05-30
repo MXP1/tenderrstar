@@ -53,7 +53,7 @@ public class StoreInstrumentedTests {
         onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
 
         onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_stores));
-
+        
         onView(withRecyclerView(R.id.store_list).atPosition(0))
                 .check(matches(hasDescendant(withText("DM")))).perform(click());
 

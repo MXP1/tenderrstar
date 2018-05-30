@@ -34,7 +34,6 @@ public class CustomApplication extends Application {
 
         db = Room.databaseBuilder(getApplicationContext(), TenderstarDB.class, "TenderstarDB").fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
-        //nukeTables();
         if(db.customerDAO().getAllCustomers().size() == 0)
             Database.fillDbWithTestData();
     }
@@ -50,4 +49,5 @@ public class CustomApplication extends Application {
     public static synchronized TenderstarDB getDb() {
         return db;
     }
+
 }

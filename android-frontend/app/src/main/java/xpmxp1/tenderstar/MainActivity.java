@@ -1,5 +1,6 @@
 package xpmxp1.tenderstar;
 
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,7 +20,8 @@ public class MainActivity
         FavoritesFragment.OnFragmentInteractionListener,
         StoreDetailsFragment.OnFragmentInteractionListener,
         ShoppingCartFragment.OnFragmentInteractionListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener,
+        MapsFragment.OnFragmentInteractionListener {
 
     private Navigation m_Navigation = Navigation.getInstance();
 
@@ -36,6 +38,7 @@ public class MainActivity
         userName.setText(customer.getUsername());
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
@@ -50,4 +53,5 @@ public class MainActivity
     {
         return m_Navigation;
     }
+
 }

@@ -82,11 +82,12 @@ public class DatabaseTest {
         t2.setId(i);
 
         Store s1 = new Store("LoremIpsum", "LoremIpsum", "LoremIpsum-Store", "ex-link", st1.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Main Street 7", "1010", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Main Street 7", "1010", 47.066181, 15.468644);
         Store s2 = new Store("MediaSat", "MediaSat", "MediaSat-Store", "ex-link", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Tech Street 1", "1010", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Tech Street 1", "1010", 47.066181, 15.468644);
         Store s3 = new Store("ConTech", "ConTech", "ConTech-Store", "ex-link", st2.getId(),
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Test Street 192", "8010", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "Test Street 192", "8010", 47.066181, 15.468644);
+
         i = db.storeDAO().insertStore(s1);
         s1.setId(i);
         i = db.storeDAO().insertStore(s2);
@@ -460,9 +461,9 @@ public class DatabaseTest {
     public void insertStoreTest() throws Exception {
         nukeTablesTest();
         Store store1 = new Store("ASDF-Store", "asdf", "ASDF", "www.asdf.at", 1,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 47.066181, 15.468644);
         Store store2 = new Store("ASDF-Store", "asdf", "irgendwas", "www.asdf.at", 1,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 47.066181, 15.468644);
 
         long i = db.storeDAO().insertStore(store1);
         assertNotEquals(i, -1);
@@ -505,7 +506,7 @@ public class DatabaseTest {
     public void getAllProductsForStoreTest() throws Exception {
         nukeTablesTest();
         Store store = new Store("ASDF-Store", "asdf", "irgendwas", "www.asdf.at", 1,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 47.066181, 15.468644);
         long i = db.storeDAO().insertStore(store);
         assertNotEquals(i, -1);
 
@@ -541,7 +542,7 @@ public class DatabaseTest {
     public void savedOfferForCustomerTest() throws Exception {
         nukeTablesTest();
         Store store = new Store("ASDF-Store", "asdf", "irgendwas", "www.asdf.at", 1,
-                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 0, 0);
+                new OpeningHours(new OpeningHours.Time(), new OpeningHours.Time(), false), "asdf", "213", 47.066181, 15.468644);
 
         long i = db.storeDAO().insertStore(store);
         assertNotEquals(i, -1);
