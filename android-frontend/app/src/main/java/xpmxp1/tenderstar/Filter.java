@@ -30,13 +30,6 @@ public class Filter {
         this.stores = stores;
     }
 
-    public void reset() {
-        searchString = "";
-        //category = null;
-        tags = new ArrayList<>();
-        stores = new ArrayList<>();
-    }
-
     /*public void setCategory(Product.Category category) {
         this.category = category;
     }*/
@@ -80,26 +73,6 @@ public class Filter {
                 matches = false;
             }*/
 
-            // Filter tags
-            if (tags != null && !tags.isEmpty()) {
-                if (product.tags != null && !product.tags.containsAll(tags)) {
-                    matches = false;
-                }
-                else if (product.tags == null) {
-                    matches = false;
-                }
-            }
-
-            // Filter stores
-            if (stores != null && !stores.isEmpty()) {
-                if (product.stores != null && !product.stores.containsAll(stores)) {
-                    matches = false;
-                }
-                else if (product.stores == null) {
-                    matches = false;
-                }
-            }
-
             // Filter searchString
             if (matches && searchString != "") {
                 // create regex
@@ -120,12 +93,6 @@ public class Filter {
         return results;
     }
 
-    public void addTag(Tag tag) {
-        this.tags.add(tag);
-    }
-    public void addStore(Store store) {
-        this.stores.add(store);
-    }
     public void setSearchString(String searchString) { this.searchString = searchString; }
 
     private String createSearchRegex(String searchString) {
