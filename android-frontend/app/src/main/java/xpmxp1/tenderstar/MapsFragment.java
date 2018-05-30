@@ -187,9 +187,6 @@ public class MapsFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
         }
         Log.d("MapFragment", "onAttach");
     }
@@ -319,7 +316,6 @@ public class MapsFragment extends Fragment {
             br.close();
 
         } catch (Exception e) {
-            Log.d("Exception", e.toString());
         } finally {
             iStream.close();
             urlConnection.disconnect();
@@ -347,10 +343,7 @@ public class MapsFragment extends Fragment {
                 Log.d("ParserTask", "Executing routes");
                 Log.d("ParserTask", routes.toString());
 
-            } catch (Exception e) {
-                Log.d("ParserTask", e.toString());
-                e.printStackTrace();
-            }
+            } catch (Exception e) { }
             return routes;
         }
 

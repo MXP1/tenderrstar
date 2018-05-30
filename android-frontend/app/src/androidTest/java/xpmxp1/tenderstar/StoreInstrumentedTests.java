@@ -53,14 +53,9 @@ public class StoreInstrumentedTests {
         onView(withId(R.id.drawer_layout)).check(matches(isOpen()));
 
         onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_stores));
-
-        // TODO doesn't seem to work
+        
         onView(withRecyclerView(R.id.store_list).atPosition(0))
                 .check(matches(hasDescendant(withText("DM")))).perform(click());
-
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {}
 
         onView(withId(R.id.textView_search)).check(matches(isDisplayed()));
         onView(withId(R.id.textView_address)).check(matches(isDisplayed()));
