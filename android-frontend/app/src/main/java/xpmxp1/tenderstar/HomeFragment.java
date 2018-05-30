@@ -79,7 +79,6 @@ public class HomeFragment extends Fragment {
                 ((ProductAdapter)mRecyclerViewProduct.getAdapter()).setProductList(productList);
 
 
-
                 ((StoreAdapter)mRecyclerView.getAdapter()).clear();
                 String search_string_store = search.getText().toString();
                 Filter filter_stores = new Filter(Database.getInstance().getStores(), 1);

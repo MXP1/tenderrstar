@@ -1,29 +1,16 @@
 package xpmxp1.tenderstar;
 
-import android.app.Application;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import xpmxp1.tenderstar.app_objects.Customer;
-import xpmxp1.tenderstar.app_objects.Favorit;
 import xpmxp1.tenderstar.app_objects.OpeningHours;
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.ProductCategory;
-import xpmxp1.tenderstar.app_objects.ProductRating;
-import xpmxp1.tenderstar.app_objects.SavedOffer;
 import xpmxp1.tenderstar.app_objects.Store;
-import xpmxp1.tenderstar.app_objects.StoreRating;
 import xpmxp1.tenderstar.app_objects.StoreType;
-import xpmxp1.tenderstar.app_objects.Product;
-import xpmxp1.tenderstar.app_objects.Store;
-import xpmxp1.tenderstar.app_objects.Tag;
-import xpmxp1.tenderstar.app_objects.Tag;
-import xpmxp1.tenderstar.database.TenderstarDB;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
