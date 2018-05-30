@@ -16,14 +16,9 @@
         <item
             android:id="@+id/nav_shopping_cart"
             android:title="Shopping Cart" />
+        <item
+            android:id="@+id/nav_map"
+            android:title="Map" />
     </group>
-
-    <item android:title="Placeholder">
-        <menu>
-            <item
-                android:id="@+id/nav_placeholder"
-                android:title="Placeholder" />
-        </menu>
-    </item>
 
 </menu>

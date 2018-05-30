@@ -34,6 +34,9 @@ public interface CustomerDAO {
     @Query("SELECT * FROM Customer WHERE Username = :username AND Password = :password")
     public Customer loginCustomer(String username, String password);
 
+    @Query("SELECT * FROM Customer WHERE Username = :username")
+    public Customer findCustomer(String username);
+
     @Query("DELETE FROM Customer")
     public void nukeTable();
 }

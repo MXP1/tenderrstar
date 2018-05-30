@@ -36,8 +36,8 @@ public class FavoritesInstrumentedTests {
 
     @BeforeClass
     public static void init(){
-        CustomApplication.nukeTables();
-        CustomApplication.fillDbWithTestData();
+        Database.nukeTables();
+        Database.fillDbWithTestData();
         Database.getInstance().loginCustomer("Admin", "Admin");
     }
 

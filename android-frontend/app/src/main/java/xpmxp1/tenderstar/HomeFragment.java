@@ -18,6 +18,8 @@ import java.util.List;
 
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.ProductAdapter;
+import xpmxp1.tenderstar.app_objects.Store;
+import xpmxp1.tenderstar.app_objects.StoreAdapter;
 
 
 /**
@@ -29,53 +31,26 @@ import xpmxp1.tenderstar.app_objects.ProductAdapter;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     private ListView listView;
     private ProductAdapter productAdapter;
 
     private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerViewProduct;
     private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager mLayoutManagerProduct;
     private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter mAdapterProduct;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -95,38 +70,58 @@ public class HomeFragment extends Fragment {
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((ProductAdapter)mRecyclerView.getAdapter()).clear();
-                String search_string = search.getText().toString();
 
-                Filter filter = new Filter(Database.getInstance().getProducts());
-                filter.setSearchString(search_string);
-                List<Product> productList = filter.results();
+                ((ProductAdapter)mRecyclerViewProduct.getAdapter()).clear();
+                String search_string_product = search.getText().toString();
+                Filter filter_products = new Filter(Database.getInstance().getProducts());
+                filter_products.setSearchString(search_string_product);
+                List<Product> productList = filter_products.results();
+                ((ProductAdapter)mRecyclerViewProduct.getAdapter()).setProductList(productList);
 
-                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(productList);
+
+                ((StoreAdapter)mRecyclerView.getAdapter()).clear();
+                String search_string_store = search.getText().toString();
+                Filter filter_stores = new Filter(Database.getInstance().getStores(), 1);
+                filter_stores.setSearchString(search_string_store);
+                List<Store> storeList = filter_stores.resultsStore();
+                ((StoreAdapter)mRecyclerView.getAdapter()).setStoreList(storeList);
+                mRecyclerView.setVisibility(View.VISIBLE);
             }
         });
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 search.getText().clear();
-                ((ProductAdapter)mRecyclerView.getAdapter()).setProductList(Database.getInstance().getProducts());
+                ((StoreAdapter)mRecyclerView.getAdapter()).setStoreList(Database.getInstance().getStores());
+                ((ProductAdapter)mRecyclerViewProduct.getAdapter()).setProductList(Database.getInstance().getProducts());
+                mRecyclerView.setVisibility(View.INVISIBLE);
             }
         });
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.products_list);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.stores_list);
+
+        mRecyclerViewProduct = (RecyclerView) view.findViewById(R.id.products_list);
+
+
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
+        mRecyclerViewProduct.setHasFixedSize(true);
 
         // use a linear layout manager
+        mLayoutManagerProduct = new LinearLayoutManager(this.getActivity());
+        mRecyclerViewProduct.setLayoutManager(mLayoutManagerProduct);
+
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
 
-        mAdapter = new ProductAdapter(Database.getInstance().getProducts(), false);
+        mAdapter = new StoreAdapter(Database.getInstance().getStores(), false);
+        mAdapterProduct = new ProductAdapter(Database.getInstance().getProducts(), false);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewProduct.setAdapter(mAdapterProduct);
 
         // return the View
         return view;
@@ -137,21 +132,11 @@ public class HomeFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
         }
     }
 

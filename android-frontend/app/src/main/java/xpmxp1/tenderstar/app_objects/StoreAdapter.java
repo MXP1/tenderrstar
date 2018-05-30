@@ -3,6 +3,7 @@ package xpmxp1.tenderstar.app_objects;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // each data item is just a string in this case
         public CardView mCardView;
@@ -40,12 +41,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
             this.storeAdapter = storeAdapter;
 
             mCardView = c;
-            c.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.getInstance().navigateToStoreDetail(store);
-                }
-            });
+            c.setOnClickListener(this);
 
             name = (TextView) c.findViewById(R.id.textView_search);
             address = (TextView) c.findViewById(R.id.textView_address);
@@ -91,6 +87,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
                 }
             }
         }
+
+        @Override
+        public void onClick(View view) {
+            Navigation.getInstance().navigateToStoreDetail(store);
+        }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -129,6 +130,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
     public void setStoreList(List<Store> storeList) {
         this.storeList = storeList;
+        notifyDataSetChanged();
+    }
+    public void clear() {
+        storeList.clear();
         notifyDataSetChanged();
     }
 }
