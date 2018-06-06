@@ -5,7 +5,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.*;
 import java.util.Date;
 
 
@@ -120,9 +119,4 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    //TODO:
-    @Ignore
-    public List<Tag> tags;
-    @Ignore
-    public List<Store> stores;
 }

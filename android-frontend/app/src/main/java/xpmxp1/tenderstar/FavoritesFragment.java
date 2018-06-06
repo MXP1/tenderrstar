@@ -15,12 +15,6 @@ import java.util.List;
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.StoreAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FavoritesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
 public class FavoritesFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
@@ -30,7 +24,6 @@ public class FavoritesFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public FavoritesFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -45,27 +38,20 @@ public class FavoritesFragment extends Fragment {
             mListener.onFragmentInteraction(Uri.parse("Favorites"));
         }
 
-        // Create List view
         View view = inflater.inflate(R.layout.fragment_favorites, container, false);
 
-//        view.setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.favorite_list);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this.getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
 
         List<Store> favoritesList = Database.getInstance().GetFavorites();
 
         mAdapter = new StoreAdapter(favoritesList, false);
         mRecyclerView.setAdapter(mAdapter);
-        // return the View
+
         return view;
     }
 
@@ -83,18 +69,7 @@ public class FavoritesFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

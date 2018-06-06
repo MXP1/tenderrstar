@@ -1,20 +1,9 @@
 package xpmxp1.tenderstar;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
-import android.util.Log;
-
-import java.util.ArrayList;
-
 import xpmxp1.tenderstar.app_objects.Store;
-import xpmxp1.tenderstar.app_objects.StoreAdapter;
-
-/**
- * Created by dominik on 18.04.18.
- */
 
 public class Navigation {
     static private Navigation instance = null;

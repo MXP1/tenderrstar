@@ -4,9 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by Rene Hasenburger on 02.05.2018.
- */
 
 @Entity(tableName = "Category")
 public class ProductCategory {

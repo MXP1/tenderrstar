@@ -7,10 +7,6 @@ import android.arch.persistence.room.Index;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-/**
- * Created by sebastian on 4/18/18.
- */
-
 @Entity(tableName = "Favorit",
         primaryKeys = {"CustomerID", "StoreID"},
         foreignKeys = {@ForeignKey(entity = Customer.class,

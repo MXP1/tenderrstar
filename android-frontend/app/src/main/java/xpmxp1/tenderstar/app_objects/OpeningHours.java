@@ -1,11 +1,5 @@
 package xpmxp1.tenderstar.app_objects;
 
-import android.util.Log;
-
-/**
- * Created by Rene Hasenburger on 25.04.2018.
- */
-
 public class OpeningHours {
 
     static public class Time {
@@ -18,10 +12,6 @@ public class OpeningHours {
         }
 
         public Time(int hour, int minute) {
-            if (hour < 0 || hour >= 24 || minute < 0 || minute >= 60) {
-                Log.e("Store.OpeningHours.Time","invalid time " + hour + ":" + minute);
-            }
-
             this.hour = hour;
             this.minute = minute;
         }
@@ -55,8 +45,6 @@ public class OpeningHours {
 
     // Members
     private TimeSlot[] timeSlots = new TimeSlot[7];
-
-    private String[] daysWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
     // Constructor
     OpeningHours() { }

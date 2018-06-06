@@ -10,10 +10,8 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,12 +44,6 @@ import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.maps.DataParser;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MapsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
 public class MapsFragment extends Fragment {
 
     int PROXIMITY_RADIUS = 10000;
@@ -76,7 +68,7 @@ public class MapsFragment extends Fragment {
     private LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            // TODO: do this at the start of the map, not at every location change
+
             if (initialZoom) {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 17));
                 initialZoom = false;
@@ -85,11 +77,9 @@ public class MapsFragment extends Fragment {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            // Getting URL to the Google Directions API
             String url = getUrl();
             FetchUrl FetchUrl = new FetchUrl();
 
-            // Start downloading json data from Google Directions API
             FetchUrl.execute(url);
 
             Log.d("MapsFragment", "onLocationChanged");
@@ -109,13 +99,11 @@ public class MapsFragment extends Fragment {
     };
 
     public MapsFragment() {
-        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRetainInstance(true);
         locationManager = (LocationManager) this.getActivity().getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -127,7 +115,7 @@ public class MapsFragment extends Fragment {
         mMapView = rootView.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
-        mMapView.onResume(); // needed to get the map to display immediately
+        mMapView.onResume();
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -164,16 +152,9 @@ public class MapsFragment extends Fragment {
 
     private void getCurrentLocation() {
         if (ContextCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
             } else {
-                // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
             }
         }
 
@@ -225,18 +206,7 @@ public class MapsFragment extends Fragment {
         Log.d("MapFragment", "onDetach");
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -283,16 +253,14 @@ public class MapsFragment extends Fragment {
         return googleDirectionsUrl.toString();
     }
 
-    // Fetches data from url passed
     private class FetchUrl extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... url) {
-            // For storing data from web service
+
             String data = "";
 
             try {
-                // Fetching the data from web service
                 data = downloadUrl(url[0]);
                 Log.d("Background Task data", data);
             } catch (Exception e) {
@@ -306,10 +274,7 @@ public class MapsFragment extends Fragment {
             super.onPostExecute(result);
 
             ParserTask parserTask = new ParserTask();
-
-            // Invokes the thread for parsing the JSON data
             parserTask.execute(result);
-
         }
     }
 
@@ -320,13 +285,10 @@ public class MapsFragment extends Fragment {
         try {
             URL url = new URL(strUrl);
 
-            // Creating an http connection to communicate with url
             urlConnection = (HttpURLConnection) url.openConnection();
 
-            // Connecting to url
             urlConnection.connect();
 
-            // Reading data from url
             iStream = urlConnection.getInputStream();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
@@ -352,7 +314,6 @@ public class MapsFragment extends Fragment {
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
-        // Parsing the data in non-ui thread
         @Override
         protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
 
@@ -374,7 +335,6 @@ public class MapsFragment extends Fragment {
             return routes;
         }
 
-        // Executes in UI thread, after the parsing process
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
             ArrayList<LatLng> points;
@@ -387,15 +347,12 @@ public class MapsFragment extends Fragment {
             }
             routeLines = new ArrayList<>();
 
-            // Traversing through all the routes
             for (int i = 0; i < result.size(); i++) {
                 points = new ArrayList<>();
                 lineOptions = new PolylineOptions();
 
-                // Fetching i-th route
                 List<HashMap<String, String>> path = result.get(i);
 
-                // Fetching all the points in i-th route
                 for (int j = 0; j < path.size(); j++) {
                     HashMap<String, String> point = path.get(j);
 
@@ -406,16 +363,13 @@ public class MapsFragment extends Fragment {
                     points.add(position);
                 }
 
-                // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
                 lineOptions.width(10);
                 lineOptions.color(Color.parseColor("#03A9F4"));
 
                 Log.d("onPostExecute", "onPostExecute lineoptions decoded");
-
             }
 
-            // Drawing polyline in the Google Map for the i-th route
             if (lineOptions != null) {
                 routeLines.add(googleMap.addPolyline(lineOptions));
             } else {

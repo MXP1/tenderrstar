@@ -1,14 +1,11 @@
 package xpmxp1.tenderstar;
 
-import android.content.Context;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import xpmxp1.tenderstar.app_objects.Customer;
@@ -38,14 +35,6 @@ public class MainActivity
         Customer customer = CustomApplication.getLoggedInCustomer();
 
         userName.setText(customer.getUsername());
-
-        /*
-        InputMethodManager imm = InputMethodManager)
-        getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(
-                FOCUSABLE_VIEW.getWindowToken(), 0);
-                */
-
     }
 
 

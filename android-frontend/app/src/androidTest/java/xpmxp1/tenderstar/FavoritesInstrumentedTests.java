@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import xpmxp1.tenderstar.Utils.TestActivity;
-import xpmxp1.tenderstar.app_objects.OpeningHours;
 import xpmxp1.tenderstar.app_objects.Store;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -28,7 +27,6 @@ public class FavoritesInstrumentedTests {
 
     private FavoritesFragment m_Fragment;
     private Store TestStore;
-//    private Database Database;
 
     @Rule
     public ActivityTestRule<TestActivity> TestRule =
@@ -73,7 +71,6 @@ public class FavoritesInstrumentedTests {
         onView(withId(R.id.removeFavoriteBtn)).check(matches(isDisplayed()));
         onView(withId(R.id.removeFavoriteBtn)).check(matches(isClickable()));
 
-        //remove favorites entry
         onView(withId(R.id.removeFavoriteBtn)).perform(click());
 
         onView(withId(R.id.textView_search)).check(doesNotExist());

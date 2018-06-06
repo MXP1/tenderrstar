@@ -7,11 +7,6 @@ import java.util.regex.Pattern;
 
 import xpmxp1.tenderstar.app_objects.Product;
 import xpmxp1.tenderstar.app_objects.Store;
-import xpmxp1.tenderstar.app_objects.Tag;
-
-/**
- * Created by dominik on 21.03.18.
- */
 
 public class Filter {
     private List<Product> products;

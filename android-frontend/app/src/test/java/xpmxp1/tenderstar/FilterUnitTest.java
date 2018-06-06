@@ -12,11 +12,6 @@ import xpmxp1.tenderstar.app_objects.ProductCategory;
 import xpmxp1.tenderstar.app_objects.Store;
 import xpmxp1.tenderstar.app_objects.StoreType;
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 
 public class FilterUnitTest{
 
@@ -34,7 +29,6 @@ public class FilterUnitTest{
 
     public void initStoresProducts(){
         StoreType st1 = new StoreType("Food");
-        StoreType st2 = new StoreType("Tech");
 
         Store store1 = new Store("Interspar", "Interspar", "Interspar", "www.spar.at", st1.getId(),
                 new OpeningHours(new OpeningHours.Time(7,0), new OpeningHours.Time(22,0), true), "Spar Street 3", "8010", 47.061020, 15.426144);
