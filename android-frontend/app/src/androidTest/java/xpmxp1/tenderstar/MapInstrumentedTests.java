@@ -58,6 +58,17 @@ public class MapInstrumentedTests {
             }
         });
         try {
+            Thread.sleep(10000);
+        } catch(Exception e) { }
+        onView(withId(R.id.mapView)).check(matches(isDisplayed()));
+
+        TestRule.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Navigation.getInstance().navigateToMap(store);
+            }
+        });
+        try {
             Thread.sleep(5000);
         } catch(Exception e) { }
         onView(withId(R.id.mapView)).check(matches(isDisplayed()));
