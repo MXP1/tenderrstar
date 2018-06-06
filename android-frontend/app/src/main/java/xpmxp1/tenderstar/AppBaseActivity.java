@@ -12,6 +12,7 @@
 
 package xpmxp1.tenderstar;
 
+import android.content.Context;
 import android.support.design.widget.NavigationView;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
 public abstract class AppBaseActivity extends AppCompatActivity implements MenuItem.OnMenuItemClickListener {
@@ -102,13 +104,17 @@ public abstract class AppBaseActivity extends AppCompatActivity implements MenuI
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Pass the event to ActionBarDrawerToggle, if it returns
-        // true, then it has handled the app icon touch event
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
-        // Handle your other action bar items...
         return super.onOptionsItemSelected(item);
     }
 

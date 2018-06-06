@@ -13,13 +13,9 @@ import xpmxp1.tenderstar.app_objects.Tag;
  * Created by dominik on 21.03.18.
  */
 
-//TODO: FILTER nach Category mit DB Entity
-
 public class Filter {
     private List<Product> products;
     private String searchString = "";
-    //private Product.Category category = null;
-    private List<Tag> tags = new ArrayList<>();
     private List<Store> stores;
 
     public Filter(List<Product> products) {
@@ -29,10 +25,6 @@ public class Filter {
     public Filter(List<Store> stores, int a) {
         this.stores = stores;
     }
-
-    /*public void setCategory(Product.Category category) {
-        this.category = category;
-    }*/
 
     public List<Store> resultsStore(){
         List<Store> resultsStore = new ArrayList<>();
@@ -46,18 +38,14 @@ public class Filter {
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
                 Matcher matcher = pattern.matcher(store.getStoreName().toLowerCase());
 
-                // find matches
                 matches = matcher.matches();
             }
             if (matches) {
                 resultsStore.add(store);
             }
-
-
         }
+
         return resultsStore;
-
-
     }
 
     public List<Product> results() {
@@ -67,24 +55,14 @@ public class Filter {
             Product product = products.get(i);
             boolean matches = true;
 
-            //TODO:
-            // Filter category
-            /*if (category != null && product.category != category) {
-                matches = false;
-            }*/
-
-            // Filter searchString
             if (matches && searchString != "") {
-                // create regex
                 String searchPattern = createSearchRegex(searchString);
                 Pattern pattern = Pattern.compile(".*?(?:(" + searchPattern + ").*?)");
                 Matcher matcher = pattern.matcher(product.getName().toLowerCase());
 
-                // find matches
                 matches = matcher.matches();
             }
 
-            // add product if filter matches
             if (matches) {
                 results.add(product);
             }
